@@ -34,4 +34,6 @@ Once the features are created and chosen, I'll setup a supervised learning model
 
 Once the project is finished, the code and documentation for this project can be found in this repository. Additionally, there'll be a Jupyter Notebook and an article. Depending on the success of the project, I'll create a website for other people to use the predictions engine and highlight the project.
 
+---
+
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
