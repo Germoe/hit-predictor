@@ -8,13 +8,15 @@ Project Proposal
 
 ## What is the goal?
 
-Everyday we hear songs played on the radio, curated by producers and created by artists and record labels. Most of these songs were judged on their catchiness and mass-appeal, being examined by experienced people on their potential to make it onto the radio. In this repository, we'll look at the potential of a song to become a hit based on their individual signature and the associated artist's clout.
+Everyday we hear songs played on the radio, curated by producers and created by artists and record labels. Most of these songs were judged on their catchiness and mass-appeal by experienced people before they made it onto the radio. Experience that can determine whether a song will be come a hit or not is a scarce resource. Which is why we'll look at the potential of a song to become a hit based on a song's features and the associated artist's clout.
 
 Is it possible to tell from the song signature and additional meta data on the artist whether or not the song will become a hit and make it onto the Billboard Hot 100?
 
 ## Who cares?
 
 Making it onto the Billboard Hot 100 is essential for most artists and record labels to make an income and to sustain their work. Understanding the potential for a song to make it onto the Billboard Hot 100 could be used as an additional input to inform the costly decision on whether or not a song should be put out as a single or get released at all.
+
+Which is likely why there is even a start-up trying to do just that ([here](https://hyperlive.fm/))
  
 ## What data are you going to use?
 
@@ -32,8 +34,6 @@ Once the features are created and chosen, I'll setup a supervised learning model
 
 ## The Results
 
-Once the project is finished, the code and documentation for this project can be found in this repository. Additionally, there'll be a Jupyter Notebook and an article. Depending on the success of the project, I'll create a project page (one-page website) for other people to use the predictions engine and highlight the project.
-
----
+Once the project is finished, the code and documentation for this project can be found in this repository. Additionally, there'll be a Jupyter Notebook and an article. Depending on the success of the project, I'll create a website for other people to use the predictions engine and highlight the project.
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
