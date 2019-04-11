@@ -1,4 +1,4 @@
-Hit Predictor
+Hit Predictor (Coming Soon - WIP)
 ==============================
 
 This project uses Billboard 200 and Spotify API data to make predictions on a song's potential to make it onto the Billboard 200 (become a mainstream hit).
