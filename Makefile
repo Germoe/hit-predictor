@@ -25,6 +25,22 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
+## Get Zipcodes
+zipcodes: requirements
+	$(PYTHON_INTERPRETER) src/scraper/get_zipcodes.py ${options}
+
+## Scrape Proxies and Data
+proxies: requirements
+	$(PYTHON_INTERPRETER) src/scraper/get_proxies.py $(options)
+
+## Starts Scraper
+## Example Format make scraper target="hot100" scrapetype="iterator" scrapespeed="regular" options="iter_filepath='./data/iterators/hot100.csv'"
+scraper: requirements
+	$(PYTHON_INTERPRETER) src/scraper/scrape_data.py $(target) $(scrapetype) $(scrapespeed) $(options)
+
+iterator: requirements
+	$(PYTHON_INTERPRETER) src/scraper/get_iterator.py $(target) $(reps) $(options)
+
 ## Make Dataset
 data: requirements
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py
