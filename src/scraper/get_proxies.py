@@ -60,7 +60,7 @@ def scrape_proxies(url, xpath_tbody_tr, xpath_scrape_condition, xpath_ip, xpath_
     if ip_port:
         # Checks if a specific ip and port were set to fetch proxies otherwise uses computer credentials
         options.add_argument('--proxy-server=' + ip_port)
-    driver = webdriver.Chrome(chrome_options=options)
+    driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(timeout)
     try:
         driver.get(url)
@@ -118,13 +118,16 @@ def get_proxies(ip_territory=None, ip_port=None):
     # proxy.rudnkh.me/txt
     if not ip_territory:
         url = 'https://proxy.rudnkh.me/txt'
-        if ip_port:
-            proxies_settings = {"http": ip_port, "https": ip_port}
-            response = req.get(url, proxies=proxies_settings)
-        else:
-            response = req.get(url)
-        proxies_rudnkh = set(response.text.split('\n'))
-        proxies.update(proxies_rudnkh)
+        try:
+            if ip_port:
+                proxies_settings = {"http": ip_port, "https": ip_port}
+                response = req.get(url, proxies=proxies_settings)
+            else:
+                response = req.get(url)
+            proxies_rudnkh = set(response.text.split('\n'))
+            proxies.update(proxies_rudnkh)
+        except:
+            print('failed proxies_rudnkh')
 
     # remove empty values
     proxies.discard('')

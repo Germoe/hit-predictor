@@ -54,7 +54,7 @@ def spotify_ids(target):
         if ((iter_df['title'] == track) & (iter_df['artist'] == artist)).any():
             iter_df.loc[i] = ['',filename,artist,track,'','','duplicate']
             continue
-        q = 'track:' + track + ' ' + 'artist:' + artist
+        q = track + ' ' + artist
         tracks = sp.search(q=q, type='track',market='US')
         try:
             items = tracks['tracks']['items']
