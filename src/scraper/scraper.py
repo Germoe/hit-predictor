@@ -176,6 +176,9 @@ def hot100(iterator, path, proxies, timeout):
         raise Exception('Failed Request')
     return True
 
+client_credentials_manager = SpotifyClientCredentials(client_id='e3cddf5da81f43c3a33814866a8de8ed', client_secret='f885f6255fb34c90b8679817d9c63c25')
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
 def spotify_analysis_api(iterator, path, proxies, timeout):
     '''
         Add your custom Scrape function here. As an example you can find the scrape function to get Walmart Stores across the US.
@@ -186,19 +189,20 @@ def spotify_analysis_api(iterator, path, proxies, timeout):
         For return statements make sure you return `False` for a failed or skipped scraping and `True` for a successful scraping.
     '''
 
-    client_credentials_manager = SpotifyClientCredentials(client_id='e3cddf5da81f43c3a33814866a8de8ed', client_secret='f885f6255fb34c90b8679817d9c63c25')
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-
-    hits = []
+    """ Runs data processing scripts to turn raw data from (../raw) into
+        cleaned data ready to be analyzed (saved in ../processed).
+    """
     this = Path(path)
     if this.is_file():
         # Iterator exists
         return False
-    
-    response = sp.audio_analysis(iterator)
-    df_dict = {'name':iterator}
-    for key, value in zip(response.keys(),response.values()):
-        df_dict[key] = [value]
-    df = pd.DataFrame(df_dict)
-    df.to_csv(path, sep='\t', encoding='utf-8')
+    response = sp.audio_features(iterator)
+    hits = []
+    for item, spotify_id in zip(response,iterator):
+        df_dict = {'name': spotify_id}
+        for key, value in zip(item.keys(),item.values()):
+            df_dict[key] = [value]
+        hits.append(pd.DataFrame(df_dict))
+    df_hits = pd.concat(hits)
+    df_hits.to_csv(path, sep='\t', encoding='utf-8',index=False)
     return True

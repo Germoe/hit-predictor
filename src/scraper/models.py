@@ -74,7 +74,7 @@ class Scraper():
         # Get filenames of already scraped iterators and filter the dataframe
         target_filenames = os.listdir(self.dir_path)
         scraped_iterators = [extract_iterator(filename, self.target) for filename in target_filenames]
-        self.iterators = iterator_df.loc[~iterator_df['iterator'].isin(scraped_iterators),:]
+        self.iterators = iterator_df.loc[~iterator_df['iterator'].isin(scraped_iterators),'iterator']
         print("There are {} records left to scrape.".format(len(self.iterators)))
         return self.iterators
     
@@ -142,7 +142,7 @@ class Scraper():
 
     def scrape(self, timeout=3, max_retries=10):
         '''
-            This is a general scrape iterator method that uses a custom scrape function defined in the make command and scraper.py
+            This is where a general scrape iterator method will be added similar to the scrape() method in ZipcodeScraper.
         '''
         # Shuffle the iterators to lower probability of pattern recognition
         iterators_shuffled = self.iterators.sample(frac=1)
@@ -193,6 +193,85 @@ class Scraper():
                 print(success)
                 print('No Success for Iterator {}: Continue to next with no wait.'.format(iterator))
 
+# ------ API Scraper Classes ------
+
+class APIScraper(Scraper):
+    '''
+    Scraper Class designed to iterate over zipcodes to scrape information from maps using zipcodes or latitude/longitude input (e.g. store locators).
+    '''
+
+    # APIcode Scraper is running a scrape function.
+    def __init__(self, target):
+        self.target = target
+    
+    def chunks(self, l, chunk_size):
+        """Yield successive chunk-size chunks from l."""
+        count = 0
+        l_chunks = []
+        for i in range(0, len(l), chunk_size):
+            count += 1
+            l_chunks.append(l[i:i + chunk_size].tolist())
+        return pd.DataFrame({'iterator':l_chunks})
+    
+    def scrape(self, timeout=3, max_retries=10, batch=False, batch_size=50):
+        '''
+        The method to trigger a scrape function including proxy rotation, retries and fallbacks.
+        '''
+        # Shuffle the iterators to lower probability of pattern recognition
+        iterators_shuffled = self.iterators.sample(frac=1)
+        counter = 0
+        iteration = 0
+        self.proxy, timeout, req_limit = self.check_proxy(timeout=timeout)
+        if batch:
+            iter_iterator = self.chunks(iterators_shuffled,batch_size)
+        else:
+            iter_iterator = iterators_shuffled
+        for i, row in enumerate(iter_iterator.iterrows()):
+            row_values = row[1]
+            iterator = row_values['iterator']
+            print("Request for iterator {}".format(iterator))
+            num_retries = 0
+            for retry in range(0,max_retries):
+                # Get a proxy from the pool
+                # print("with proxy {}".format(self.proxy))
+                proxies_settings = {"http": self.proxy, "https": self.proxy}
+                try:
+                    scrape_timeout = timeout + 3
+                    if batch:
+                        path = self.dir_path + '/' + self.target + '_' + str(i * batch_size) + '.csv'
+                    else:
+                        path = self.dir_path + '/' + self.target + '_' + iterator + '.csv'
+                    success = self.scrape_func(iterator, path=path, proxies=proxies_settings, timeout=scrape_timeout)
+                    break
+                except req.exceptions.ConnectionError:
+                    print("xxxxxxxxxxxx  Connection refused  xxxxxxxxxxxx")
+                    self.failed_wait_seconds()
+                    num_retries += 1
+                    # Get new proxy
+                    print('new proxy')
+                    self.proxy, timeout, req_limit = self.check_proxy(timeout=timeout)
+                    print("Retry #{}".format(num_retries))
+                except:
+                    print(traceback.format_exc())
+                    self.failed_wait_seconds()
+                    num_retries += 1
+                    print("Retry #{}".format(num_retries))
+            # wait until you get next iterator
+            if counter > self.scrape_limit:
+                break
+            else:
+                counter += 1
+            if iteration > req_limit:
+                print('next proxy')
+                self.proxy, timeout, req_limit = self.check_proxy(timeout=timeout)
+                iteration = 0
+            else:
+                iteration += 1
+            if success:
+                self.wait_seconds()
+            else:
+                print(success)
+                print('No Success for Iterator {}: Continue to next with no wait.'.format(iterator))
 
 # ------ Zipcode Scraper Classes ------
 

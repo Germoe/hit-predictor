@@ -25,7 +25,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 # Import the Scrape Function defined in scraper.py
 import scraper as scrape_func
-from models import Scraper, ZipcodeScraper
+from models import Scraper, ZipcodeScraper, APIScraper
 import inspect
 
 ## ----------------------- Utils ------------------------
@@ -49,21 +49,27 @@ for x in inspect.getmembers(scrape_func):
 @click.argument('target', type=str) # Target is the identifier for the scraped url, destination directory and name (e.g. walmart)
 @click.argument('scrapetype', default='iterator',type=str) # Scraper Type defines the iteration unit or type of scraper that will be used (e.g. zipcode)
 @click.argument('scrapespeed',default='regular',type=str)
+@click.argument('batch',default=False,type=bool)
+@click.argument('batch_size',default=50,type=int)
 @click.argument('iter_filepath',default=None,type=str) # Necessary for scraper type `iterator` -- create using `make iterator` and custom function in get_iterator.py
 @click.option('--ip_territory',default=None,type=str)
 @click.option('--ip_port',default=None,type=str) # This option is not tied to any action
 @click.option('--force',is_flag=True)
-def main(target, scrapetype, ip_territory, ip_port, scrapespeed, iter_filepath, force=False):
+def main(target, scrapetype, ip_territory, ip_port, scrapespeed, iter_filepath,batch,batch_size, force=False):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
-    if scrapetype == 'zipcode':
+    print('target',target,'scrapetype',scrapetype,'ip_territory',ip_territory,'ip_port',ip_port,'scrapespeed',scrapespeed,'iter_filepath',iter_filepath,'batch',batch,'batch_size',batch_size,'force',force)
+    if scrapetype.lower() == 'zipcode':
         scraper = ZipcodeScraper(target)
         radius = 100 # Set Scrape Radius
         scraper.set_radius(radius)
-    elif scrapetype == 'iterator':
+    elif scrapetype.lower() == 'iterator':
         # Most common iterator
         scraper = Scraper(target)
+    elif scrapetype.lower() == 'api':
+        # Most common iterator
+        scraper = APIScraper(target)
 
     # Read in proxies
     if ip_territory:
@@ -74,19 +80,22 @@ def main(target, scrapetype, ip_territory, ip_port, scrapespeed, iter_filepath, 
     scrape_limit = scraper.init_proxies(ip_path, force)
     scraper.set_speed(scrapespeed)
     print('Scrape Limit: {} units'.format(scrape_limit))
-    if scrapetype == 'zipcode':
+    if scrapetype.lower() == 'zipcode':
         # Read in Zip Codes. Zipcodes csv need to have columns = ['zip','lat','lng','type']
         if radius:
             zip_codes_file = './data/zip_codes/zipcodes_' + str(radius) + '.csv'
         else:
             zip_codes_file = './data/zip_codes/zipcodes_100.csv'
         scraper.init_zipcodes(zip_codes_file)
-    elif scrapetype == 'iterator':
-        iterator_list = pd.read_csv(iter_filepath, sep='\t',dtype={'iterator': object})
+    elif scrapetype.lower() == 'iterator':
+        iterator_list = pd.read_csv(iter_filepath, dtype={'iterator': object})
+        scraper.init_iterator(iterator_list)
+    elif scrapetype.lower() == 'api':
+        iterator_list = pd.read_csv(iter_filepath, dtype={'iterator': object},sep='\t')
         scraper.init_iterator(iterator_list)
 
     scraper.init_scraper(scrape_functions[target])
-    scraper.scrape()
+    scraper.scrape(batch=batch,batch_size=batch_size)
 
     print('done')
 
