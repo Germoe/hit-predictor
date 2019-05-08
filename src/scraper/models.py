@@ -204,6 +204,12 @@ class APIScraper(Scraper):
     def __init__(self, target):
         self.target = target
     
+    def get_identifier(self, index, iterator):
+        if type(iterator) == str:
+            return iterator
+        else:
+            return index
+    
     def chunks(self, l, chunk_size):
         """Yield successive chunk-size chunks from l."""
         count = 0
@@ -229,7 +235,8 @@ class APIScraper(Scraper):
         for i, row in enumerate(iter_iterator.iterrows()):
             row_values = row[1]
             iterator = row_values['iterator']
-            print("Request for iterator {}".format(iterator))
+            identifier = self.get_identifier(i,iterator)
+            print("Request for iterator {} of {}".format(identifier,len(iter_iterator)))
             num_retries = 0
             for retry in range(0,max_retries):
                 # Get a proxy from the pool
@@ -271,7 +278,7 @@ class APIScraper(Scraper):
                 self.wait_seconds()
             else:
                 print(success)
-                print('No Success for Iterator {}: Continue to next with no wait.'.format(iterator))
+                print('No Success for Iterator {}: Continue to next with no wait.'.format(identifier))
 
 # ------ Zipcode Scraper Classes ------
 
