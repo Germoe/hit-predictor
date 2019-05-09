@@ -6,6 +6,8 @@ import json
 from bs4 import BeautifulSoup
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+# Import API importers
+import musicbrainzngs
 
 def walmart(zip_code, path, proxies, timeout, radius):
     '''
@@ -206,3 +208,13 @@ def spotify_analysis_api(iterator, path, proxies, timeout):
     df_hits = pd.concat(hits)
     df_hits.to_csv(path, sep='\t', encoding='utf-8',index=False)
     return True
+
+# Set musicbrainz crednetials
+musicbrainzngs.set_rate_limit(limit_or_interval=1.0, new_requests=1)
+musicbrainzngs.set_useragent('hit_predictor', '0.0.1', 'me@sebastian-engels.com')
+musicbrainzngs.set_format(fmt='xml')
+
+def musicbrainz_ids_by_isrc():
+    res = musicbrainzngs.search_recordings(query='')
+    res = musicbrainzngs.browse_events(area=None, artist='650e7db6-b795-4eb5-a702-5ea2fc46c848', place=None, includes=[], limit=100, offset=None)
+    pp.pprint(res)

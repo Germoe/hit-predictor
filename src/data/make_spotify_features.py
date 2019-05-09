@@ -4,7 +4,6 @@ from pathlib import Path
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-
 iter_filepath = './data/iterators/spotify_ids_filled.csv'
 iterators = pd.read_csv(iter_filepath, sep='\t',dtype={'iterator': object})['iterator'].drop_duplicates().dropna()
 print(iterators.head())
