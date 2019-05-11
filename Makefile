@@ -43,8 +43,11 @@ iterator: requirements
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_spotify_features.py
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py
+	# Get Spotify Ids for Hot 100
+	$(PYTHON_INTERPRETER) src/scraper/get_iterator.py spotify_ids 500
+	# Get Features for Hot 100 Songs
+	# $(PYTHON_INTERPRETER) src/data/make_spotify_features.py
+	# $(PYTHON_INTERPRETER) src/data/make_dataset.py
 
 ## Delete all compiled Python files
 clean:

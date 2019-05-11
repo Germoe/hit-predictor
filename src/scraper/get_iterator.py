@@ -28,7 +28,7 @@ def main(target,reps):
     subdir = 'iterators'
     
     for i in range(reps):
-        filename = target + '.csv' # Define the filename to the csv file that contains the Zip codes that need to be scraped
+        filename = target + '.csv' # Define the filename to the csv file that contains the iterator
         df = iterator_functions[target](target)
 
         if not os.path.exists(output_filepath + subdir):

@@ -60,7 +60,7 @@ def scrape_proxies(url, xpath_tbody_tr, xpath_scrape_condition, xpath_ip, xpath_
     if ip_port:
         # Checks if a specific ip and port were set to fetch proxies otherwise uses computer credentials
         options.add_argument('--proxy-server=' + ip_port)
-    driver = webdriver.Chrome(chrome_options=options)
+    driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(timeout)
     try:
         driver.get(url)

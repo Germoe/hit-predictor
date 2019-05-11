@@ -197,6 +197,7 @@ def spotify_analysis_api(iterator, path, proxies, timeout):
     this = Path(path)
     if this.is_file():
         # Iterator exists
+        print('iterator exists')
         return False
     response = sp.audio_features(iterator)
     hits = []

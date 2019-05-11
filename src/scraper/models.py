@@ -279,6 +279,7 @@ class APIScraper(Scraper):
             else:
                 print(success)
                 print('No Success for Iterator {}: Continue to next with no wait.'.format(identifier))
+                time.sleep(1)
 
 # ------ Zipcode Scraper Classes ------
 

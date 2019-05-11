@@ -4,8 +4,11 @@ from pathlib import Path
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-iter_filepath = './data/iterators/spotify_ids_filled.csv'
-iterators = pd.read_csv(iter_filepath, sep='\t',dtype={'iterator': object})['iterator'].drop_duplicates().dropna()
+iter_filepath = './data/iterators/spotify_ids_iterator.csv'
+try:
+    iterators = pd.read_csv(iter_filepath, sep='\t',dtype={'iterator': object})['iterator'].drop_duplicates().dropna()
+except:
+    raise ValueError('It doesn\'t look like you have a /data/iterators/spotify_ids_iterator.csv file. Make sure to run Hot 100 Wrangling Notebook until that iterator file is created.')
 print(iterators.head())
 print(len(iterators))
 client_credentials_manager = SpotifyClientCredentials(client_id='e3cddf5da81f43c3a33814866a8de8ed', client_secret='f885f6255fb34c90b8679817d9c63c25')
@@ -36,7 +39,7 @@ for i, iterator in enumerate(iterators):
     response = sp.audio_features(songs)
     hits = []
     for item, iterator in zip(response,songs):
-        df_dict = {'name': iterator}
+        df_dict = {'iterator': iterator}
         for key, value in zip(item.keys(),item.values()):
             df_dict[key] = [value]
         hits.append(pd.DataFrame(df_dict))
