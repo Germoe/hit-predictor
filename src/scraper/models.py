@@ -8,6 +8,7 @@ import requests as req
 import traceback
 import time
 from pathlib import Path
+from glob import glob
 
 # ------ Utils ------
 
@@ -106,7 +107,17 @@ class Scraper():
             return self.check_proxy(counter=counter, timeout=timeout)
 
     def set_speed(self, speed='regular'):
-        if speed == 'extreme':
+        if speed == 'nowait':
+            self.min_wait = 0
+            self.max_wait = 0
+            self.min_wait_failed = 0
+            self.max_wait_failed = 0
+        elif speed == 'lightning':
+            self.min_wait = 0.3
+            self.max_wait = 0.8
+            self.min_wait_failed = 0.3
+            self.max_wait_failed = 0.8
+        elif speed == 'extreme':
             self.min_wait = 1
             self.max_wait = 3
             self.min_wait_failed = 1
@@ -140,7 +151,7 @@ class Scraper():
         print('Failed: wait for {}'.format(seconds))
         time.sleep(seconds)
 
-    def scrape(self, timeout=3, max_retries=10):
+    def scrape(self, timeout=3, max_retries=10, batch=False, batch_size=50):
         '''
             This is where a general scrape iterator method will be added similar to the scrape() method in ZipcodeScraper.
         '''
@@ -149,6 +160,8 @@ class Scraper():
         counter = 0
         iteration = 0
         self.proxy, timeout, req_limit = self.check_proxy(timeout=timeout)
+        if type(iterators_shuffled) == pd.Series:
+            iterators_shuffled = iterators_shuffled.to_frame()
         for row in iterators_shuffled.iterrows():
             row_values = row[1]
             iterator = row_values['iterator']
@@ -208,7 +221,7 @@ class APIScraper(Scraper):
         if type(iterator) == str:
             return iterator
         else:
-            return index
+            return index + 1
     
     def chunks(self, l, chunk_size):
         """Yield successive chunk-size chunks from l."""
@@ -224,15 +237,22 @@ class APIScraper(Scraper):
         The method to trigger a scrape function including proxy rotation, retries and fallbacks.
         '''
         # Shuffle the iterators to lower probability of pattern recognition
-        iterators_shuffled = self.iterators.sample(frac=1)
+        iterators_shuffled = self.iterators.sample(frac=1,random_state=50)
         counter = 0
         iteration = 0
         self.proxy, timeout, req_limit = self.check_proxy(timeout=timeout)
         if batch:
-            iter_iterator = self.chunks(iterators_shuffled,batch_size)
+            iter_iterator = self.chunks(self.iterators,batch_size)
+            skip = len(glob(self.dir_path + '/' + self.target + '_' + '*.csv'))
+            print(skip)
         else:
             iter_iterator = iterators_shuffled
+        if type(iter_iterator) == pd.Series:
+            iter_iterator = iter_iterator.to_frame()
         for i, row in enumerate(iter_iterator.iterrows()):
+            if batch:
+                if i <= (skip - 1):
+                    continue
             row_values = row[1]
             iterator = row_values['iterator']
             identifier = self.get_identifier(i,iterator)
@@ -315,7 +335,7 @@ class ZipcodeScraper(Scraper):
         self.zip_codes = zip_codes.loc[~zip_codes['zip'].isin(scraped_zip_codes),:]
         return self.zip_codes
     
-    def scrape(self, timeout=3, max_retries=10):
+    def scrape(self, timeout=3, max_retries=10, batch=False, batch_size=50):
         '''
         The method to trigger a scrape function including proxy rotation, retries and fallbacks.
         '''

@@ -21,28 +21,37 @@ def week_saturday(target):
 
     return pd.DataFrame({'iterator':weeks_iter})
 
-def init_count(target):
+def init_count(target,filenames):
     try:
-        print('records:',int(len(pd.read_csv('./data/iterators/'+ target +'.csv',sep='\t')) / 100))
-        return int(len(pd.read_csv('./data/iterators/'+ target +'.csv',sep='\t')) / 100)
+        scraped_rows = int(len(pd.read_csv('./data/iterators/'+ target +'.csv',sep='\t')))
+        return cumul_row_count(filenames,scraped_rows)
     except:
         return 0
 
-def spotify_ids(target):
-    count = init_count(target)
-    start_pos = count * 100
-    print(start_pos)
+def cumul_row_count(filenames,scraped_rows):
+    rows = 0
+    for i, filename in enumerate(filenames):
+        rows += int(len(pd.read_csv(filename,sep='\t',usecols=['date','rank','title','artist'])))
+        if rows > scraped_rows:
+            return i, rows
+    return len(filenames), rows
+
+def spotify_ids_hot100(target):
     client_credentials_manager = SpotifyClientCredentials(client_id='e3cddf5da81f43c3a33814866a8de8ed', client_secret='f885f6255fb34c90b8679817d9c63c25')
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     current_dir = os.getcwd()
     destination_dir = './data/interim/hot100'
+    filenames = glob(destination_dir + '/*.csv') 
   
+    count, start_pos = init_count(target,filenames)
+    print(count)
+    print(start_pos)
+
     if count >= 1:
         iter_df = pd.read_csv('./data/iterators/'+ target +'.csv',sep='\t')
     else:
         iter_df = pd.DataFrame(columns=columns)
 
-    filenames = glob(destination_dir + '/*.csv')  
     try:
         filename = filenames[count]
     except IndexError:
@@ -72,6 +81,5 @@ def spotify_ids(target):
             iter_df.loc[i] = [spotify_id,filename,artist,track,spotify_artist,spotify_title, verified]
         except:
             iter_df.loc[i] = ['',filename,artist,track,'','','']
-    print('wait')
-    time.sleep(1)
+    print('no wait')
     return iter_df
