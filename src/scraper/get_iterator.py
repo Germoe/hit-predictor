@@ -33,7 +33,7 @@ def main(target,reps):
 
         if not os.path.exists(output_filepath + subdir):
             os.mkdir(output_filepath + subdir)
-        df.to_csv(output_filepath + subdir + '/' + filename, sep='\t', index=False,encoding='utf-8')
+        df.to_csv(output_filepath + subdir + '/' + filename, sep='\t', index=False, encoding='utf-8')
 
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
