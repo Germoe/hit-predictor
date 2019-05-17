@@ -29,12 +29,13 @@ def main(target,reps):
     
     for i in range(reps):
         filename = target + '.csv' # Define the filename to the csv file that contains the iterator
-        df = iterator_functions[target](target)
-
+        df, do_break = iterator_functions[target](target)
         if not os.path.exists(output_filepath + subdir):
             os.mkdir(output_filepath + subdir)
         df.to_csv(output_filepath + subdir + '/' + filename, sep='\t', index=False, encoding='utf-8')
 
+        if do_break:
+            break
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
 

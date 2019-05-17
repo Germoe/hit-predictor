@@ -19,7 +19,7 @@ def week_saturday(target):
     for dt in rrule.rrule(rrule.WEEKLY, dtstart=first_week, until=this_week):
         weeks_iter.append(dt)
 
-    return pd.DataFrame({'iterator':weeks_iter})
+    return pd.DataFrame({'iterator':weeks_iter}), False
 
 def init_count(target,filenames):
     try:
@@ -56,7 +56,7 @@ def spotify_ids_hot100(target):
         filename = filenames[count]
     except IndexError:
         print('It looks like the end of the filename list was reached.')
-        return iter_df
+        return iter_df, True
 
     hot100_df = pd.read_csv(filename,sep='\t',usecols=['date','rank','title','artist'],
                             parse_dates=['date']).sort_values(by=['title','artist'])
@@ -82,4 +82,4 @@ def spotify_ids_hot100(target):
         except:
             iter_df.loc[i] = ['',filename,artist,track,'','','']
     print('no wait')
-    return iter_df
+    return iter_df, False
