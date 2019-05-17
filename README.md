@@ -3,6 +3,14 @@ Hit Predictor (Coming Soon - WIP)
 
 This project uses Billboard Hot 100 and Spotify API data to make predictions on a song's potential to make it onto the Billboard Hot 100 (become a mainstream hit).
 
+Quick Start
+==============================
+
+This project runs in an Anaconda Environment, I highly recommend running the following commands before you start:
+1. `make create_environment` # This creates an Anaconda environment (you probably already have, but if not [install Anaconda](https://www.anaconda.com/distribution/))
+2. `make data` # This pulls the necessary data files from an AWS S3 Bucket
+
+
 Project Proposal
 ==============================
 
