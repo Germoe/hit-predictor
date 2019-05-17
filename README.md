@@ -7,8 +7,11 @@ Quick Start
 ==============================
 
 This project runs in an Anaconda Environment, I highly recommend running the following commands before you start:
-1. `make create_environment` # This creates an Anaconda environment (you probably already have, but if not [install Anaconda](https://www.anaconda.com/distribution/))
-2. `make data` # This pulls the necessary data files from an AWS S3 Bucket
+1. `git clone https://github.com/Germoe/hit-predictor.git` # 
+2. `cd hit-predictor` #
+3. `make environment` # This creates an Anaconda environment (you probably already have, but if not [install Anaconda](https://www.anaconda.com/distribution/))
+4. `conda activate hit-predictor`
+3. `make data` # This pulls the necessary data files from an AWS S3 Bucket
 
 
 Project Proposal
