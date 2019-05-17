@@ -41,8 +41,12 @@ scraper: requirements
 iterator: requirements
 	$(PYTHON_INTERPRETER) src/scraper/get_iterator.py $(target) $(reps) $(options)
 
-## Make Dataset
+# Pull Existing Dataset
 data: requirements
+	aws s3 sync data/ s3://$(BUCKET)/data/
+
+## Make Dataset
+new_data: requirements
 	# Get a fresh set of proxies
 	make proxies
 	# Create an Iterator for the Billboard Hot 100 Charts starting in 1958 to 2019 ($target) ($reps - optional)
