@@ -43,7 +43,7 @@ iterator: requirements
 
 # Pull Existing Dataset
 data: requirements
-	aws s3 sync data/ s3://$(BUCKET)/data/
+	aws s3 sync s3://$(BUCKET)/data/ data/
 
 ## Make Dataset
 new_data: requirements
