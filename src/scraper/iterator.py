@@ -2,9 +2,10 @@
 import os
 from dateutil import rrule
 from datetime import datetime, timedelta
-
+import re
 import pprint
 # Pandas
+import numpy as np
 import pandas as pd
 # Spotiy Id
 import spotipy
@@ -21,10 +22,9 @@ def week_saturday(target):
 
     return pd.DataFrame({'iterator':weeks_iter}), False
 
-def init_count(target,filenames):
+def init_count(target_start,source):
     try:
-        scraped_rows = int(len(pd.read_csv('./data/iterators/'+ target +'.csv',sep='\t')))
-        return cumul_row_count(filenames,scraped_rows)
+        return source - target_start
     except:
         return 0
 
@@ -40,46 +40,60 @@ def spotify_ids_hot100(target):
     client_credentials_manager = SpotifyClientCredentials(client_id='e3cddf5da81f43c3a33814866a8de8ed', client_secret='f885f6255fb34c90b8679817d9c63c25')
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     current_dir = os.getcwd()
-    destination_dir = './data/interim/hot100'
-    filenames = glob(destination_dir + '/*.csv') 
-  
-    count, start_pos = init_count(target,filenames)
-    print(count)
-    print(start_pos)
+    destination_dir = './data/interim/'
+    iter_name = 'hot100_songs.csv' 
+    source = pd.read_csv(destination_dir + iter_name,sep='\t').drop_duplicates(subset=['artist','title'])
+    source['track_artist'] = source['title'] + ' ' + source['artist']
 
-    if count >= 1:
-        iter_df = pd.read_csv('./data/iterators/'+ target +'.csv',sep='\t')
-    else:
-        iter_df = pd.DataFrame(columns=columns)
-
-    try:
-        filename = filenames[count]
-    except IndexError:
-        print('It looks like the end of the filename list was reached.')
-        return iter_df, True
-
-    hot100_df = pd.read_csv(filename,sep='\t',usecols=['date','rank','title','artist'],
-                            parse_dates=['date']).sort_values(by=['title','artist'])
-    hot100_sample = hot100_df.loc[:,['title','artist']]
-    print('length of sample:',len(hot100_sample))
     columns = ('iterator','filename','artist', 'title','spotify_artist','spotify_title','verified')
+    target_path = './data/iterators/'+ target +'.csv'
+    try:
+        target_df = pd.read_csv(target_path,sep='\t')
+    except:
+        target_df = pd.DataFrame(columns=columns)
+    target_df['track_artist'] = target_df['title'] + ' ' + target_df['artist']
+    
+    iterator = source.loc[~source['track_artist'].isin(target_df['track_artist']) ,:]
+    target_df.drop('track_artist',inplace=True,axis=1)
 
-    iteration_count = 0
-    for i,(track,artist) in enumerate(zip(hot100_sample['title'],hot100_sample['artist'])):
-        i = i + (count * 100)
-        if ((iter_df['title'] == track) & (iter_df['artist'] == artist)).any():
-            iter_df.loc[i] = ['',filename,artist,track,'','','duplicate']
-            continue
-        q = track + ' ' + artist
+    print('Remaining: ', len(iterator))
+
+    iteration_count = 1
+    for i,(track,artist) in enumerate(zip(iterator['title'],iterator['artist'])):
+        q = track.lower() + '              ' + artist.lower()
         tracks = sp.search(q=q, type='track',market='US')
+        if len(tracks['tracks']['items']) == 0:
+            q = q.replace('featuring',' ')
+            q = q.replace('\"','')
+            q = re.sub('([.|\.]*)','', q)
+            tracks = sp.search(q=q, type='track',market='US')
+            if len(tracks['tracks']['items']) == 0:
+                q = q.replace('part iii','part 3')
+                q = q.replace('part ii','part 2')
+                q = q.replace('part i','part 1')
+                q = q.replace('the','')
+                q = re.sub('\(.+?\)','', q)
+                tracks = sp.search(q=q, type='track')
         try:
             items = tracks['tracks']['items']
             spotify_id = items[0]['id']
             spotify_title = items[0]['name']
             spotify_artist = ' & '.join(list([artist['name'] for artist in items[0]['album']['artists']]))
             verified = (track == spotify_title) and (artist == spotify_artist)
-            iter_df.loc[i] = [spotify_id,filename,artist,track,spotify_artist,spotify_title, verified]
+            track_row = pd.DataFrame({'iterator':[spotify_id] ,'filename':[iter_name] ,'artist':[artist] , 'title':[track] ,'spotify_artist':[spotify_artist] ,'spotify_title':[spotify_title] ,'verified':[verified]})
         except:
-            iter_df.loc[i] = ['',filename,artist,track,'','','']
+            print(q)
+            print(tracks['tracks']['items'])
+            print('Track couldn\'t be found.')
+            track_row = pd.DataFrame({'iterator':np.nan ,'filename':[iter_name] ,'artist':[artist] , 'title':[track] ,'spotify_artist': np.nan ,'spotify_title': np.nan ,'verified': np.nan})
+        target_df = target_df.append(track_row)
+        
+        if iteration_count > 9:
+            target_df.to_csv(target_path, sep='\t', index=False, encoding='utf-8')
+            iteration_count = 1
+            time.sleep(1)
+        else:
+            iteration_count = iteration_count + 1
+            time.sleep(.3)
     print('no wait')
-    return iter_df, False
+    return target_df, False

@@ -26,19 +26,19 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Get Zipcodes
-zipcodes: requirements
+zipcodes: 
 	$(PYTHON_INTERPRETER) src/scraper/get_zipcodes.py ${options}
 
 ## Scrape Proxies and Data
-proxies: requirements
+proxies: 
 	$(PYTHON_INTERPRETER) src/scraper/get_proxies.py $(options)
 
 ## Starts Scraper
 ## Example Format make scraper target="hot100" scrapetype="iterator" scrapespeed="regular" options="'./data/iterators/hot100.csv'"
-scraper: requirements
+scraper: 
 	$(PYTHON_INTERPRETER) src/scraper/scrape_data.py $(target) $(scrapetype) $(scrapespeed) $(batch) $(batch_size) $(iter_filepath)
 
-iterator: requirements
+iterator: 
 	$(PYTHON_INTERPRETER) src/scraper/get_iterator.py $(target) $(reps) $(options)
 
 # Create Environment
@@ -58,7 +58,7 @@ new_data: requirements
 	# Scrape Hot 100 Charts from Billboard.com
 	# make scraper target='hot100' scrapetype='iterator' scrapespeed='fast' batch=False batch_size=50 iter_filepath='./data/iterators/week_saturday.csv'
 	# Get Spotify Ids for Hot 100 ($reps - must be at least number of files from scrape above)
-	# make iterator target='spotify_ids_hot100' reps=3500
+	make iterator target='spotify_ids_hot100' reps=1
 	# spotify_ids_hot100.csv -> hot100_spotify_ids_iterator.csv & 
 	$(PYTHON_INTERPRETER) src/data/make_hot100_unique_iterator.py
 	# Get Analysis / Features from Spotify ()
