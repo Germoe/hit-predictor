@@ -65,6 +65,7 @@ def spotify_ids_hot100(target):
         if len(tracks['tracks']['items']) == 0:
             q = q.replace('featuring',' ')
             q = q.replace('\"','')
+            q = q.replace('/',' ')
             q = re.sub('([.|\.]*)','', q)
             tracks = sp.search(q=q, type='track',market='US')
             if len(tracks['tracks']['items']) == 0:
@@ -77,15 +78,15 @@ def spotify_ids_hot100(target):
         try:
             items = tracks['tracks']['items']
             spotify_id = items[0]['id']
+            popularity = items[0]['popularity']
             spotify_title = items[0]['name']
             spotify_artist = ' & '.join(list([artist['name'] for artist in items[0]['album']['artists']]))
             verified = (track == spotify_title) and (artist == spotify_artist)
-            track_row = pd.DataFrame({'iterator':[spotify_id] ,'filename':[iter_name] ,'artist':[artist] , 'title':[track] ,'spotify_artist':[spotify_artist] ,'spotify_title':[spotify_title] ,'verified':[verified]})
+            track_row = pd.DataFrame({'iterator':[spotify_id] ,'filename':[iter_name] ,'artist':[artist] , 'title':[track] ,'spotify_artist':[spotify_artist] ,'spotify_title':[spotify_title] ,'popularity': [popularity],'verified':[verified]})
         except:
             print(q)
             print(tracks['tracks']['items'])
-            print('Track couldn\'t be found.')
-            track_row = pd.DataFrame({'iterator':np.nan ,'filename':[iter_name] ,'artist':[artist] , 'title':[track] ,'spotify_artist': np.nan ,'spotify_title': np.nan ,'verified': np.nan})
+            track_row = pd.DataFrame({'iterator':np.nan ,'filename':[iter_name] ,'artist':[artist] , 'title':[track] ,'spotify_artist': np.nan ,'spotify_title': np.nan ,'popularity': np.nan,'verified': np.nan})
         target_df = target_df.append(track_row)
         
         if iteration_count > 9:
