@@ -78,3 +78,16 @@ For collinearity measurements we've used the popular Pearson correlation coeffic
 
 I've found strong correlation (~0.8) between `energy` and `acousticness` and `energy` and `loudness`. Somewhat present correlations (~0.6) were also visible between `acousticness` and `loudness` as well as `valence` and `danceability`. All four correlations were statistically significant for p<0.001 but as the correlations were only moderately strong for some features and removing them might've removed some actual information about a song's content, I decided to use dimension reduction through PCA instead.
 
+# Conclusion
+
+In conclusion, we'll be using a combination of the features below to describe a song's content. To take care of collinearity issues we're using dimensionality reduction (in our case using PCA).
+
+- Acousticness
+- Loudness
+- Instrumentalness
+- Danceability
+- Valence
+- Energy
+- Duration_ms
+
+In the Machine Learning section we'll be looking at multiple different ML algorithms, Cross Validation and Performance metrics to optimize the predictive qualities of our model.
