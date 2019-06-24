@@ -1,25 +1,20 @@
 # Hit Predictor - Finding an Underlying Hit Formula within Songs 
 ### by Sebastian Engels
 
-"Look
-If you had
-One shot 
-Or one opportunity 
-To seize everything you ever wanted 
-In one moment 
-Would you capture it 
-Or just let it slip?" 
+"Look, if you had one shot or one opportunity to seize everything you ever wanted in one moment would you capture it or just let it slip?" 
 - Eminem _Lose Yourself_
-
-# 0. Introduction
-
-In recent years, a new field has (re-)emerged that attempts to detect audio features to predict whether a song will achieve commercialis called Hit Song Science (HSS) . It is develop
-
-- Power of repetition, familiarity
 
 # 1. The Problem
 
+In recent years, a new field has (re-)emerged that attempts to detect audio features to predict whether a song will achieve commercial success - Hit Song Science (HSS) (source).
 
+At the core of this challenge lies the urge to create a better understanding of what intrinsic music features contribute to the popularity of certain music pieces (source). This would allow us a deeper understanding of the components of popularity in music.
+
+Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building.  
+
+However, there are claims of a relationship between some intrinsic music features and their popularity (source). It could be inferred that certainly some variance can be explained by intrinsic features. For example, songs that have many repetitions tend to enjoy elevated popularity (source). There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres) (source). Thus, at least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its audio characteristics.
+
+Hit prediction is a difficult challenge from both angles. On one hand, it's tough to understand what drives popularity. On the other hand, measuring popularity might be just as daunting a task. Popularity could be a continuous measure but only few songs that are created actually even get published and only few of those that were are put onto ranking lists giving some indicator of popularity.
 
 # 2. The Client
 
@@ -51,8 +46,8 @@ The Spotify API was used for two purposes to enrich the Hot 100 data with more m
 The following files were used in the project:
 
 1. hot100.csv - Containing the Hot 100 data since 1958 enriched with performance metrics by title. This file includes 3167 weeks worth of Hot 100 songs.
-2. Hits_uniq.csv - Containing the Hot 100 data that could be matched with Audio Features from the Spotify API. This file includes a total of 21002 songs.
-3. nHits_uniq.csv - Containing the Non-Hits data sampled from the Spotify API using the by year distribution of the Hot 100 data as a baseline number of songs. 
+2. hits_uniq.csv - Containing Hot 100 data that could be matched with Audio Features from the Spotify API. This file includes a total of 21002 songs.
+3. nhits_uniq.csv - Containing Non-Hits data sampled from the Spotify API using the by year distribution of the Hot 100 data as a baseline number of songs.
 
 ## 3.1 Data Collection
 
@@ -167,78 +162,15 @@ There is a clear pattern distinction between the charts after 1991 and previous 
     After 1991 (29 years) - 430
 
 #### Before 1991
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>streak</th>
-      <th>peak</th>
-      <th>entry</th>
-      <th>exit</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Soft Cell</th>
-      <th>Tainted Love</th>
-      <td>42</td>
-      <td>8</td>
-      <td>90</td>
-      <td>97</td>
-    </tr>
-    <tr>
-      <th>Paul Davis</th>
-      <th>I Go Crazy</th>
-      <td>39</td>
-      <td>7</td>
-      <td>89</td>
-      <td>99</td>
-    </tr>
-    <tr>
-      <th>Young M.C.</th>
-      <th>Bust A Move</th>
-      <td>38</td>
-      <td>7</td>
-      <td>81</td>
-      <td>90</td>
-    </tr>
-    <tr>
-      <th>Kris Kristofferson</th>
-      <th>Why Me</th>
-      <td>37</td>
-      <td>16</td>
-      <td>100</td>
-      <td>52</td>
-    </tr>
-    <tr>
-      <th>Laura Branigan</th>
-      <th>Gloria</th>
-      <td>35</td>
-      <td>2</td>
-      <td>84</td>
-      <td>98</td>
-    </tr>
-    <tr>
-      <th>Bee Gees</th>
-      <th>How Deep Is Your Love</th>
-      <td>32</td>
-      <td>1</td>
-      <td>83</td>
-      <td>59</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+
+| artist             | title                 | streak | peak | entry | exit |
+|--------------------|-----------------------|--------|------|-------|------|
+| Soft Cell          | Tainted Love          | 42     | 8    | 90    | 97   |
+| Paul Davis         | I Go Crazy            | 39     | 7    | 89    | 99   |
+| Young M.C.         | Bust A Move           | 38     | 7    | 81    | 90   |
+| Kris Kristofferson | Why Me                | 37     | 16   | 100   | 52   |
+| Laura Branigan     | Gloria                | 35     | 2    | 84    | 98   |
+| Bee Gees           | How Deep Is Your Love | 32     | 1    | 83    | 59   |
 
 Go to Playlist: https://open.spotify.com/user/1162788143/playlist/0iP1Sz5qSCmVomZUNYbKPj?si=8SyDMByGRK60HNPHv9-HZA
 
@@ -246,110 +178,18 @@ Go to Playlist: https://open.spotify.com/user/1162788143/playlist/0iP1Sz5qSCmVom
 
 #### After 1991 (Top 10 shown)
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>streak</th>
-      <th>peak</th>
-      <th>entry</th>
-      <th>exit</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Imagine Dragons</th>
-      <th>Radioactive</th>
-      <td>84</td>
-      <td>3</td>
-      <td>93</td>
-      <td>49</td>
-    </tr>
-    <tr>
-      <th>Jason Mraz</th>
-      <th>I'm Yours</th>
-      <td>75</td>
-      <td>6</td>
-      <td>93</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>LeAnn Rimes</th>
-      <th>How Do I Live</th>
-      <td>68</td>
-      <td>2</td>
-      <td>89</td>
-      <td>45</td>
-    </tr>
-    <tr>
-      <th>OneRepublic</th>
-      <th>Counting Stars</th>
-      <td>67</td>
-      <td>2</td>
-      <td>32</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <th>LMFAO Featuring Lauren Bennett &amp; GoonRock</th>
-      <th>Party Rock Anthem</th>
-      <td>66</td>
-      <td>1</td>
-      <td>78</td>
-      <td>49</td>
-    </tr>
-    <tr>
-      <th>Jewel</th>
-      <th>Foolish Games/You Were Meant For Me</th>
-      <td>64</td>
-      <td>2</td>
-      <td>61</td>
-      <td>47</td>
-    </tr>
-    <tr>
-      <th>Adele</th>
-      <th>Rolling In The Deep</th>
-      <td>63</td>
-      <td>1</td>
-      <td>68</td>
-      <td>49</td>
-    </tr>
-    <tr>
-      <th>Carrie Underwood</th>
-      <th>Before He Cheats</th>
-      <td>63</td>
-      <td>8</td>
-      <td>92</td>
-      <td>47</td>
-    </tr>
-    <tr>
-      <th>The Lumineers</th>
-      <th>Ho Hey</th>
-      <td>61</td>
-      <td>3</td>
-      <td>90</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <th>Lady Antebellum</th>
-      <th>Need You Now</th>
-      <td>59</td>
-      <td>2</td>
-      <td>85</td>
-      <td>48</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                                    | title                               | streak | peak | entry | exit |
+|-------------------------------------------|-------------------------------------|--------|------|-------|------|
+| Imagine Dragons                           | Radioactive                         | 84     | 3    | 93    | 49   |
+| Jason Mraz                                | I'm Yours                           | 75     | 6    | 93    | 48   |
+| LeAnn Rimes                               | How Do I Live                       | 68     | 2    | 89    | 45   |
+| OneRepublic                               | Counting Stars                      | 67     | 2    | 32    | 50   |
+| LMFAO Featuring Lauren Bennett & GoonRock | Party Rock Anthem                   | 66     | 1    | 78    | 49   |
+| Jewel                                     | Foolish Games/You Were Meant For Me | 64     | 2    | 61    | 47   |
+| Adele                                     | Rolling In The Deep                 | 63     | 1    | 68    | 49   |
+| Carrie Underwood                          | Before He Cheats                    | 63     | 8    | 92    | 47   |
+| The Lumineers                             | Ho Hey                              | 61     | 3    | 90    | 50   |
+| Lady Antebellum                           | Need You Now                        | 59     | 2    | 85    | 48   |
 
 Go to Playlist: https://open.spotify.com/user/1162788143/playlist/4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w
 
@@ -417,34 +257,10 @@ Now we know that songs that have higher peak positions tend to stay on the Hot 1
 
 ![](./notebooks/assets/pole_pos_streaks.png)
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>weeks</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Luis Fonsi &amp; Daddy Yankee Featuring Justin Bieber</th>
-      <th>Despacito</th>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>Mariah Carey &amp; Boyz II Men</th>
-      <th>One Sweet Day</th>
-      <td>16</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                                            | title         | weeks |
+|---------------------------------------------------|---------------|-------|
+| Luis Fonsi & Daddy Yankee Featuring Justin Bieber | Despacito     | 16    |
+| Mariah Carey & Boyz II Men                        | One Sweet Day | 16    |
 
     Total No.1 Hits: 1086
 
@@ -468,126 +284,14 @@ As seen at the beginning of the Exploratory Data Analysis (EDA). Generally songs
 
 There are a total of 6 songs that were able to leap more than 90 positions from one week to another.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>entry_year</th>
-      <th>exit_year</th>
-      <th>reentry</th>
-      <th>streak</th>
-      <th>ranked</th>
-      <th>entry</th>
-      <th>exit</th>
-      <th>peak</th>
-      <th>low</th>
-      <th>max_leap</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Dixie Chicks</th>
-      <th>Not Ready To Make Nice</th>
-      <td>2006</td>
-      <td>2007</td>
-      <td>2</td>
-      <td>16</td>
-      <td>24</td>
-      <td>28</td>
-      <td>42</td>
-      <td>4</td>
-      <td>100</td>
-      <td>96.0</td>
-    </tr>
-    <tr>
-      <th>Kelly Clarkson</th>
-      <th>My Life Would Suck Without You</th>
-      <td>2009</td>
-      <td>2009</td>
-      <td>0</td>
-      <td>23</td>
-      <td>24</td>
-      <td>97</td>
-      <td>44</td>
-      <td>1</td>
-      <td>97</td>
-      <td>96.0</td>
-    </tr>
-    <tr>
-      <th>Britney Spears</th>
-      <th>Womanizer</th>
-      <td>2008</td>
-      <td>2009</td>
-      <td>0</td>
-      <td>22</td>
-      <td>23</td>
-      <td>96</td>
-      <td>45</td>
-      <td>1</td>
-      <td>96</td>
-      <td>95.0</td>
-    </tr>
-    <tr>
-      <th>Lady Gaga</th>
-      <th>Million Reasons</th>
-      <td>2016</td>
-      <td>2017</td>
-      <td>4</td>
-      <td>8</td>
-      <td>20</td>
-      <td>76</td>
-      <td>41</td>
-      <td>4</td>
-      <td>97</td>
-      <td>93.0</td>
-    </tr>
-    <tr>
-      <th>LL Cool J Featuring Jennifer Lopez</th>
-      <th>Control Myself</th>
-      <td>2006</td>
-      <td>2006</td>
-      <td>1</td>
-      <td>7</td>
-      <td>11</td>
-      <td>93</td>
-      <td>99</td>
-      <td>4</td>
-      <td>99</td>
-      <td>91.0</td>
-    </tr>
-    <tr>
-      <th>Beyonce &amp; Shakira</th>
-      <th>Beautiful Liar</th>
-      <td>2007</td>
-      <td>2007</td>
-      <td>0</td>
-      <td>17</td>
-      <td>18</td>
-      <td>94</td>
-      <td>91</td>
-      <td>3</td>
-      <td>94</td>
-      <td>91.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist | title | entry\_year | exit\_year | reentry | streak | ranked | entry | exit | peak | low | max\_leap |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Dixie Chicks                       | Not Ready To Make Nice         | 2006        | 2007       | 2       | 16     | 24     | 28    | 42   | 4    | 100 | 96.0      |
+| Kelly Clarkson                     | My Life Would Suck Without You | 2009        | 2009       | 0       | 23     | 24     | 97    | 44   | 1    | 97  | 96.0      |
+| Britney Spears                     | Womanizer                      | 2008        | 2009       | 0       | 22     | 23     | 96    | 45   | 1    | 96  | 95.0      |
+| Lady Gaga                          | Million Reasons                | 2016        | 2017       | 4       | 8      | 20     | 76    | 41   | 4    | 97  | 93.0      |
+| LL Cool J Featuring Jennifer Lopez | Control Myself                 | 2006        | 2006       | 1       | 7      | 11     | 93    | 99   | 4    | 99  | 91.0      |
+| Beyonce & Shakira                  | Beautiful Liar                 | 2007        | 2007       | 0       | 17     | 18     | 94    | 91   | 3    | 94  | 91.0      |
 
 To understand the journey of these songs we'll make an attempt at visualizing it.
 
@@ -622,126 +326,14 @@ We can see that there is quite a large standard deviation of +-17.73 ranks from 
 
 There's very few reentries. Most songs that leave the Hot 100 leave for good and only about 4% of the ones that do make a reappearance do so more than twice. In fact, only 6 songs have made a reappearance on the Hot 100 more than 5 times, and they are all seasonal Christmas Evergreens (with one exception 'Unchained Melody' by 'The Righteous Brothers' has made a comeback 14 times over a period of 26 years).
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>entry_year</th>
-      <th>exit_year</th>
-      <th>reentry</th>
-      <th>streak</th>
-      <th>ranked</th>
-      <th>entry</th>
-      <th>exit</th>
-      <th>peak</th>
-      <th>low</th>
-      <th>max_leap</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>The Righteous Brothers</th>
-      <th>Unchained Melody</th>
-      <td>1965</td>
-      <td>1991</td>
-      <td>14</td>
-      <td>12</td>
-      <td>57</td>
-      <td>72</td>
-      <td>89</td>
-      <td>4</td>
-      <td>97</td>
-      <td>57.0</td>
-    </tr>
-    <tr>
-      <th>Brenda Lee</th>
-      <th>Rockin' Around The Christmas Tree</th>
-      <td>1960</td>
-      <td>2019</td>
-      <td>9</td>
-      <td>4</td>
-      <td>26</td>
-      <td>64</td>
-      <td>9</td>
-      <td>9</td>
-      <td>89</td>
-      <td>38.0</td>
-    </tr>
-    <tr>
-      <th>Bobby Helms</th>
-      <th>Jingle Bell Rock</th>
-      <td>1958</td>
-      <td>2019</td>
-      <td>8</td>
-      <td>4</td>
-      <td>25</td>
-      <td>57</td>
-      <td>8</td>
-      <td>8</td>
-      <td>99</td>
-      <td>28.0</td>
-    </tr>
-    <tr>
-      <th>Mariah Carey</th>
-      <th>All I Want For Christmas Is You</th>
-      <td>2000</td>
-      <td>2019</td>
-      <td>8</td>
-      <td>5</td>
-      <td>29</td>
-      <td>83</td>
-      <td>3</td>
-      <td>3</td>
-      <td>83</td>
-      <td>54.0</td>
-    </tr>
-    <tr>
-      <th>Nat King Cole</th>
-      <th>The Christmas Song (Merry Christmas To You)</th>
-      <td>1960</td>
-      <td>2019</td>
-      <td>7</td>
-      <td>4</td>
-      <td>16</td>
-      <td>100</td>
-      <td>11</td>
-      <td>11</td>
-      <td>100</td>
-      <td>20.0</td>
-    </tr>
-    <tr>
-      <th>Bing Crosby</th>
-      <th>White Christmas</th>
-      <td>1958</td>
-      <td>2019</td>
-      <td>6</td>
-      <td>2</td>
-      <td>15</td>
-      <td>86</td>
-      <td>34</td>
-      <td>12</td>
-      <td>86</td>
-      <td>33.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                 | title                                       | entry\_year | exit\_year | reentry | streak | ranked | entry | exit | peak | low | max\_leap |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| The Righteous Brothers | Unchained Melody                            | 1965        | 1991       | 14      | 12     | 57     | 72    | 89   | 4    | 97  | 57.0      |
+| Brenda Lee             | Rockin' Around The Christmas Tree           | 1960        | 2019       | 9       | 4      | 26     | 64    | 9    | 9    | 89  | 38.0      |
+| Bobby Helms            | Jingle Bell Rock                            | 1958        | 2019       | 8       | 4      | 25     | 57    | 8    | 8    | 99  | 28.0      |
+| Mariah Carey           | All I Want For Christmas Is You             | 2000        | 2019       | 8       | 5      | 29     | 83    | 3    | 3    | 83  | 54.0      |
+| Nat King Cole          | The Christmas Song (Merry Christmas To You) | 1960        | 2019       | 7       | 4      | 16     | 100   | 11   | 11   | 100 | 20.0      |
+| Bing Crosby            | White Christmas                             | 1958        | 2019       | 6       | 2      | 15     | 86    | 34   | 12   | 86  | 33.0      |
 
 ### 4.1.5 Conclusion
 
@@ -783,110 +375,18 @@ For our model, it can be seen that especially during the mid-1970s and mid-2000s
 
 Lastly, let's look at a few of the most danceable Hits throughout the history of the Hot 100.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>date</th>
-      <th>danceability</th>
-      <th>hit</th>
-      <th>peak</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Tone-Loc</th>
-      <th>Funky Cold Medina</th>
-      <td>1989-06-03</td>
-      <td>0.988</td>
-      <td>True</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>DJ Suede The Remix God</th>
-      <th>Cash Me Outside (#CashMeOutside)</th>
-      <td>2017-03-04</td>
-      <td>0.981</td>
-      <td>True</td>
-      <td>72.0</td>
-    </tr>
-    <tr>
-      <th>Glee Cast</th>
-      <th>Ice Ice Baby</th>
-      <td>2010-05-22</td>
-      <td>0.980</td>
-      <td>True</td>
-      <td>74.0</td>
-    </tr>
-    <tr>
-      <th>The Jacksons</th>
-      <th>State of Shock</th>
-      <td>1984-09-22</td>
-      <td>0.980</td>
-      <td>True</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>Vanilla Ice</th>
-      <th>Ice Ice Baby</th>
-      <td>1990-09-08</td>
-      <td>0.978</td>
-      <td>True</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>Evelyn King</th>
-      <th>Betcha She Don't Love You</th>
-      <td>1983-01-22</td>
-      <td>0.974</td>
-      <td>True</td>
-      <td>49.0</td>
-    </tr>
-    <tr>
-      <th>Jermaine Jackson</th>
-      <th>Let Me Tickle Your Fancy</th>
-      <td>1982-10-30</td>
-      <td>0.973</td>
-      <td>True</td>
-      <td>18.0</td>
-    </tr>
-    <tr>
-      <th>2nd II None</th>
-      <th>Be True To Yourself</th>
-      <td>1992-01-11</td>
-      <td>0.971</td>
-      <td>True</td>
-      <td>78.0</td>
-    </tr>
-    <tr>
-      <th>Cardi B Featuring Migos</th>
-      <th>Drip</th>
-      <td>2018-06-02</td>
-      <td>0.968</td>
-      <td>True</td>
-      <td>21.0</td>
-    </tr>
-    <tr>
-      <th>Justin Timberlake</th>
-      <th>SexyBack</th>
-      <td>2007-03-03</td>
-      <td>0.967</td>
-      <td>True</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                  | title                             | date       | danceability | hit  | peak |
+|-------------------------|-----------------------------------|------------|--------------|------|------|
+| Tone-Loc                | Funky Cold Medina                 | 1989-06-03 | 0.988        | True | 3.0  |
+| DJ Suede The Remix God  | Cash Me Outside (\#CashMeOutside) | 2017-03-04 | 0.981        | True | 72.0 |
+| Glee Cast               | Ice Ice Baby                      | 2010-05-22 | 0.980        | True | 74.0 |
+| The Jacksons            | State of Shock                    | 1984-09-22 | 0.980        | True | 3.0  |
+| Vanilla Ice             | Ice Ice Baby                      | 1990-09-08 | 0.978        | True | 1.0  |
+| Evelyn King             | Betcha She Don't Love You         | 1983-01-22 | 0.974        | True | 49.0 |
+| Jermaine Jackson        | Let Me Tickle Your Fancy          | 1982-10-30 | 0.973        | True | 18.0 |
+| 2nd II None             | Be True To Yourself               | 1992-01-11 | 0.971        | True | 78.0 |
+| Cardi B Featuring Migos | Drip                              | 2018-06-02 | 0.968        | True | 21.0 |
+| Justin Timberlake       | SexyBack                          | 2007-03-03 | 0.967        | True | 1.0  |
 
 Judging from the Top 10 most danceable songs we can see the the 1980s and early 1990s well represented. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance hit is _Drip_ from Summer 2018 and just fell short of making it onto the Top 20.
 
@@ -949,110 +449,18 @@ My assumption is that the visible drop in Acousticness in the mid 1970s is marki
 
 In both cases we seem to be looking at one or several bigger trends as Hits and Non-Hits are moving in the same direction but with Hits having fewer variability it looks like these two features could carry a lot of explanatory information especially for the period between 1980s and 2000s. The overlap between Hits and Non-Hits is much larger before or after the period just mentioned.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>date</th>
-      <th>energy</th>
-      <th>hit</th>
-      <th>peak</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Culture Beat</th>
-      <th>Mr. Vain</th>
-      <td>1993-12-18</td>
-      <td>0.997</td>
-      <td>True</td>
-      <td>17.0</td>
-    </tr>
-    <tr>
-      <th>Five Finger Death Punch</th>
-      <th>Under And Over It</th>
-      <td>2011-08-20</td>
-      <td>0.996</td>
-      <td>True</td>
-      <td>77.0</td>
-    </tr>
-    <tr>
-      <th>Jane's Addiction</th>
-      <th>Just Because</th>
-      <td>2003-08-09</td>
-      <td>0.996</td>
-      <td>True</td>
-      <td>72.0</td>
-    </tr>
-    <tr>
-      <th>Guns N' Roses</th>
-      <th>Nightrain</th>
-      <td>1989-08-26</td>
-      <td>0.995</td>
-      <td>True</td>
-      <td>93.0</td>
-    </tr>
-    <tr>
-      <th>Suzi Quatro</th>
-      <th>I've Never Been In Love</th>
-      <td>1979-09-22</td>
-      <td>0.995</td>
-      <td>True</td>
-      <td>44.0</td>
-    </tr>
-    <tr>
-      <th>The Chemical Brothers</th>
-      <th>Setting Sun</th>
-      <td>1997-02-15</td>
-      <td>0.995</td>
-      <td>True</td>
-      <td>80.0</td>
-    </tr>
-    <tr>
-      <th>Bananarama</th>
-      <th>Love, Truth &amp; Honesty</th>
-      <td>1988-12-03</td>
-      <td>0.994</td>
-      <td>True</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>Go-Go's</th>
-      <th>We Got The Beat</th>
-      <td>1982-05-15</td>
-      <td>0.994</td>
-      <td>True</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>Jimmy Ruffin</th>
-      <th>Hold On To My Love</th>
-      <td>1980-04-12</td>
-      <td>0.994</td>
-      <td>True</td>
-      <td>10.0</td>
-    </tr>
-    <tr>
-      <th>Metallica</th>
-      <th>Cyanide</th>
-      <td>2008-09-20</td>
-      <td>0.993</td>
-      <td>True</td>
-      <td>50.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                  | title                   | date       | energy | hit  | peak |
+|---|---|---|---|---|---|
+| Culture Beat            | Mr. Vain                | 1993-12-18 | 0.997  | True | 17.0 |
+| Five Finger Death Punch | Under And Over It       | 2011-08-20 | 0.996  | True | 77.0 |
+| Jane's Addiction        | Just Because            | 2003-08-09 | 0.996  | True | 72.0 |
+| Guns N' Roses           | Nightrain               | 1989-08-26 | 0.995  | True | 93.0 |
+| Suzi Quatro             | I've Never Been In Love | 1979-09-22 | 0.995  | True | 44.0 |
+| The Chemical Brothers   | Setting Sun             | 1997-02-15 | 0.995  | True | 80.0 |
+| Bananarama              | Love, Truth & Honesty   | 1988-12-03 | 0.994  | True | 89.0 |
+| Go-Go's                 | We Got The Beat         | 1982-05-15 | 0.994  | True | 2.0  |
+| Jimmy Ruffin            | Hold On To My Love      | 1980-04-12 | 0.994  | True | 10.0 |
+| Metallica               | Cyanide                 | 2008-09-20 | 0.993  | True | 50.0 |
 
 ### 4.2.3 Loudness
 
@@ -1064,110 +472,19 @@ As a feature, loudness is very consistently flat before the 1990s and then again
 
 In general, we see that Hits are having a higher median loudness but especially in the last few years we're seeing that Hits and Non-Hits loudness do not diverge much anymore. This would indicate that music has generally become louder.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>date</th>
-      <th>loudness</th>
-      <th>hit</th>
-      <th>peak</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Lana Cantrell</th>
-      <th>Like A Sunday Morning</th>
-      <td>1975-03-01</td>
-      <td>2.291</td>
-      <td>True</td>
-      <td>63.0</td>
-    </tr>
-    <tr>
-      <th>Diplo, French Montana &amp; Lil Pump Featuring Zhavia Ward</th>
-      <th>Welcome To The Party</th>
-      <td>2018-06-02</td>
-      <td>0.175</td>
-      <td>True</td>
-      <td>78.0</td>
-    </tr>
-    <tr>
-      <th>Metallica</th>
-      <th>Cyanide</th>
-      <td>2008-09-20</td>
-      <td>-0.463</td>
-      <td>True</td>
-      <td>50.0</td>
-    </tr>
-    <tr>
-      <th>Diana Ross &amp; The Supremes</th>
-      <th>Some Things You Never Get Used To</th>
-      <td>1968-06-08</td>
-      <td>-0.507</td>
-      <td>True</td>
-      <td>30.0</td>
-    </tr>
-    <tr>
-      <th>Eminem</th>
-      <th>Cold Wind Blows</th>
-      <td>2010-07-10</td>
-      <td>-0.517</td>
-      <td>True</td>
-      <td>71.0</td>
-    </tr>
-    <tr>
-      <th>Luke Bryan</th>
-      <th>Move</th>
-      <td>2016-12-10</td>
-      <td>-0.698</td>
-      <td>True</td>
-      <td>50.0</td>
-    </tr>
-    <tr>
-      <th>Diana Ross &amp; The Supremes</th>
-      <th>Love Child</th>
-      <td>1968-11-23</td>
-      <td>-0.810</td>
-      <td>True</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>Eminem</th>
-      <th>Insane</th>
-      <td>2009-06-06</td>
-      <td>-0.883</td>
-      <td>True</td>
-      <td>85.0</td>
-    </tr>
-    <tr>
-      <th>Barenaked Ladies</th>
-      <th>Too Little Too Late</th>
-      <td>2001-04-28</td>
-      <td>-0.884</td>
-      <td>True</td>
-      <td>86.0</td>
-    </tr>
-    <tr>
-      <th>Eminem</th>
-      <th>25 To Life</th>
-      <td>2010-07-10</td>
-      <td>-0.945</td>
-      <td>True</td>
-      <td>92.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|artist|title|date|loudness|hit|peak|
+|--- |--- |--- |--- |--- |--- |
+|Lana Cantrell|Like A Sunday Morning|1975-03-01|2.291|True|63.0|
+|Diplo, French Montana & Lil Pump Featuring Zhavia Ward|Welcome To The Party|2018-06-02|0.175|True|78.0|
+|Metallica|Cyanide|2008-09-20|-0.463|True|50.0|
+|Diana Ross & The Supremes|Some Things You Never Get Used To|1968-06-08|-0.507|True|30.0|
+|Eminem|Cold Wind Blows|2010-07-10|-0.517|True|71.0|
+|Luke Bryan|Move|2016-12-10|-0.698|True|50.0|
+|Diana Ross & The Supremes|Love Child|1968-11-23|-0.810|True|1.0|
+|Eminem|Insane|2009-06-06|-0.883|True|85.0|
+|Barenaked Ladies|Too Little Too Late|2001-04-28|-0.884|True|86.0|
+|Eminem|25 To Life|2010-07-10|-0.945|True|92.0|
+
 
 I believe especially Lana Cantrell's Like A Sunday Morning is a good example of an older song that falls into the loud category, while Cold Wind Blow by Eminem might be a good example for a newer song. _see examples above_
 
@@ -1181,110 +498,18 @@ For Speechiness we can see an upward trend starting in the 1990s, with an increa
 
 It's hard to pin-point what Speechiness is actually measuring as we're looking at the songs with the highest Speechiness. I would've assumed that the highest Speechiness would be found in Rap songs but judging from it there is a good mix of Country, Pop and Hip Hop music. This feature doesn't seem to be all that helpful for our analysis for now. There is no clear indicators and the feature itself is quite obtuse. With a lack of additional information of how this feature is put together, I've decided to abandon the feature for now.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>date</th>
-      <th>speechiness</th>
-      <th>hit</th>
-      <th>peak</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Chris Young Duet With Cassadee Pope</th>
-      <th>Think Of You</th>
-      <td>2016-05-14</td>
-      <td>0.951</td>
-      <td>True</td>
-      <td>40.0</td>
-    </tr>
-    <tr>
-      <th>Wu-Tang Clan</th>
-      <th>C.R.E.A.M. (Cash Rules Everything Around Me)</th>
-      <td>1994-04-09</td>
-      <td>0.950</td>
-      <td>True</td>
-      <td>60.0</td>
-    </tr>
-    <tr>
-      <th>Taylor Swift</th>
-      <th>Should've Said No</th>
-      <td>2008-06-21</td>
-      <td>0.941</td>
-      <td>True</td>
-      <td>33.0</td>
-    </tr>
-    <tr>
-      <th>Hudson and Landry</th>
-      <th>Ajax Airlines</th>
-      <td>1972-01-22</td>
-      <td>0.924</td>
-      <td>True</td>
-      <td>68.0</td>
-    </tr>
-    <tr>
-      <th>Reba McEntire</th>
-      <th>I'll Be</th>
-      <td>2000-07-01</td>
-      <td>0.924</td>
-      <td>True</td>
-      <td>51.0</td>
-    </tr>
-    <tr>
-      <th>Stan Freberg</th>
-      <th>The Old Payola Roll Blues (Side I)</th>
-      <td>1960-02-29</td>
-      <td>0.919</td>
-      <td>True</td>
-      <td>99.0</td>
-    </tr>
-    <tr>
-      <th>Hudson and Landry</th>
-      <th>Ajax Liquor Store</th>
-      <td>1971-07-03</td>
-      <td>0.913</td>
-      <td>True</td>
-      <td>43.0</td>
-    </tr>
-    <tr>
-      <th>Cheech &amp; Chong</th>
-      <th>Sister Mary Elephant (Shudd-Up!)</th>
-      <td>1974-01-12</td>
-      <td>0.882</td>
-      <td>True</td>
-      <td>24.0</td>
-    </tr>
-    <tr>
-      <th>Steve Martin</th>
-      <th>Grandmother's Song</th>
-      <td>1977-12-10</td>
-      <td>0.858</td>
-      <td>True</td>
-      <td>72.0</td>
-    </tr>
-    <tr>
-      <th>Dickie Goodman</th>
-      <th>The Touchables In Brooklyn</th>
-      <td>1961-05-29</td>
-      <td>0.847</td>
-      <td>True</td>
-      <td>42.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                                                 | title                             | date       | loudness | hit  | peak |
+|---|---|---|---|---|---|
+| Lana Cantrell                                          | Like A Sunday Morning             | 1975-03-01 | 2.291    | True | 63.0 |
+| Diplo, French Montana & Lil Pump Featuring Zhavia Ward | Welcome To The Party              | 2018-06-02 | 0.175    | True | 78.0 |
+| Metallica                                              | Cyanide                           | 2008-09-20 | -0.463   | True | 50.0 |
+| Diana Ross & The Supremes                              | Some Things You Never Get Used To | 1968-06-08 | -0.507   | True | 30.0 |
+| Eminem                                                 | Cold Wind Blows                   | 2010-07-10 | -0.517   | True | 71.0 |
+| Luke Bryan                                             | Move                              | 2016-12-10 | -0.698   | True | 50.0 |
+| Diana Ross & The Supremes                              | Love Child                        | 1968-11-23 | -0.810   | True | 1.0  |
+| Eminem                                                 | Insane                            | 2009-06-06 | -0.883   | True | 85.0 |
+| Barenaked Ladies                                       | Too Little Too Late               | 2001-04-28 | -0.884   | True | 86.0 |
+| Eminem                                                 | 25 To Life                        | 2010-07-10 | -0.945   | True | 92.0 |
 
 ### 4.2.5 Valence
 
@@ -1296,137 +521,23 @@ Valence is quite an interesting indicator as it attempts to measure positivity o
 
 Knowing that Valence has more and more decreased it might be interesting to see the songs with the highest and lowest valence.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>date</th>
-      <th>valence</th>
-      <th>hit</th>
-      <th>peak</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Eddie Hodges</th>
-      <th>I'm Gonna Knock On Your Door</th>
-      <td>1961-07-10</td>
-      <td>0.991</td>
-      <td>True</td>
-      <td>12.0</td>
-    </tr>
-    <tr>
-      <th>Four Tops</th>
-      <th>It's The Same Old Song</th>
-      <td>1965-08-21</td>
-      <td>0.991</td>
-      <td>True</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>War</th>
-      <th>Low Rider</th>
-      <td>1975-10-25</td>
-      <td>0.990</td>
-      <td>True</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>Katrina And The Waves</th>
-      <th>Que Te Quiero</th>
-      <td>1985-11-09</td>
-      <td>0.989</td>
-      <td>True</td>
-      <td>71.0</td>
-    </tr>
-    <tr>
-      <th>John Sebastian</th>
-      <th>Hideaway</th>
-      <td>1976-07-31</td>
-      <td>0.988</td>
-      <td>True</td>
-      <td>95.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                | title                        | date       | valence | hit  | peak |
+|---|---|---|---|---|---|
+| Eddie Hodges          | I'm Gonna Knock On Your Door | 1961-07-10 | 0.991   | True | 12.0 |
+| Four Tops             | It's The Same Old Song       | 1965-08-21 | 0.991   | True | 5.0  |
+| War                   | Low Rider                    | 1975-10-25 | 0.990   | True | 7.0  |
+| Katrina And The Waves | Que Te Quiero                | 1985-11-09 | 0.989   | True | 71.0 |
+| John Sebastian        | Hideaway                     | 1976-07-31 | 0.988   | True | 95.0 |
 
 ---
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>date</th>
-      <th>valence</th>
-      <th>hit</th>
-      <th>peak</th>
-    </tr>
-    <tr>
-      <th>artist</th>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Georgie Young</th>
-      <th>Nine More Miles (The "Faster-Faster" Song)</th>
-      <td>1958-11-03</td>
-      <td>0.0000</td>
-      <td>True</td>
-      <td>58.0</td>
-    </tr>
-    <tr>
-      <th>Coldplay</th>
-      <th>Midnight</th>
-      <td>2014-05-10</td>
-      <td>0.0349</td>
-      <td>True</td>
-      <td>29.0</td>
-    </tr>
-    <tr>
-      <th>A$AP Rocky</th>
-      <th>L$D</th>
-      <td>2015-06-13</td>
-      <td>0.0352</td>
-      <td>True</td>
-      <td>62.0</td>
-    </tr>
-    <tr>
-      <th>The Pipes And Drums And The Military Band Of The Royal Scots Dragoon Guards</th>
-      <th>Amazing Grace</th>
-      <td>1972-07-01</td>
-      <td>0.0359</td>
-      <td>True</td>
-      <td>11.0</td>
-    </tr>
-    <tr>
-      <th>Drake</th>
-      <th>Jaded</th>
-      <td>2018-07-21</td>
-      <td>0.0371</td>
-      <td>True</td>
-      <td>32.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+| artist                                                                      | title                                      | date       | valence | hit  | peak |
+|---|---|---|---|---|---|
+| Georgie Young                                                               | Nine More Miles (The "Faster-Faster" Song) | 1958-11-03 | 0.0000  | True | 58.0 |
+| Coldplay                                                                    | Midnight                                   | 2014-05-10 | 0.0349  | True | 29.0 |
+| A$AP Rocky                                                                  | L$D                                        | 2015-06-13 | 0.0352  | True | 62.0 |
+| The Pipes And Drums And The Military Band Of The Royal Scots Dragoon Guards | Amazing Grace                              | 1972-07-01 | 0.0359  | True | 11.0 |
+| Drake                                                                       | Jaded                                      | 2018-07-21 | 0.0371  | True | 32.0 |
 
 The highest valence songs are between 1961 and 1985, the lowest valence songs are a little more spread out but it's striking that 3 of the top 5 lowest valence songs were released in the 2010s. That being said Georgie Young might also just be an outlier and mislabeled as it happened to be the only song with 0.0 Valence and it being quite a bit apart from the other lowest valence songs.
 
@@ -1514,8 +625,8 @@ The section on inferential statistics is looking at statistical significance on 
 
 The focus for us lies on three categories:
 - Distribution between Hits and Non-Hits
-- Correlation with the Target Variable (i.e. hit or non-hit)
-- Collinearity between features
+- Correlation with the Target Variable (i.e. Hit or Non-Hit)
+- Collinearity between Features
 
 ## 5.1 Challenges
 
@@ -1648,51 +759,14 @@ The first algorithm that was tested was Random Forest with up to 1500 estimators
 
 We found a quick drop as the threshold (i.e. probability threshold to assign a positive label) was lifted above 0 and the common slow descend to 0.5 as the threshold approaches 1. The best performing number of estimators was 300 with a Precision Score of 0.61 and a Recall Score of 0.68. This means that we've detected almost 70% of all Hits in the data set and of the Song assigned a Hit label we were correct 61% of the time.
 
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Non-Hit</th>
-      <th>Hit</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>accuracy</th>
-      <td>-</td>
-      <td>0.635704</td>
-    </tr>
-    <tr>
-      <th>logloss</th>
-      <td>-</td>
-      <td>0.634130</td>
-    </tr>
-    <tr>
-      <th>precision</th>
-      <td>0.663376</td>
-      <td>0.612533</td>
-    </tr>
-    <tr>
-      <th>recall</th>
-      <td>0.589084</td>
-      <td>0.684854</td>
-    </tr>
-    <tr>
-      <th>f1 beta=1</th>
-      <td>0.624026</td>
-      <td>0.646678</td>
-    </tr>
-    <tr>
-      <th>support</th>
-      <td>3536.000000</td>
-      <td>3354.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+|           | Non-Hit     | Hit         |
+|-----------|-------------|-------------|
+| accuracy  | -           | 0.635704    |
+| logloss   | -           | 0.634130    |
+| precision | 0.663376    | 0.612533    |
+| recall    | 0.589084    | 0.684854    |
+| f1 beta=1 | 0.624026    | 0.646678    |
+| support   | 3536.000000 | 3354.000000 |
 
 The second algorithm was the K-Nearest Neighbor algorithm tested with up to 1500 neighbors (only 500 visualized here).
 
@@ -1700,49 +774,14 @@ The second algorithm was the K-Nearest Neighbor algorithm tested with up to 1500
 
 With k-Nearest Neighbor (kNN) we're seeing a more gradual descend with raising the threshold. The best performing k for neighbors is 200. While kNN is performing slightly worse in terms of Precision (0.6) it makes more than up for it in Recall (0.83). kNN was able to retrieve more than 80% of all Hits in the data set, it wins over Random Forest by a huge margin of 15 points.
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Non-Hits</th>
-      <th>Hits</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>accuracy</th>
-      <td>-</td>
-      <td>0.644848</td>
-    </tr>
-    <tr>
-      <th>logloss</th>
-      <td>-</td>
-      <td>0.617462</td>
-    </tr>
-    <tr>
-      <th>precision</th>
-      <td>0.745160</td>
-      <td>0.597130</td>
-    </tr>
-    <tr>
-      <th>recall</th>
-      <td>0.468043</td>
-      <td>0.831246</td>
-    </tr>
-    <tr>
-      <th>f1 beta=1</th>
-      <td>0.574952</td>
-      <td>0.695002</td>
-    </tr>
-    <tr>
-      <th>support</th>
-      <td>3536.000000</td>
-      <td>3354.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|           | Non-Hits    | Hits        |
+|-----------|-------------|-------------|
+| accuracy  | -           | 0.644848    |
+| logloss   | -           | 0.617462    |
+| precision | 0.745160    | 0.597130    |
+| recall    | 0.468043    | 0.831246    |
+| f1 beta=1 | 0.574952    | 0.695002    |
+| support   | 3536.000000 | 3354.000000 |
 
 #### Validation
 
@@ -1750,49 +789,14 @@ To understand how well our model is going to perform outside our training data w
 
 Drastic departures of the performance above would indicate issues in our methodology (i.e. data contamination, overfitting etc.)
 
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Non-Hits</th>
-      <th>Hits</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>accuracy</th>
-      <td>-</td>
-      <td>0.658790</td>
-    </tr>
-    <tr>
-      <th>logloss</th>
-      <td>-</td>
-      <td>0.613059</td>
-    </tr>
-    <tr>
-      <th>precision</th>
-      <td>0.752741</td>
-      <td>0.614714</td>
-    </tr>
-    <tr>
-      <th>recall</th>
-      <td>0.478236</td>
-      <td>0.841251</td>
-    </tr>
-    <tr>
-      <th>f1 beta=1</th>
-      <td>0.584881</td>
-      <td>0.710359</td>
-    </tr>
-    <tr>
-      <th>support</th>
-      <td>5169.000000</td>
-      <td>5115.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+|           | Non-Hits    | Hits        |
+|-----------|-------------|-------------|
+| accuracy  | -           | 0.658790    |
+| logloss   | -           | 0.613059    |
+| precision | 0.752741    | 0.614714    |
+| recall    | 0.478236    | 0.841251    |
+| f1 beta=1 | 0.584881    | 0.710359    |
+| support   | 5169.000000 | 5115.000000 |
 
 k-Nearest Neighbor is performing slightly better across the board but isn't departing drastically from the evaluation metrics in the test set. Overall it looks like we've created a pretty reliable model to detect Hits.
 
