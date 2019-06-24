@@ -4,12 +4,16 @@ channels:
   - defaults
 dependencies:
   - appnope=0.1.0=py36_1000
+  - asn1crypto=0.24.0=py36_1003
   - attrs=19.1.0=py_0
   - backcall=0.1.0=py_0
+  - blas=1.1=openblas
   - bleach=3.1.0=py_0
   - bzip2=1.0.6=h1de35cc_1002
   - ca-certificates=2019.6.16=hecc5488_0
   - certifi=2019.3.9=py36_0
+  - cffi=1.12.3=py36hccf1714_0
+  - cryptography=2.7=py36h212c5bf_0
   - cycler=0.10.0=py_1
   - dbus=1.13.6=h2f22bb5_0
   - decorator=4.4.0=py_0
@@ -20,6 +24,7 @@ dependencies:
   - gettext=0.19.8.1=h46ab8bc_1002
   - glib=2.58.3=h9d45998_1001
   - icu=58.2=h0a44026_1000
+  - idna=2.8=py36_1000
   - ipykernel=5.1.1=py36h24bf2e0_0
   - ipython=7.5.0=py36h24bf2e0_0
   - ipython_genutils=0.2.0=py_1
@@ -34,14 +39,14 @@ dependencies:
   - jupyter_console=6.0.0=py_0
   - jupyter_core=4.4.0=py_0
   - kiwisolver=1.1.0=py36h770b8ee_0
-  - libblas=3.8.0=7_openblas
-  - libcblas=3.8.0=7_openblas
+  - libblas=3.8.0=5_hd44dcd8_netlib
+  - libcblas=3.8.0=5_hd44dcd8_netlib
   - libcxx=8.0.0=2
   - libcxxabi=8.0.0=2
   - libffi=3.2.1=h6de7cb9_1006
   - libgfortran=3.0.1=0
   - libiconv=1.15=h01d97ff_1005
-  - liblapack=3.8.0=7_openblas
+  - liblapack=3.8.0=5_hd44dcd8_netlib
   - libpng=1.6.37=h2573ce8_0
   - libsodium=1.0.16=h1de35cc_1001
   - llvm-openmp=8.0.0=h770b8ee_0
@@ -53,8 +58,8 @@ dependencies:
   - nbformat=4.4.0=py_1
   - ncurses=6.1=h0a44026_1002
   - notebook=5.7.8=py36_1
-  - numpy=1.16.4=py36h6b0580a_0
-  - openblas=0.3.5=h436c29b_1001
+  - numpy=1.15.2=py36_blas_openblashd3ea46f_1
+  - openblas=0.2.20=8
   - openssl=1.1.1b=h01d97ff_2
   - pandas=0.24.2=py36h86efe34_0
   - pandoc=2.7.3=0
@@ -68,10 +73,13 @@ dependencies:
   - prometheus_client=0.7.0=py_0
   - prompt_toolkit=2.0.9=py_0
   - ptyprocess=0.6.0=py_1001
+  - pycparser=2.19=py36_1
   - pygments=2.4.2=py_0
+  - pyopenssl=19.0.0=py36_0
   - pyparsing=2.4.0=py_0
   - pyqt=5.9.2=py36h2a560b1_0
   - pyrsistent=0.15.2=py36h01d97ff_0
+  - pysocks=1.7.0=py36_0
   - python=3.6.7=h8dc6b48_1004
   - python-dateutil=2.8.0=py_0
   - pytz=2019.1=py_0
@@ -79,8 +87,8 @@ dependencies:
   - qt=5.9.7=h93ee506_2
   - qtconsole=4.5.1=py_0
   - readline=7.0=hcfe32e1_1001
-  - scikit-learn=0.21.2=py36h2a6a0b8_0
-  - scipy=1.3.0=py36hab3da7d_0
+  - scikit-learn=0.19.1=py36_blas_openblas_201
+  - scipy=1.1.0=py36_blas_openblash7943236_201
   - seaborn=0.9.0=py_1
   - send2trash=1.5.0=py_0
   - setuptools=41.0.1=py36_0
@@ -93,6 +101,7 @@ dependencies:
   - tk=8.6.9=h2573ce8_1002
   - tornado=6.0.2=py36h01d97ff_0
   - traitlets=4.3.2=py36_1000
+  - urllib3=1.24.3=py36_0
   - wcwidth=0.1.7=py_1
   - webencodings=0.5.1=py_1
   - wheel=0.33.4=py36_0
@@ -100,5 +109,18 @@ dependencies:
   - xz=5.2.4=h1de35cc_1001
   - zeromq=4.3.1=h0a44026_1000
   - zlib=1.2.11=h1de35cc_1004
+  - pip:
+    - chardet==3.0.4
+    - docutils==0.14
+    - ibm-cos-sdk==2.5.0
+    - ibm-cos-sdk-core==2.5.0
+    - ibm-cos-sdk-s3transfer==2.5.0
+    - jmespath==0.9.4
+    - lomond==0.3.3
+    - requests==2.22.0
+    - spotipy==2.4.4
+    - tabulate==0.8.3
+    - tqdm==4.32.2
+    - watson-machine-learning-client==1.0.365
 prefix: /Users/sebastian/anaconda3/envs/hit_predictor
 
