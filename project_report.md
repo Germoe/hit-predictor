@@ -51,8 +51,8 @@ The Spotify API was used for two purposes to enrich the Hot 100 data with more m
 The following files were used in the project:
 
 1. hot100.csv - Containing the Hot 100 data since 1958 enriched with performance metrics by title. This file includes 3167 weeks worth of Hot 100 songs.
-2. hits_uniq.csv - Containing the Hot 100 data that could be matched with Audio Features from the Spotify API. This file includes a total of 21002 songs.
-3. nhits_uniq.csv - Containing the Non-Hits data sampled from the Spotify API using the by year distribution of the Hot 100 data as a baseline number of songs. 
+2. Hits_uniq.csv - Containing the Hot 100 data that could be matched with Audio Features from the Spotify API. This file includes a total of 21002 songs.
+3. nHits_uniq.csv - Containing the Non-Hits data sampled from the Spotify API using the by year distribution of the Hot 100 data as a baseline number of songs. 
 
 ## 3.1 Data Collection
 
@@ -82,9 +82,9 @@ The Hot 100 data was very slender, to make the later EDA phase easier, I added a
 - low - Lowest Position
 
 **Duplicates and Missing Values**
-For the analysis of hits vs. non-hits, it was necessary to remove duplicates from the Hot 100 data using the `artist` and `title` columns. For each duplicate the first occurrence on the Hot 100 charts was kept, in the previous step entry and exit date columns were added to keep most of the relevant data without causing processing issues due to large files.
+For the analysis of Hits vs. Non-Hits, it was necessary to remove duplicates from the Hot 100 data using the `artist` and `title` columns. For each duplicate the first occurrence on the Hot 100 charts was kept, in the previous step entry and exit date columns were added to keep most of the relevant data without causing processing issues due to large files.
 
-The hits dataset also had a lot of missing values due to the inability of correctly matching a song with a Spotify ID or it not being available in the Spotify Database. The loss ranged from below 40% to above 15%, this is a significant loss of data. However, for our purposes it was absolutely necessary to access rich audio features as I'm attempting a content-based analysis. The missing values couldn't be easily replaced due to copyright restrictions and extensive time commitment that was outside the scope of this project. The observations that couldn't be matched with Spotify Ids had to be dropped entirely.
+The Hits dataset also had a lot of missing values due to the inability of correctly matching a song with a Spotify ID or it not being available in the Spotify Database. The loss ranged from below 40% to above 15%, this is a significant loss of data. However, for our purposes it was absolutely necessary to access rich audio features as I'm attempting a content-based analysis. The missing values couldn't be easily replaced due to copyright restrictions and extensive time commitment that was outside the scope of this project. The observations that couldn't be matched with Spotify Ids had to be dropped entirely.
 
 In this case the Spotify features had no obvious null values as a 0 also had a interpretative power. 
 
@@ -397,31 +397,23 @@ It is highly unlikely that the distributions are the same.  We can reject H0 for
 
 An argument could be made that without the introduction of the 20-20 rule along with the Nielsen Soundscan the Hot 100 could've become much staler than it has anyways. The 20-20 rule might've been introduced to offset the negative effect on fluctuation that was introduced by more accurate sales data.
 
-#### Conclusion
-
-The Hot 100 have gotten more stale through the years. We've seen less fluctuation of new unique songs being introduced to the Hot 100. More detailed sales data in the early 90s (Nielsen Soundscan) might've amplified that trend and was only held back by artificial streak length hurdles (20-20 rule). 
-
-Since the 1970s unique songs per year had continually decreased, the change in that trend didn't come until the introduction of digital sales in the formula in 2005 and streaming data (i.e. Spotify, Youtube etc.). While it hasn't returned to its former diversity we've seen a small upwards trend in unique songs per year in recent years.
-
-It was also argued that Nielsen Soundscan, with its addition of more granular data on song's actual sales data allowed the emergence of 'Super Songs', i.e. regular appearance of songs that stay on the Hot 100 for more than 31 weeks.
-
 ### 4.1.2 The relationship of Peak Position and Streak Length
 
-A common assumption I've always had was songs that have a higher peak position tend to stay on the Hot 100 longer. Let's investigate that assumption below.
+Looking at streak length it could be interesting to see whether there's a relationship with the peak position a song reached.
 
 ![](./notebooks/assets/peak_streak_rel.png)
 
     Spearman's R: -0.7857196745443265 p-value: 0.0
 
-We can see a roughly linear monotonic relationship (tested using Spearman's R) with a p value of 0. This means that there certainly is a relationship between streak lengths and peak position. The higher the peak position is the longer a song tends to stay on the Hot 100. We can see that this seems to be especially true for songs that make it onto the top 20. 
+We can see a roughly linear monotonic descending relationship (tested using Spearman's R) with a p value of 0. This means that there most likely is a relationship between streak lengths and peak position. The higher the peak position is the longer a song tends to stay on the Hot 100. We can see that this seems to be especially true for songs that make it onto the top 20. 
 
-We had to use Spearman's R in this case as Pearson's R requires a normality assumption, which due to the inherent 1-100 scale is rarely given.
+We had to use Spearman's R in this case as Pearson's R requires a normality assumption, which due to the discrete values of 1-100 scale is not given.
 
 _Quick Note: At Streak position 19 we can see an unusually bold line, this clearly demarcates the skewedness that the so-called "20-20 rule" (explained above) has introduced into the data._
 
 #### Pole Position Streaks
 
-Now we know that songs that have higher peak positions tend to stay on the hot 100 longer but we've also seen that the pole position (i.e. rank 1) has the highest number of unique songs (see histogram of Joint plot above) indicating that this is a highly battled over position. Staying on the Hot 100 is one thing but I'm curious what songs were able to stay on the Hot 100's most coveted position the longest.
+Now we know that songs that have higher peak positions tend to stay on the Hot 100 longer but we've also seen that the pole position (i.e. rank 1) has the highest number of unique songs (see Histogram to the right side of the Joint plot above) indicating that this is a highly battled over position. Staying on the Hot 100 is one thing but I'm curious what songs were able to stay on the Hot 100's most coveted position the longest.
 
 ![](./notebooks/assets/pole_pos_streaks.png)
 
@@ -456,17 +448,17 @@ Now we know that songs that have higher peak positions tend to stay on the hot 1
 
     Total No.1 Hits: 1086
 
-We can see 1086 songs made it to the top of the Hot 100 charts and that less than 50% of those lasted more than 2 weeks on the Hot 100 pole position. Of those only 2 songs were able to stay on the very top of the Hot 100 charts for 16 weeks (i.e. the longest streak).
+1086 songs made it to the top of the Hot 100 charts and less than 50% of those lasted more than 2 weeks on the pole position. Of those, only 2 songs were able to stay on the very top of the Hot 100 charts for 16 weeks (i.e. the longest streak).
 
 ### 4.1.3 Movements
 
-Now that we've looked at peak positions and streaks, I'm interested to know how the jumps from one position (i.e. a leap) to another are distributed.
+Now that we've looked at peak positions and streaks, I'm interested to know how the jumps from one position (i.e. a leap) to another are distributed. Possibly we can uncover something interesting here as well.
 
 ![](./notebooks/assets/leap_dist.png)
 
-We see that the median leap was just above 10 positions and that we can generally expect for most titles to leap at most between 7-19 places. We also can see that leaps beyond 38 positions are generally rare, so are negative maximum leaps beyond -9 (i.e. titles that consistently fell in position from their initial entry).
+We see that the median maximum leap was just above 10 positions and that we can generally expect for most titles to leap at most between 7-19 places. We also can see that leaps beyond 38 positions are generally rare, so are negative maximum leaps beyond -9 (i.e. titles that consistently fell in position from their initial entry).
 
-We can also see that generally a title moves up at some point during their time on the Hot 100 due to the shift of the distribution to values above 0.
+Generally, a title moves up at some point during their time on the Hot 100. This is obvious due to the shift of the distribution to values above 0.
 
 ![](./notebooks/assets/entry_exit_box.png)
 
@@ -474,7 +466,7 @@ As seen at the beginning of the Exploratory Data Analysis (EDA). Generally songs
 
 ![](./notebooks/assets/reentry_max_leap_box_plot.png)
 
-We can see that consistently falling in position is rare on the Hot 100 (i.e. only few songs have negative max_leaps). There are a total of 6 songs that were able to leap more than 90 positions from one week to another.
+There are a total of 6 songs that were able to leap more than 90 positions from one week to another.
 
 <div>
 <table border="1" class="dataframe">
@@ -597,11 +589,11 @@ We can see that consistently falling in position is rare on the Hot 100 (i.e. on
 </table>
 </div>
 
-To visualize the journey of these songs we'll make an attempt at visualizing it.
+To understand the journey of these songs we'll make an attempt at visualizing it.
 
 ![](./notebooks/assets/moves_peak.png)
 
-4 out of the songs rise show their max leap to their peak position within the first 4 weeks of their first appearance on the Hot 100. After the initial high is reached there tends to be more or less a steady decline in position. Let's explore this thought further by looking at the time to max leap and average distance to peak position.
+8 out of the 10 songs rise to their peak position within the first 4 weeks of their first appearance on the Hot 100. After the initial high is reached there tends to be more or less a steady decline for most of them. It looks like the peak position is reached very quickly after their respective maximum leap. Let's explore this thought further and see if this is the case for other songs as well. We'll be looking at the time to maximum leap and average distance to peak position.
 
 ![](./notebooks/assets/weeks_max_leap_hist.png)
 
@@ -624,7 +616,7 @@ We can see that the highest jumps occur most often in the second to fourth week 
 
 4375 (i.e. 15.58%) immediately reach their peak position after their largest leap. The top 25% fall within 3 positions of their peak and the top 50% fall within 16 positions.
 
-We can see that there is quite a large standard deviation of +-17.73 ranks from the mean of 19.54 ranks. While a large chunk of songs might be reaching the peak position after their max leap.
+We can see that there is quite a large standard deviation of +-17.73 ranks from the mean of 19.54 ranks. While a large chunk of songs might be reaching a position close to their peak position, a lot of them don't.
 
 ### 4.1.4 Reentries
 
@@ -751,21 +743,29 @@ There's very few reentries. Most songs that leave the Hot 100 leave for good and
 </table>
 </div>
 
-
-
 ### 4.1.5 Conclusion
 
-We've learned that the 1991 introduction of Nilsen Soundscan data likely contributed to a different distribution in the Hot 100. It likely contributed to so-called 'Super Songs' that are able to stay on the Hot 100 for much longer than songs previously. We've also seen that the distribution after 1991 highly skewed the distribution toward one week songs (those that only stay on the Hot 100 for a single week) while creating a uniform distribution between 1-18 week streaks. This should be considered in terms of weighing certain songs into categories as their might be different criteria for songs before 1991 and after 1991, also we should keep an eye out for possibly introducing a different type of music after 1991 due to the more granular data.
+The Hot 100 have gotten more stale through the years. We've seen less fluctuation of new unique songs being introduced to the Hot 100. More detailed sales data in the early 90s (Nielsen Soundscan) might've amplified that trend and was only held back by artificial streak length hurdles (20-20 rule). 
+
+Since the 1970s unique songs per year had continually decreased, the change in that trend didn't come until the introduction of digital sales in the formula in 2005 and streaming data (i.e. Spotify, Youtube etc.). While it hasn't returned to its former diversity we've seen a small upwards trend in unique songs per year in recent years.
+
+It was also argued that Nielsen Soundscan, with its addition of more granular data on song's actual sales data allowed the emergence of 'Super Songs', i.e. regular appearance of songs that stay on the Hot 100 for more than 31 weeks.
+
+Looking at peak positions it became clear that there is a relationship between success in ranking and success in streak length.
+
+Lastly, we've investigated movements of song through the Hot 100 and understanding whether there was a common pattern such as early rise to the peak position or correlation of big jumps to reaching a peak position.
 
 ## 4.2 Features of Hits and Non-Hits
 
-To dive deeper into the actual make up of a song and see if we can build a model that can reliably identify songs on its content, we'll have a look at the audio features of a hit by looking at its audio signature. Let's start with a few descriptive metrics!
+After we've looked at the base on which our target variable is built, we're going to take a look at the elements used in this first iteration of the model.
+
+To dive deeper into the actual make up of a song and see if we can build a model that can reliably identify songs on its content, we'll have a look at the audio features of a hit. Let's start with a few descriptive metrics!
 
 ![](./notebooks/assets/medians_features.png)
 
     There are 34671 rows and 20 columns
 
-There are a few features that show some distinct trends when compared to non-hits. Median Danceability, Energy, Loudness and Valence of Hot 100 / hits are pretty consistently above their non-hits counterpart. While Acousticness has consistently a lower median across time. Instrumentalness and Speechiness show some interesting patterns that we should have a closer look at. Let's have a closer look at danceability first.
+There are a few features that show some distinct trends when compared to Non-Hits. Median Danceability, Energy, Loudness and Valence of Hits are pretty consistently above their Non-Hit counterparts. While Acousticness has consistently a lower median across time. Instrumentalness and Speechiness show some interesting patterns that we should have a closer look at. Let's have a closer look at danceability first.
 
 ### 4.2.1 Danceability
 
@@ -773,15 +773,15 @@ There are a few features that show some distinct trends when compared to non-hit
 
 _"Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity."_ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
-Simply looking at the amplitude of the two by day graphs, it's obvious that there is quite a bit of overlap between hits and non-hits in terms of danceability. Nevertheless, Hits generally seem to be more danceable. We can see an upward trend starting in the mid 1970s with non-hits staying roughly the same (if introducing more variability). From the mid 1980s and late 1990s we can additionally see the amplitude between days visibly shrinking (i.e. less variability) suggesting that less danceable songs had a hard time getting onto the Hot 100 in this period. This is not a big surprise as the 1980s and 1990s are quite literally known for the emergence of dance and dance-pop. 
+Simply looking at the amplitude of the two by day graphs, it's obvious that there is quite a bit of overlap between Hits and Non-Hits in terms of danceability. Nevertheless, Hits generally seem to be more danceable. We can see an upward trend starting in the mid 1970s with Non-Hits staying roughly the same (if introducing more variability). From the mid 1980s and late 1990s we can additionally see the amplitude between days visibly shrinking (i.e. less variability) suggesting that less danceable songs had a hard time getting onto the Hot 100 in this period. This is not a big surprise as the 1980s and 1990s are quite literally known for the emergence of dance and dance-pop. 
 
-While the 1980s and 1990s were the age when danceability had the highest chance of thriving in the Hot 100, it should be said that with the introduction of disco music in the 1970s has most likely played role in clearing the way for this trend (i.e. see the uptick starting in the mid 1970s).
+While the 1980s and 1990s were the age when danceability had the highest chance of thriving in the Hot 100, it should be said that the introduction of disco music in the 1970s has most likely played a role in clearing the way for this trend (i.e. see the uptick starting in the mid 1970s).
 
-Starting in the early 2000s we're starting to see a minor slump in danceability, which lasted until the mid 2010s. Now in the most recent years (likely pushed with the rise of Electronic Dance Music (EDM)), we're seeing the highest level of danceability in the Hot 100 hits and quite low variability in 2018 and 2019. It's also notable that non-hits have been catching up in danceability and have closed in on the median danceability of the Hot 100 (disregarding the drop in 2019).
+Starting in the early 2000s we're starting to see a minor slump in danceability, which lasted until the mid 2010s. Now in more recent years (likely pushed with the rise of Electronic Dance Music (EDM)), we're seeing the highest level of danceability in the Hot 100 Hits and quite low variability in 2018 and 2019. It's also notable that Non-Hits have been catching up in danceability and have closed in on the median danceability of the Hot 100 (disregarding the drop in 2019).
 
-For our model, it can be seen that especially during the mid-1970s and mid-2000s there is a visible difference in danceability and that median hits have been consistently more danceable than median non-hits (_see inference analysis below).
+For our model, it can be seen that especially during the mid-1970s and mid-2000s there is a visible difference in danceability and that median Hits have been consistently more danceable than median Non-Hits (_see inference analysis below).
 
-Lastly, let's look at a few of the most danceable songs throughout the history of the Hot 100.
+Lastly, let's look at a few of the most danceable Hits throughout the history of the Hot 100.
 
 <div>
 <table border="1" class="dataframe">
@@ -888,17 +888,11 @@ Lastly, let's look at a few of the most danceable songs throughout the history o
 </table>
 </div>
 
-Judging from the Top 10 most danceable songs we can see the above trend more or less reflected. In the 1980s and early 1990s very danceable songs had the best chances of making it onto the Hot 100. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance hit is from Summer 2018 and just fell short of making it onto the Top 20.
+Judging from the Top 10 most danceable songs we can see the the 1980s and early 1990s well represented. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance hit is _Drip_ from Summer 2018 and just fell short of making it onto the Top 20.
 
 #### Inference Analysis of Danceability
 
 In the following we're going to look at the statistical significance of the differences in distribution of Hits vs. Non-Hits.
-
-To better understand whether the distributions are statistically significantly different we'll use a Z-Test.
-
-H0: The Danceability Distribution for Hits and Non-Hits is the same (i.e. the mean diff is 0).
-H1: The Danceability Distribution for Hits and Non-Hits is not the same.
-alpha = 0.05
 
 ![](./notebooks/assets/danceability_box_plots.png)
 
@@ -909,29 +903,25 @@ alpha = 0.05
 
 We can see some difference between the means of the two distributions but without a statistical significance test we can't be sure that this difference isn't simply due to chance of the sample and that the distributions are in fact the same.
 
-To better understand whether the distributions are statistically significantly different we'll use a Z-Test and Permutation.
+To better understand whether the distributions are statistically significantly different we'll use a Z-Test.
 
-    H0: The Danceability Distribution for Hits and Non-Hits is the same (i.e. the mean diff is 0).
-    H1: The Danceability Distribution for Hits and Non-Hits is not the same.
-    alpha = 0.05
+**H0**: The Danceability Distribution for Hits and Non-Hits is the same (i.e. the mean diff is 0).
 
----
+**H1**: The Danceability Distribution for Hits and Non-Hits is not the same.
+
+**alpha**: 0.05
 
     p: 0.0
     CI: [-0.00384252  0.0037603 ]
     ME: 0.003786297754012112
 
-
-    /Users/sebastian/anaconda3/envs/hit_predictor/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-      return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-
 ![](./notebooks/assets/danceability_test.png)
 
-Looking at the trial above it's clear that the mean difference is statistically significant. This is not surprising, due to the largeness of the sample but the exceptionally low p-value is positive evidence that we might be on the right track here and that there is some predictive information. 
+Looking at the test above it's clear that the observed mean difference is statistically significant. This is not surprising, due to the largeness of the sample but the exceptionally low p-value is positive evidence that we might be on the right track here and that there could be some predictive information in this feature. 
 
-Given the results above, we can reject H0 and have gathered evidence to support H1. The data indicates that hits tend to be more 'danceable'.
+Given the results above, we can reject H0 and have gathered evidence to support H1. The data indicates that Hits tend to be more 'danceable'.
 
-Due to the large sample size most differences are likely statistically significant, for interesting cases I've conducted a test below otherwise most of these relationships are tested in _\_Step 3 - Inferential Statistical Tests_ and _\_Step 4 - Building a Model_
+Due to the large sample size most differences are likely statistically significant, for interesting cases I've conducted a test below otherwise most of these relationships are tested in _\_Step 3 - Inferential Statistical Tests_ and _\_Step 4 - Building a Model_ with similar results.
 
 ### 4.2.2 Energy and Acousticness
 
@@ -941,11 +931,11 @@ Due to the large sample size most differences are likely statistically significa
 
 _"Energy [...] represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy."_  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
-Energy as a feature looks like a less clear-cut situation. First of all, there is a lot more overlap in by week medians of hits and non-hits. Furthermore, the median Energy levels by year have started to close in between hits and non-hits in recent years. Nevertheless, starting in the early 1980s we're starting to see a stronger focus (lower variability) on high-energy songs compared to the early 1960s.
+Energy as a feature looks like a less clear-cut situation. First of all, there is a lot more overlap of Hits and Non-Hits. Furthermore, the median Energy levels by year have started to close in between Hits and Non-Hits in recent years. Nevertheless, starting in the early 1980s we're starting to see a stronger focus (lower variability) on high-energy songs compared to the early 1960s.
 
-Again, just as with danceability we can see variability picking up in the mid- to late-2000s. Energy levels were at their all-time highs from the early 1980s until the 2010s (an exception were the mid- to late-1990s). Starting in the early 2010s, however, we're seeing less energetic songs getting the upper hand. In fact, the Hot 100s median energy levels have dropped below non-hits in 2019 for the third time since its inception.
+Again, just as with danceability we can see variability picking up in the mid- to late-2000s. Energy levels were at their all-time highs from the early 1980s until the 2010s (an exception were the mid- to late-1990s). Starting in the early 2010s, however, we're seeing less energetic songs getting the upper hand. In fact, the Hot 100s median Energy levels have dropped below Non-Hits in 2019 for the third time since its inception.
 
-For our model, we're witnessing again that higher energy levels seem to indicate a higher likelihood of Hit potential than low energy levels. Similarly this has been quite consistently the case starting mid-1970s to the mid-2010s. The general difference will be checked for significance in the _inference analysis_.
+For our model, we're witnessing again that higher energy levels seem to indicate a higher likelihood of Hit potential than low energy levels. Similarly this has been quite consistently the case starting in the mid-1970s to the mid-2010s. The general difference will be checked for significance in the _inference analysis_.
 
 To get a feeling for what songs are considered high energy, we're listing the top 10 most energetic songs below.
 
@@ -955,7 +945,9 @@ As a comparison I've plotted the development of acousticness confidence below th
 
 Energy and Acousticness are not necessarily opposite sides of the same relationship but both of them share a drastic change. Energy on one end has enjoyed a meteoric rise in the 1980s, acousticness has dropped drastically in the 1980s, variability and median in acousticness have recently picked back up while energy has started to drop in recent years. Unfortunately, our analysis of the negative relationship between these two features is limited as Spotify does not release a detailed break-down of their features.
 
-In both cases we seem to be looking at one or several bigger trends as hits and non-hits are moving in the same direction but with hits having fewer variability it looks like these two features could carry a lot of explanatory information especially for the period between 1980s and 2000s. The overlap between hits and non-hits is much larger before or after the period just mentioned.
+My assumption is that the visible drop in Acousticness in the mid 1970s is marking the introduction of Synthesizers and meteoric rise of more electronically infused music in subsequent decades.
+
+In both cases we seem to be looking at one or several bigger trends as Hits and Non-Hits are moving in the same direction but with Hits having fewer variability it looks like these two features could carry a lot of explanatory information especially for the period between 1980s and 2000s. The overlap between Hits and Non-Hits is much larger before or after the period just mentioned.
 
 <div>
 <table border="1" class="dataframe">
@@ -1070,7 +1062,7 @@ _"The overall loudness of a track in decibels (dB). Loudness values are averaged
 
 As a feature, loudness is very consistently flat before the 1990s and then again starting in the early 2000s (i.e. at a higher level). We can clearly see that in the 1990s something in music changed, more and more songs were created that had a relatively higher loudness.
 
-In general, we see that hits are having a higher median loudness but especially in the last few years we're seeing that hits and non-hits loudness do not diverge much anymore.
+In general, we see that Hits are having a higher median loudness but especially in the last few years we're seeing that Hits and Non-Hits loudness do not diverge much anymore. This would indicate that music has generally become louder.
 
 <div>
 <table border="1" class="dataframe">
@@ -1300,7 +1292,7 @@ It's hard to pin-point what Speechiness is actually measuring as we're looking a
 
 _A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)._ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
-Valence is quite an interesting indicator as it attempts to measure positivity of music. In turn, we can see that the Hot 100 were generally more positive than non-hits all the way through the mid-1990s until Hot 100 drop down in valence in 1995 and then slowly continue to decrease to its current low-point having almost now visible difference between Hot 100 and Non-Hits.
+Valence is quite an interesting indicator as it attempts to measure positivity of music. In turn, we can see that the Hot 100 were generally more positive than Non-Hits all the way through the mid-1990s until Hits drop down in valence in 1995 and then slowly continue to decrease to its current low-point having almost now visible difference between Hits and Non-Hits.
 
 Knowing that Valence has more and more decreased it might be interesting to see the songs with the highest and lowest valence.
 
@@ -1436,7 +1428,7 @@ Knowing that Valence has more and more decreased it might be interesting to see 
 </table>
 </div>
 
-The highest valence songs are between 1961 and 1985, the lowest valence songs are a little more spread out but it's striking that 3 of the top 5 lowest valence songs were released in the 2010s. That being said Georgie Young might actually be an outlier and mislabeled.
+The highest valence songs are between 1961 and 1985, the lowest valence songs are a little more spread out but it's striking that 3 of the top 5 lowest valence songs were released in the 2010s. That being said Georgie Young might also just be an outlier and mislabeled as it happened to be the only song with 0.0 Valence and it being quite a bit apart from the other lowest valence songs.
 
 ![](./notebooks/assets/valence_box_plot.png)
 
@@ -1444,7 +1436,7 @@ The highest valence songs are between 1961 and 1985, the lowest valence songs ar
 
 _NOTE: To avoid using an arbitrary cut-off point such as 0.5, I've introduced a neutral category for valence levels between 0.4 - 0.6._
 
-While there is also a higher percentage of low valence music among Non-Hits the distinction between High-Valence and Low-Valence songs in the Hot 100 is a stark contrast if looked at across time. The number of low-valence songs in the Hot 100 before 2010 is consistently low while the high valence songs are dropping at a more or less linear-looking rate starting in the 1970s all the way through the 2000s. In the 2010s, low-valence songs are catching up with high-valence songs for the first time and in the 2020s low-valence surge beyond high-valence songs. Both Non-Hits and Hits are at an all-time high for low-valence songs.
+While there is also a higher percentage of low valence music among Non-Hits the distinction between High-Valence and Low-Valence songs in the Hot 100 is a stark contrast if looked at across time. The number of low-valence songs in the Hot 100 before 2010 is consistently low while the high valence songs are dropping at a more or less linear-looking rate starting in the 1970s all the way through the 2000s. In the 2010s, low-valence songs are catching up with high-valence songs for the first time and in the 2020s low-valence surge beyond high-valence songs. Today, both Non-Hits and Hits are at an all-time high for low-valence songs.
 
 The graphs show that we're increasingly listening to less positive sounding music in our Hot 100 charts as well as in our general popular music.
 
@@ -1458,7 +1450,7 @@ Instrumentalness basically detects the vocal to instruments ratio. Rap songs are
 
 ![](./notebooks/assets/instrumentalness_hist.png)
 
-Another reason that makes this potentially interesting for Hot 100 detection is the fact that there are significant amounts of non-hits that fall into the instrumental category.
+Another reason that makes this potentially interesting for Hit detection is the fact that there are significant amounts of Non-Hits that fall into the instrumental category.
 
 To better understand whether the distributions are statistically significantly different we'll use a Z-Test.
 
@@ -1485,7 +1477,9 @@ The p-value for the Point Estimate occuring if Hits and Non-Hits were equally di
 
 _The duration of the track in milliseconds._ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
-The duration of a track could be a good feature since the Hot 100 are looking at airplay on radios which have historically favored songs that have a specific length. To get a more intuitive sense the data has been downsampled to seconds. We can see that songs that made it onto the Hot 100 were generally not longer than 3 minutes but starting in the 1970s the average length of a track has gotten slightly longer (i.e. around the 4-minute mark), indicating a higher tolerance of radio to accept slightly longer tracks. However, we can see that non-hits while also having scaled down slightly, closer to the 4-minute mark there is stil a lot of songs that are significantly longer or shorter than the Hot 100 songs.
+The duration of a track could be a good feature since the Hot 100 are looking at airplay on radios which have historically favored songs that have a specific length. To get a more intuitive sense the data has been downsampled to seconds. We can see that songs that made it onto the Hot 100 were generally not longer than 3 minutes but starting in the 1970s the average length of a track has gotten slightly longer (i.e. around the 4-minute mark), indicating a higher tolerance of radio to accept slightly longer tracks. 
+
+We can see that Non-Hits while also having scaled down slightly, closer to the 4-minute mark there is stil a lot of songs that are significantly longer or shorter than the Hit songs.
 
 ### 4.2.8 Discrete Variables
 
@@ -1498,21 +1492,25 @@ We can see general tendencies:
     - Most songs are written predominantly with a 4 time signature
     - Full keys (e.g. C,D,E or F) are relatively more popular than keys using semitones (e.g. C#,D# or F#)
 
-Beyond that unfortunately it doesn't look like we can make out any major differences between hits and non-hits using these features. While these differences might still be statistically significant we'll have to check whether they hold enough predictive information to be used in a model.
+Beyond that unfortunately it doesn't look like we can make out any major differences between Hits and Non-Hits using these features. While these differences might still be statistically significant we'll have to check whether they hold enough predictive information to be used in a model.
 
 ### 4.2.9 Conclusion
 
-We've seen that multiple features (e.g. Danceability, Energy, Loudness, Instrumentalness and Valence) show quite interesting discrepancies to Non-Hits. Most of the discrepancies are within the spectrum of all songs, as would be expected. After all, hits are simply a subset of songs that are released every day. It would make sense that Hit songs are more streamlined and generally more prone to follow trends. We can see this especially during the 1990s and 2000s. Most of the features are narrowing into subsections of the entire spectrum of available popular music.
+We've seen that multiple features (e.g. Danceability, Energy, Loudness, Instrumentalness and Valence) reflect historic music trends quite well and that the Hits of the time represent quite interesting subsets within the Non-Hits spectrums. Overlap is expected, after all, Hits are not likely to become Hits simply due to their intrinsic features. It also would make sense that Hit songs are representing a more or less distinct subset as they are popular music which indicates a mainstream appeal and a certain general likeability. Hence, they are more streamlined and more prone to follow trends. We can see this especially during the 1990s and 2000s. Most of the features are narrowing into subsections of the entire spectrum of available popular music.
 
 We were also able to make out distinct trends for certain time periods (e.g. before 1980s, between 1990s and 2000s or after the 2000s).
 
-With these tools in-hand we're going to create a Machine Learning Model to predict the potential for a Song to become a hit.
+There's certainly plenty of opportunity to further investigate these features. In a future iteration, I'm contemplating investigating few additional questions:
+- Is there any dominance of genre during certain periods?
+- What is the influence of artists on features and time periods?
+
+But for now we're going to conclude our Exploratory Data Analysis and narrow in on our feature selection.
 
 -------------------------------------------------
 
 # 5. The Inferential Statistical Analysis
 
-The section on inferential statistics is looking at statistical significance on observations made and thoughts had during the EDA. This is an essential step to understanding whether or not the differences between hits and non-hits are factual or just happened by chance.
+The section on inferential statistics is looking at statistical significance on observations made and thoughts had during the EDA. This is an essential step to understanding whether or not the differences between Hits and Non-Hits are factual or just happened by chance.
 
 The focus for us lies on three categories:
 - Distribution between Hits and Non-Hits
@@ -1541,11 +1539,11 @@ From what I can tell we have two different categories of features:
 
 #### Continuous Features
 
-In many ways hit prediction is about finding the subtle differences and similarities between hits and non-hits, continuous features tend to be much more valuable in uncovering those differences and trends across time which is why the first part of the inferential statistics tests were focused on those features. 
+In many ways hit prediction is about finding the subtle differences and similarities between Hits and Non-Hits, continuous features tend to be much more valuable in uncovering those differences and trends across time which is why the first part of the inferential statistics tests were focused on those features. 
 
 #### Distributions
 
-To understand whether the differences between hits and non-hits observed are significant, I've conducted Z-tests for distributions on the following features (only continuous variables included):
+To understand whether the differences between Hits and Non-Hits observed are significant, I've conducted Z-tests for distributions on the following features (only continuous variables included):
 - acousticness
 - loudness
 - instrumentalness
@@ -1555,7 +1553,7 @@ To understand whether the differences between hits and non-hits observed are sig
 - tempo
 - duration_ms
 
-The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that hit and non-hits were equally distributed. 
+The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that hit and Non-Hits were equally distributed. 
 
 #### Correlation
 
@@ -1563,7 +1561,7 @@ Different from exploring correlation between continous variables the process of 
 
 ![](./notebooks/assets/feature_importance.png)
 
-Using Logistic Regression Beta based on standardized values allowed us to evaluate the relative importance of the features used. We can see at the top are three features to detect hits:
+Using Logistic Regression Beta based on standardized values allowed us to evaluate the relative importance of the features used. We can see at the top are three features to detect Hits:
 - Instrumentalness
 - Acousticness
 - Loudness
@@ -1588,7 +1586,7 @@ For collinearity measurements we've used the popular Pearson correlation coeffic
 
 ![](./notebooks/assets/feature_correlation.png)
 
-I've found strong correlation (~0.8) between `energy` and `acousticness` and `energy` and `loudness`. Somewhat present correlations (~0.6) were also visible between `acousticness` and `loudness` as well as `valence` and `danceability`. All four correlations were statistically significant for p<0.001 but as the correlations were only moderately strong for some features and removing them might've removed some actual information about a song's content, I decided to use dimension reduction through PCA instead.
+I've found strong correlation (~0.8) between `energy` and `acousticness` as well as `energy` and `loudness`. Somewhat present correlations (~0.6) were also visible between `acousticness` and `loudness` as well as `valence` and `danceability`. All four correlations were statistically significant for p<0.001 but as the correlations were only moderately strong for some features and removing them might've removed some actual information about a song's content, I decided to use dimension reduction through PCA instead.
 
 #### Conclusion
 
@@ -1605,10 +1603,204 @@ In conclusion, we'll be using a combination of the features below to describe a 
 In the Machine Learning section we'll be looking at multiple different ML algorithms, Cross Validation and Performance metrics to optimize the predictive qualities of our model.
 
 # 6. The Model
-- Dimmensionality Reduction (PCA)
-- Algorithms (Knn, RF)
-- Performance Metrics (PR, ROC)    
-    - Cross Validation/ Hyper Parameter Optimization
-    - Precision Recall / ROC AUC
+
+In this step we're going to prepare the features, create a model and test it for performance.
+
+To make sure we're not overfitting and are able to detect the generalizability of our model's performance we've divided our data into a hold-out dataset and tuning dataset in the beginning of our project.
+
+## 6.1 Dimensionality Reduction (PCA)
+
+As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions (source). This is certainly not a cure-all method but can certainly help dealing with situations in which we believe a feature has relevance to some extent but shows some collinearity as in our case (source).
+
+For this project we're using one of the most popular methods called Principal Component Analysis (PCA). One pretty significant catch of this method is that due to the transformations performed we're losing the interpretability of the model. This is quite significant for a lot of use-cases as that allows us to learn directly from models. In a future iteration I might consider removing the Dimensionality Reduction to improve understandability.
+
+![](./notebooks/assets/pca_dimensions.png)
+
+The above graphic shows the cumulative explained variance ratio and explained variance by Component. It's not an easy decision as it looks like the largest chunk of information rests in just one component. The two other cut-off points are 4 and 6. To do our best to avoid overfitting we're using just 4 components.
+
+## 6.2 Optimization of Hyperparameters 
+
+In this step we're now splitting our tuning dataset again into train and test data. This allows us to find the best parameter for our training set and validate the Hyperparameter performance using the test set without touching the hold-out set and possibly contaminating our test setup.
+
+Using the training data and test data, algorithms and evaluation metrics we'll be applying Cross-Validation to find the optimal hyperparameters.
+
+#### Algorithms
+
+For Machine Learning Algorithms we're using two very common algorithms that generally show a good performance as stand-alone setups. 
+
+**k-Nearest Neighbor** is highly resource intensive as it calculates the distance to each point and then takes the k closest neighbors to determine per majority vote which category (i.e. Hit or Non-Hit) an item belongs to. k here is the main hyperparameter that needs optimization.
+
+**Random Forest** is an ensemble method that combines and averages multiple (often thousands) decision trees of variable lengths to come to a decision. For Random Forest we're optimizing the number (k) of trees or estimators. 
+
+#### Evaluation Metrics
+
+There is many different evaluation metrics that optimize for different things. To find the relevant metric it's important to understand the challenges the data poses and to set the goal of the model. In our case we're working in reality with highly imbalanced data (i.e. only a tiny portion of all songs become hits) and we would like to find as many Hits as possible.
+
+The Receiver Operating Characteristic Area-Under-the-Curve (ROC AUC) metric optimizes for the True-Positives to False-Positive Ratio. This is a great metric to understand generally how confident a model can find True-Positives. The drawback is that ROC AUC performs the same regardless of the underlying probabilities (i.e. it works well for balanced datasets, not so much for imbalanced data). Since we've artifically created a balanced dataset for this project as most algorithms can work better with balanced data, we're going to use this metric.
+
+In addition, Precision-Recall allows us to evaluate imbalanced data as it provides insights into how well the model can distinguish between classes (Precision) and how many of all positive classes are found (Recall). This metric will be our main decision making and optimization tool. Similar to ROC AUC we'll be technically optimizing for the Precision-Recall Area-Under-the-Curve (PR AUC).
+
+#### Results
+
+The first algorithm that was tested was Random Forest with up to 1500 estimators (only 500 visualized here). 
+
+![](./notebooks/assets/pr_roc_rf.png)
+
+We found a quick drop as the threshold (i.e. probability threshold to assign a positive label) was lifted above 0 and the common slow descend to 0.5 as the threshold approaches 1. The best performing number of estimators was 300 with a Precision Score of 0.61 and a Recall Score of 0.68. This means that we've detected almost 70% of all Hits in the data set and of the Song assigned a Hit label we were correct 61% of the time.
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Non-Hit</th>
+      <th>Hit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>accuracy</th>
+      <td>-</td>
+      <td>0.635704</td>
+    </tr>
+    <tr>
+      <th>logloss</th>
+      <td>-</td>
+      <td>0.634130</td>
+    </tr>
+    <tr>
+      <th>precision</th>
+      <td>0.663376</td>
+      <td>0.612533</td>
+    </tr>
+    <tr>
+      <th>recall</th>
+      <td>0.589084</td>
+      <td>0.684854</td>
+    </tr>
+    <tr>
+      <th>f1 beta=1</th>
+      <td>0.624026</td>
+      <td>0.646678</td>
+    </tr>
+    <tr>
+      <th>support</th>
+      <td>3536.000000</td>
+      <td>3354.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+The second algorithm was the K-Nearest Neighbor algorithm tested with up to 1500 neighbors (only 500 visualized here).
+
+![](./notebooks/assets/pr_roc_knn.png)
+
+With k-Nearest Neighbor (kNN) we're seeing a more gradual descend with raising the threshold. The best performing k for neighbors is 200. While kNN is performing slightly worse in terms of Precision (0.6) it makes more than up for it in Recall (0.83). kNN was able to retrieve more than 80% of all Hits in the data set, it wins over Random Forest by a huge margin of 15 points.
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Non-Hits</th>
+      <th>Hits</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>accuracy</th>
+      <td>-</td>
+      <td>0.644848</td>
+    </tr>
+    <tr>
+      <th>logloss</th>
+      <td>-</td>
+      <td>0.617462</td>
+    </tr>
+    <tr>
+      <th>precision</th>
+      <td>0.745160</td>
+      <td>0.597130</td>
+    </tr>
+    <tr>
+      <th>recall</th>
+      <td>0.468043</td>
+      <td>0.831246</td>
+    </tr>
+    <tr>
+      <th>f1 beta=1</th>
+      <td>0.574952</td>
+      <td>0.695002</td>
+    </tr>
+    <tr>
+      <th>support</th>
+      <td>3536.000000</td>
+      <td>3354.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+#### Validation
+
+To understand how well our model is going to perform outside our training data we're now going to validate our model by using it to predict on the hold-out set. 
+
+Drastic departures of the performance above would indicate issues in our methodology (i.e. data contamination, overfitting etc.)
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Non-Hits</th>
+      <th>Hits</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>accuracy</th>
+      <td>-</td>
+      <td>0.658790</td>
+    </tr>
+    <tr>
+      <th>logloss</th>
+      <td>-</td>
+      <td>0.613059</td>
+    </tr>
+    <tr>
+      <th>precision</th>
+      <td>0.752741</td>
+      <td>0.614714</td>
+    </tr>
+    <tr>
+      <th>recall</th>
+      <td>0.478236</td>
+      <td>0.841251</td>
+    </tr>
+    <tr>
+      <th>f1 beta=1</th>
+      <td>0.584881</td>
+      <td>0.710359</td>
+    </tr>
+    <tr>
+      <th>support</th>
+      <td>5169.000000</td>
+      <td>5115.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+k-Nearest Neighbor is performing slightly better across the board but isn't departing drastically from the evaluation metrics in the test set. Overall it looks like we've created a pretty reliable model to detect Hits.
+
+#### Conclusion
+
+ Despite its drawbacks, dubious scalability and processing time, kNN won over Random Forest due to its ability to retrieve significantly more Hits from the data set than Random Forest.
+
+Being correct 60% of the time might not look like much but we shouldn't forget that this model isn't including any external factor and is judging a song exclusively by its internal features. There's likely still room for improvement but this will be conducted in future iterations. We now have a great starting point for creating a stable Hit predictor, the app built on top of this model will show whether it can hold up under real conditions.
 
 # 7. Conclusion
+
