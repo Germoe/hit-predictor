@@ -126,6 +126,7 @@ dependencies:
     - pyphen==0.9.5
     - requests==2.22.0
     - spotipy==2.4.4
+    - strsim==0.0.3
     - tabulate==0.8.3
     - tinycss2==1.0.2
     - tqdm==4.32.2
