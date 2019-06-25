@@ -59,7 +59,7 @@ new_data: requirements
 	# make scraper target='hot100' scrapetype='iterator' scrapespeed='fast' batch=False batch_size=50 iter_filepath='./data/iterators/week_saturday.csv'
 	# Get Spotify Ids for Hot 100 ($reps - must be at least number of files from scrape above)
 	make iterator target='spotify_ids_hot100' reps=1
-	# spotify_ids_hot100.csv -> hot100_spotify_ids_iterator.csv & 
+	# spotify_ids_hot100.csv -> hot100_spotify_ids_iterator.csv
 	$(PYTHON_INTERPRETER) src/data/make_hot100_unique_iterator.py
 	# Get Analysis / Features from Spotify ()
 	make scraper target='spotify_analysis_api' scrapetype='api' scrapespeed='fast' batch=True batch_size=50 iter_filepath='./data/iterators/spotify_ids_hot100_uniq.csv'
