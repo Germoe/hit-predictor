@@ -12,16 +12,18 @@ At the core of this challenge lies the urge to create a better understanding of 
 
 Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building.  
 
-However, there are claims of a relationship between some intrinsic music features and their popularity (source). It could be inferred that certainly some variance can be explained by intrinsic features. For example, songs that have many repetitions tend to enjoy elevated popularity (source). There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres) (source). Thus, at least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its audio characteristics.
+However, there are claims of a relationship between some intrinsic music features and their popularity (source). For example, songs that have many repetitions tend to enjoy elevated popularity (source). There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres) (source). These are just a few examples but we can already see, it's not as far-fetched an idea that the music has intrinsic qualities that qualify it to become a Hit. At least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its characteristics.
 
-Hit prediction is a difficult challenge from both angles. On one hand, it's tough to understand what drives popularity. On the other hand, measuring popularity might be just as daunting a task. Popularity could be a continuous measure but only few songs that are created actually even get published and only few of those that were are put onto ranking lists giving some indicator of popularity.
+It's tough to understand what drives popularity. On the other hand, measuring popularity might be just as daunting a task. Popularity could be seen as a continuous measure but that would require us to rank all songs in existence. That poses obvious problems. To name only one: Few songs that are created actually even get published and are exposed to a larger audience. Of those only few are put onto actual ranking lists giving some indicator of popularity. Of those we'll have to question the ranking list and the factors it used to rank for popularity. As you can see, we'll have to make a few assumptions, decisions and take some shortcuts to tackle this problem.
+
+This is a very exciting project for myself and I hope you'll enjoy the journey as well.
 
 # 2. The Client
 
 Solving the problem of Hit Song Prediction is not only an interesting scientific challenge that could help us understand the inner workings of popularity. It could also lead to very tangible business benefits.
 
 **Record Label Industry**:
-In many ways the risks and rewards structure of the traditional book publishing industry applies for the music industry as well (source). In general terms, a record label signs on a new artist based on the experience of the A&R department, some circumstential evidence and increasingly evidence from prior success through self-publishing and self-promotion (source). The upfront investments in these artists is often substantial and generally ranges from a few hundred thousand USD to multiple million USD. These investments often include a debut album or increasingly often mini-albums, which requires song selection. Choosing the right song for a publishing item can be crucial to the future success of an artist, especially in the early parts of their career (source). A tool for reliably predicting the chance of success for a song to become commercially successful based on its intrinsic characteristics has many potential benefits:
+In many ways the risks and rewards structure of the traditional book publishing industry applies to the music industry as well (source). In general terms, a record label signs on a new artist based on the experience of the A&R department, some circumstential evidence and increasingly evidence from prior success through self-publishing and self-promotion (source). The upfront investments in these artists is often substantial and generally ranges from a few hundred thousand USD to multiple million USD. These investments often include a debut album or increasingly often mini-albums, which requires song selection. Choosing the right song for a publishing item can be crucial to the future success of an artist, especially in the early parts of their career (source). A tool for predicting the chance of commercial success based on its intrinsic characteristics has many potential benefits:
 
 - Support in the Song selection process
 - Allows for more calculated risks and diversified portfolios
@@ -29,19 +31,21 @@ In many ways the risks and rewards structure of the traditional book publishing 
 - Feedback for Songwriters in their daily work
 
 **Radio Stations**
-Programming of radio stations is increasingly important, especially with the rise of streaming services taking up increasingly market share for music exploration and individualizing the taste-making experience (source). If a radio station doesn't play a song I don't like I'll likely switch to a different station with no hesitation (source). For these linear mediums it is therefore important to consistently hit my taste profile (source). Hit song prediction can help with this issue.
+Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share (source). Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station (source). For these linear mediums it is therefore important to consistently hit your taste profile (source). Hit song prediction can help with this issue.
 
-Programming of Radio stations or Playlists on Streaming services is often history-focused, whether that is by choosing only songs from the Top 40 or artists that have already gained popularity in the past and sticking to their portfolio (source). A Hit Song predictor would allow radio stations to reduce the quantity of songs that fall into the realm of possibilities without having to stick to established artists or other suboptimal guidelines. This would allow for more time in creating valuable programming.
+Programming of Radio stations or Playlists on Streaming services are often history-focused, whether that is by choosing only songs from the Top 40 or artists that have already gained popularity in the past and sticking to their portfolio (source). A Hit Song predictor would allow radio stations to reduce the quantity of songs that fall into the realm of possibilities without having to stick to established artists or other suboptimal guidelines. This would allow for more time in creating valuable programming.
 
-Several additional use cases in the streaming market, for brick-and-mortar stores etc. are possible that I won't go into detail with.
+Several additional use cases in the streaming market, for brick-and-mortar stores etc. can be thought of that I won't go into further detail with.
 
 # 3. The Data
 
 The data used in this project was acquired from two sources: Billboard.com and the Spotify API
 
-The Billboard Hot 100 go back to 1958 and were the main source to identify 'popular' tracks. The data was acquired from the site running a script that requested and parsed the weekly lists. The first time the Hot 100 were released was on August 4th, 1958 and the last date included in this analysis is April 8th, 2019. The data includes Title, Artist, Position/Rank on the Hot 100 and Date of the Positioning on the Hot 100.
+The Billboard Hot 100 goes back to 1958 and was the main source to identify 'popular' tracks. It is commonly used in scientific studies and for the music industry to gauge the commercial success and popularity of a song. 
 
-The Spotify API was used for two purposes to enrich the Hot 100 data with more meaningful information using the [Audio Features endpoint](https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/) and to create a balanced data set of songs that were released at the time of the Hot 100 songs but DIDN'T make it onto the chart. 
+The data was acquired from the site running a script that requested and parsed the weekly lists. The first time the Hot 100 were released was on August 4th, 1958 and the last date included in this analysis is April 8th, 2019. The data includes Title, Artist, Position/Rank on the Hot 100 and Date of the Positioning on the Hot 100.
+
+The Spotify API was used for two purposes to enrich the Hot 100 data with more audio features using the [Audio Features endpoint](https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/) and to create a balanced data set of songs that were released at the time of the Hot 100 songs but DIDN'T make it onto the chart. 
 
 The following files were used in the project:
 
@@ -76,17 +80,20 @@ The Hot 100 data was very slender, to make the later EDA phase easier, I added a
 - peak - Highest Position
 - low - Lowest Position
 
+**Splitting Timestamps into Year, Month, Day Columns**
+To allow for easier grouping by time periods all available dates were copied and split up into a year, month and day column.
+
 **Duplicates and Missing Values**
 For the analysis of Hits vs. Non-Hits, it was necessary to remove duplicates from the Hot 100 data using the `artist` and `title` columns. For each duplicate the first occurrence on the Hot 100 charts was kept, in the previous step entry and exit date columns were added to keep most of the relevant data without causing processing issues due to large files.
 
-The Hits dataset also had a lot of missing values due to the inability of correctly matching a song with a Spotify ID or it not being available in the Spotify Database. The loss ranged from below 40% to above 15%, this is a significant loss of data. However, for our purposes it was absolutely necessary to access rich audio features as I'm attempting a content-based analysis. The missing values couldn't be easily replaced due to copyright restrictions and extensive time commitment that was outside the scope of this project. The observations that couldn't be matched with Spotify Ids had to be dropped entirely.
+The Hits dataset also had a lot of missing values due to the inability of correctly matching a song with a Spotify ID or it not being available in the Spotify Database. The loss ranged from below 40% to above 15%, this is a significant loss of data. However, for our purposes it was absolutely necessary to access rich audio features as we're attempting a content-based analysis. The missing values couldn't be easily replaced due to copyright restrictions and extensive time commitment that was outside the scope of this project. The observations that couldn't be matched with Spotify Ids had to be dropped entirely.
 
-In this case the Spotify features had no obvious null values as a 0 also had a interpretative power. 
+In this case the Spotify features had no obvious null values as a 0 also had interpretative power. 
 
 **Inconsistent Naming in Title and Artists**
-As mentioned above String matching was the major challenge in this project's wrangling stage. Artists are often collaborating for songs but the naming conventions vary from artist to artist and platform to platform. Therefore I've created unified conventions "&" or "FEATURING" was generalized to "AND", titles and artists were transformed to upper case letters, ",-'" were all generalized to single spaces, lastly accents and other special characters were either simplified or removed. 
+As mentioned above string matching was the major challenge in this project's wrangling stage. Artists are often collaborating for songs but the naming conventions vary from artist to artist and platform to platform. Therefore I've created unified conventions "&" or "FEATURING" was generalized to "AND", titles and artists were transformed to upper case letters, ",-'" were all generalized to single spaces, lastly accents and other special characters were either simplified or removed. 
 
-Subsequently the majority of records was classified a match or a non-match using a 2-gram distance ([similarity library](https://github.com/luozhouyang/python-string-similarity)). The remaining entries were manually verified. 
+Subsequently the majority of records was classified a match or a non-match using a 2-n-gram distance ([similarity library](https://github.com/luozhouyang/python-string-similarity)). The remaining entries were manually verified. 
 
 **Merge**
 In the final step the audio features were merged respectively with the Hot 100 data and the Non-Hits data and a few visualizations were created to ensure the wrangling had not unexpectedly affected our data.
@@ -96,15 +103,15 @@ See:
 
 # 4. The Exploratory Data Analysis (EDA)
 
-Exploring our available data will be split into two stages. First, we'll have a close look at the historic data of the Hot 100 to better understand the underlying quirks in how it comes together, identifying possible issues or opportunities for model-building and general curiosity of the history of the Hot 100. Second, we're looking at the audio-features from Hits (a subset of the Hot 100) and a sample of Non-Hits (see _Data_ for more information).
+Exploring our data will be split into two stages. First, we'll have a close look at the historic data of the Hot 100 to better understand the underlying quirks in how it comes together, identifying possible issues or opportunities for model-building and general curiosity of the history of the Hot 100. Second, we're looking at the audio features from Hits (a subset of the Hot 100) and a sample of Non-Hits (see _Data_ for more information).
 
 ## 4.1 History of Hot 100
 
 Started by Billboard Magazine the Billboard Hot 100 is the industry standard record chart in the United States. It is published on a weekly basis.
 
-Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. If we define success of a song as commercial success, the charts are a way to understand the mainstream popularity/market value of a song and are often used as such in scientific studies (source).
+Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. If we define success of a song as commercial success, the charts are a way to understand the mainstream popularity/market value of a song.
 
-It should also be noted that the Billboard Hot 100 is not the most accurate tool for identifying all commercially successful songs as their rules and tracking tools are subject to flaws. A common example of this is their policy to not include songs that weren't released as singles (revoked in 1998). This led to some of the most commercially successful songs never making it onto the Hot 100. Nevertheless, it's the best tool we have readily available. Another drawback is simply the arbitrary cut-off at 100 songs a week, artificially limiting the amount of possible Hits at any given point.
+It should also be noted that the Billboard Hot 100 is not the most accurate tool for identifying all commercially successful songs as their rules and tracking tools are subject to flaws. A common example of this is their policy to not include songs that weren't released as singles (revoked in 1998). This led to some of the most commercially successful songs never making it onto the Hot 100. Another drawback is simply the arbitrary cut-off at 100 songs a week, artificially limiting the amount of possible Hits at any given point. Nevertheless, it's the best tool we have readily available.
 
 We'll start by looking into the frequency of songs in the Hot 100 through the years.
 
@@ -120,7 +127,7 @@ One of the lowest fluctuation points also coincides with the high point of sales
 
 ### 4.1.1 Streaks
 
-There are many ways to look at this data to gain further insights. Looking at the duration a song stays on the Hot 100 allows us to gauge fluctuation and gain an understanding of underlying structure of entering, exiting and general movement through the Hot 100 during its stay.
+There are many ways to look at this data to gain further insights. Looking at the duration a song stays on the Hot 100 allows us to gauge fluctuation and gain an understanding of the underlying structure of entering, exiting and general movement through the Hot 100 during its stay.
 
 ![](./notebooks/assets/hist_streaks.png)
 
@@ -138,7 +145,7 @@ Between 1991 and 2016 the third quartile (i.e. upper quartile) is consistently a
 
 Looking into the underlying formula it looks like it has to do with a Hot 100 rule introduced in 1991 with the intend to speed up fluctuation ([20-20 rule](https://web.stanford.edu/~xhnguyen/BillboardandTechnology.pdf)). This rule specifies that a song that has fallen out of the top 20 will be removed after 20 weeks. The rule was relaxed in 1992 and 1993 to falling out of the top 40 and top 50 respectively.
 
-The following plot highlights this effect distinctively by looking at exit positions of song before 1991 and after 1991.
+The following plot highlights this effect distinctively by looking at exit positions of songs before 1991 and after 1991.
 
 <a id="exit-positions"></a>
 ![](./notebooks/assets/20-20-rule.png) 
@@ -151,11 +158,11 @@ Above we can see the exit positions of songs with >19 weeks streaks before and a
 
 Going back to the `Streaks by Year` plot. Starting in 2006 we can see that the first quartile (i.e. lower quartile) is stretching into the <3 weeks region. A pattern we hadn't seen since the mid-1970s. This would indicate a higher fluctuation and is probably a result of Billboard slowly incorporating more and more online sales and streaming revenue into their formula since 2005 (https://en.m.wikipedia.org/wiki/Billboard_Hot_100 see _Digital downloads and online streaming_). 
 
-**Super Songs**
+#### Super Songs
 
 Until the early 1970s no song title would be on the Hot 100 for more than 25 weeks and until the early 1990s staying charted for over 31 weeks (i.e. outliers across the entire data as shown in _Histogram of Streaks_ above) was the rare exception. In fact, there are only 6 artists who've achieved this feat (they are listed below).
 
-There is a clear pattern distinction between the charts after 1991 and previous periods. 1991 happens to be the year that the Hot 100 started to use Nielsen Soundscan, which gathered more precise music sales data (previously sales numbers were self-reported by stores). [Hot 100 Formula changes](https://en.wikipedia.org/wiki/Billboard_Hot_100) and [discussion](https://ndsmcobserver.com/2018/01/billboard-hot-100-controversy/)
+There is a clear distinction in pattern between the charts after 1991 and previous periods. Interestingly, 1991 happens to be the year that the Hot 100 started to use Nielsen Soundscan, which gathered more precise music sales data (previously sales numbers were self-reported by stores). [Hot 100 Formula changes](https://en.wikipedia.org/wiki/Billboard_Hot_100) and [discussion](https://ndsmcobserver.com/2018/01/billboard-hot-100-controversy/)
 
     Number of Titles that stayed on the Hot 100 for more than 31 weeks 
     Before 1991 (33 years) - 6
@@ -178,18 +185,18 @@ Go to Playlist: https://open.spotify.com/user/1162788143/playlist/0iP1Sz5qSCmVom
 
 #### After 1991 (Top 10 shown)
 
-| artist                                    | title                               | streak | peak | entry | exit |
-|-------------------------------------------|-------------------------------------|--------|------|-------|------|
-| Imagine Dragons                           | Radioactive                         | 84     | 3    | 93    | 49   |
-| Jason Mraz                                | I'm Yours                           | 75     | 6    | 93    | 48   |
-| LeAnn Rimes                               | How Do I Live                       | 68     | 2    | 89    | 45   |
-| OneRepublic                               | Counting Stars                      | 67     | 2    | 32    | 50   |
-| LMFAO Featuring Lauren Bennett & GoonRock | Party Rock Anthem                   | 66     | 1    | 78    | 49   |
-| Jewel                                     | Foolish Games/You Were Meant For Me | 64     | 2    | 61    | 47   |
-| Adele                                     | Rolling In The Deep                 | 63     | 1    | 68    | 49   |
-| Carrie Underwood                          | Before He Cheats                    | 63     | 8    | 92    | 47   |
-| The Lumineers                             | Ho Hey                              | 61     | 3    | 90    | 50   |
-| Lady Antebellum                           | Need You Now                        | 59     | 2    | 85    | 48   |
+| artist           | title               | streak | peak | entry | exit |
+|------------------|---------------------|--------|------|-------|------|
+| Imagine Dragons  | Radioactive         | 84     | 3    | 93    | 49   |
+| Jason Mraz       | I'm Yours           | 75     | 6    | 93    | 48   |
+| LeAnn Rimes      | How Do I Live       | 68     | 2    | 89    | 45   |
+| OneRepublic      | Counting Stars      | 67     | 2    | 32    | 50   |
+| LMFAO Feat. ...  | Party Rock Anthem   | 66     | 1    | 78    | 49   |
+| Jewel            | Foolish Games ...   | 64     | 2    | 61    | 47   |
+| Adele            | Rolling In The Deep | 63     | 1    | 68    | 49   |
+| Carrie Underwood | Before He Cheats    | 63     | 8    | 92    | 47   |
+| The Lumineers    | Ho Hey              | 61     | 3    | 90    | 50   |
+| Lady Antebellum  | Need You Now        | 59     | 2    | 85    | 48   |
 
 Go to Playlist: https://open.spotify.com/user/1162788143/playlist/4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w
 
@@ -213,13 +220,13 @@ This is despite (or due to?) a generally larger standard deviation in streaks on
 
 #### Is there a significant difference between the distribution of the Hot 100 before and after the introduction of Nielsen Soundscan data in 1991?
 
-Throughout the above analysis, we've seen the year 1991 reappear over and over again as a cut-off point. It is time to understand whether and how Nielsen Soundscan might've affected the Hot 100. 
+Throughout the above analysis, we've seen the year 1991 reappear over and over again as a turning-point. It is time to understand whether and how Nielsen Soundscan might've affected the Hot 100. 
 
 Let's first have a look at the distributions before and after 1991.
 
 ![](./notebooks/assets/distribution-20-20-rule.png)
 
-If the only change affecting the data was the 20-20 rule and the Nielsen Soundscan and other unknown factors had no effect on the streak length, we would expect roughly the same distribution for songs of 20 or less weeks on the Hot 100. However, we can see that the distribution of Hot 100 songs before and after 1991 are very different. The streaks length for songs after 1991 is far more left skewed than before. Most songs are in the lowest bin, only rivaled by the 19 streak weeks bin, which we've seen by the [`Exit Positions`](#exit-positions) plot was likely introduced by the 20-20 rule.
+If the only change affecting the data was the 20-20 rule and the Nielsen Soundscan and other unknown factors had no effect on the streak length, we would expect roughly the same distribution for songs of 20 or less weeks on the Hot 100. However, we can see that the distribution of Hot 100 songs before and after 1991 are very different. The streaks length for songs after 1991 is far more left skewed than before. Most songs are in the lowest bin, only rivaled by the 19 streak weeks bin which, as seen in the [`Exit Positions`](#exit-positions) plot, was likely introduced by the 20-20 rule.
 
 #### Test & Hypothesis
 
@@ -247,7 +254,7 @@ Looking at streak length it could be interesting to see whether there's a relati
 
 We can see a roughly linear monotonic descending relationship (tested using Spearman's R) with a p value of 0. This means that there most likely is a relationship between streak lengths and peak position. The higher the peak position is the longer a song tends to stay on the Hot 100. We can see that this seems to be especially true for songs that make it onto the top 20. 
 
-We had to use Spearman's R in this case as Pearson's R requires a normality assumption, which due to the discrete values of 1-100 scale is not given.
+We had to use Spearman's R in this case as Pearson's R requires a normality assumption, which due to the discrete values of the 1-100 scale is not given.
 
 _Quick Note: At Streak position 19 we can see an unusually bold line, this clearly demarcates the skewedness that the so-called "20-20 rule" (explained above) has introduced into the data._
 
@@ -278,20 +285,20 @@ Generally, a title moves up at some point during their time on the Hot 100. This
 
 ![](./notebooks/assets/entry_exit_box.png)
 
-As seen at the beginning of the Exploratory Data Analysis (EDA). Generally songs enter and exit the Hot 100 in the lower positions. As expected it is hard to stay higher up on the Hot 100 and less than 50% of songs make it into the coveted Top 40.
+As seen at the beginning of the EDA. Generally songs enter and exit the Hot 100 in the lower positions. As expected it is hard to stay higher up on the Hot 100 and less than 50% of songs make it into the coveted Top 40.
 
 ![](./notebooks/assets/reentry_max_leap_box_plot.png)
 
 There are a total of 6 songs that were able to leap more than 90 positions from one week to another.
 
-| artist | title | entry\_year | exit\_year | reentry | streak | ranked | entry | exit | peak | low | max\_leap |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Dixie Chicks                       | Not Ready To Make Nice         | 2006        | 2007       | 2       | 16     | 24     | 28    | 42   | 4    | 100 | 96.0      |
-| Kelly Clarkson                     | My Life Would Suck Without You | 2009        | 2009       | 0       | 23     | 24     | 97    | 44   | 1    | 97  | 96.0      |
-| Britney Spears                     | Womanizer                      | 2008        | 2009       | 0       | 22     | 23     | 96    | 45   | 1    | 96  | 95.0      |
-| Lady Gaga                          | Million Reasons                | 2016        | 2017       | 4       | 8      | 20     | 76    | 41   | 4    | 97  | 93.0      |
-| LL Cool J Featuring Jennifer Lopez | Control Myself                 | 2006        | 2006       | 1       | 7      | 11     | 93    | 99   | 4    | 99  | 91.0      |
-| Beyonce & Shakira                  | Beautiful Liar                 | 2007        | 2007       | 0       | 17     | 18     | 94    | 91   | 3    | 94  | 91.0      |
+| artist                         | title                          | streak | peak | max\_leap |
+|--------------------------------|--------------------------------|--------|------|-----------|
+| Dixie Chicks                   | Not Ready To Make Nice         | 16     | 4    | 96.0      |
+| Kelly Clarkson                 | My Life Would Suck Without You | 23     | 1    | 96.0      |
+| Britney Spears                 | Womanizer                      | 22     | 1    | 95.0      |
+| Lady Gaga                      | Million Reasons                | 8      | 4    | 93.0      |
+| LL Cool J Feat. Jennifer Lopez | Control Myself                 | 7      | 4    | 91.0      |
+| Beyonce & Shakira              | Beautiful Liar                 | 17     | 3    | 91.0      |
 
 To understand the journey of these songs we'll make an attempt at visualizing it.
 
@@ -326,20 +333,20 @@ We can see that there is quite a large standard deviation of +-17.73 ranks from 
 
 There's very few reentries. Most songs that leave the Hot 100 leave for good and only about 4% of the ones that do make a reappearance do so more than twice. In fact, only 6 songs have made a reappearance on the Hot 100 more than 5 times, and they are all seasonal Christmas Evergreens (with one exception 'Unchained Melody' by 'The Righteous Brothers' has made a comeback 14 times over a period of 26 years).
 
-| artist                 | title                                       | entry\_year | exit\_year | reentry | streak | ranked | entry | exit | peak | low | max\_leap |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| The Righteous Brothers | Unchained Melody                            | 1965        | 1991       | 14      | 12     | 57     | 72    | 89   | 4    | 97  | 57.0      |
-| Brenda Lee             | Rockin' Around The Christmas Tree           | 1960        | 2019       | 9       | 4      | 26     | 64    | 9    | 9    | 89  | 38.0      |
-| Bobby Helms            | Jingle Bell Rock                            | 1958        | 2019       | 8       | 4      | 25     | 57    | 8    | 8    | 99  | 28.0      |
-| Mariah Carey           | All I Want For Christmas Is You             | 2000        | 2019       | 8       | 5      | 29     | 83    | 3    | 3    | 83  | 54.0      |
-| Nat King Cole          | The Christmas Song (Merry Christmas To You) | 1960        | 2019       | 7       | 4      | 16     | 100   | 11   | 11   | 100 | 20.0      |
-| Bing Crosby            | White Christmas                             | 1958        | 2019       | 6       | 2      | 15     | 86    | 34   | 12   | 86  | 33.0      |
+| artist                 | title                             | entry\_yr | exit\_yr | reentry | peak |
+|------------------------|-----------------------------------|-----------|----------|---------|------|
+| The Righteous Brothers | Unchained Melody                  | 1965      | 1991     | 14      | 4    |
+| Brenda Lee             | Rockin' Around The Christmas Tree | 1960      | 2019     | 9       | 9    |
+| Bobby Helms            | Jingle Bell Rock                  | 1958      | 2019     | 8       | 8    |
+| Mariah Carey           | All I Want For Christmas Is You   | 2000      | 2019     | 8       | 3    |
+| Nat King Cole          | The Christmas Song ...            | 1960      | 2019     | 7       | 11   |
+| Bing Crosby            | White Christmas                   | 1958      | 2019     | 6       | 12   |
 
 ### 4.1.5 Conclusion
 
 The Hot 100 have gotten more stale through the years. We've seen less fluctuation of new unique songs being introduced to the Hot 100. More detailed sales data in the early 90s (Nielsen Soundscan) might've amplified that trend and was only held back by artificial streak length hurdles (20-20 rule). 
 
-Since the 1970s unique songs per year had continually decreased, the change in that trend didn't come until the introduction of digital sales in the formula in 2005 and streaming data (i.e. Spotify, Youtube etc.). While it hasn't returned to its former diversity we've seen a small upwards trend in unique songs per year in recent years.
+Since the 1970s unique songs per year had continually decreased, the change in that trend didn't come until the introduction of digital sales in the formula in 2005 and streaming data (i.e. Spotify, Youtube etc.). While it hasn't returned to its former quantity we've seen a small upwards trend in unique songs per year in recent years.
 
 It was also argued that Nielsen Soundscan, with its addition of more granular data on song's actual sales data allowed the emergence of 'Super Songs', i.e. regular appearance of songs that stay on the Hot 100 for more than 31 weeks.
 
@@ -357,7 +364,7 @@ To dive deeper into the actual make up of a song and see if we can build a model
 
     There are 34671 rows and 20 columns
 
-There are a few features that show some distinct trends when compared to Non-Hits. Median Danceability, Energy, Loudness and Valence of Hits are pretty consistently above their Non-Hit counterparts. While Acousticness has consistently a lower median across time. Instrumentalness and Speechiness show some interesting patterns that we should have a closer look at. Let's have a closer look at danceability first.
+There are a few features that show some distinct trends when compared to Non-Hits. Median Danceability, Energy, Loudness and Valence of Hits are pretty consistently above their Non-Hit counterparts. While Acousticness has consistently a lower median across time. Instrumentalness and Speechiness show some interesting patterns that we should have a closer look at, too. Let's have a closer look at danceability first.
 
 ### 4.2.1 Danceability
 
@@ -371,24 +378,24 @@ While the 1980s and 1990s were the age when danceability had the highest chance 
 
 Starting in the early 2000s we're starting to see a minor slump in danceability, which lasted until the mid 2010s. Now in more recent years (likely pushed with the rise of Electronic Dance Music (EDM)), we're seeing the highest level of danceability in the Hot 100 Hits and quite low variability in 2018 and 2019. It's also notable that Non-Hits have been catching up in danceability and have closed in on the median danceability of the Hot 100 (disregarding the drop in 2019).
 
-For our model, it can be seen that especially during the mid-1970s and mid-2000s there is a visible difference in danceability and that median Hits have been consistently more danceable than median Non-Hits (_see inference analysis below).
+It can be seen that the trends mentioned above are also present in the Hit data, especially during the mid-1970s and mid-2000s there is a visible difference between Hits and Non-Hits (_see inference analysis below).
 
 Lastly, let's look at a few of the most danceable Hits throughout the history of the Hot 100.
 
-| artist                  | title                             | date       | danceability | hit  | peak |
-|-------------------------|-----------------------------------|------------|--------------|------|------|
-| Tone-Loc                | Funky Cold Medina                 | 1989-06-03 | 0.988        | True | 3.0  |
-| DJ Suede The Remix God  | Cash Me Outside (\#CashMeOutside) | 2017-03-04 | 0.981        | True | 72.0 |
-| Glee Cast               | Ice Ice Baby                      | 2010-05-22 | 0.980        | True | 74.0 |
-| The Jacksons            | State of Shock                    | 1984-09-22 | 0.980        | True | 3.0  |
-| Vanilla Ice             | Ice Ice Baby                      | 1990-09-08 | 0.978        | True | 1.0  |
-| Evelyn King             | Betcha She Don't Love You         | 1983-01-22 | 0.974        | True | 49.0 |
-| Jermaine Jackson        | Let Me Tickle Your Fancy          | 1982-10-30 | 0.973        | True | 18.0 |
-| 2nd II None             | Be True To Yourself               | 1992-01-11 | 0.971        | True | 78.0 |
-| Cardi B Featuring Migos | Drip                              | 2018-06-02 | 0.968        | True | 21.0 |
-| Justin Timberlake       | SexyBack                          | 2007-03-03 | 0.967        | True | 1.0  |
+| artist                  | title                             | date       | danceability | peak |
+|-------------------------|-----------------------------------|------------|--------------|------|
+| Tone-Loc                | Funky Cold Medina                 | 1989-06-03 | 0.988        | 3.0  |
+| DJ Suede The Remix God  | Cash Me Outside (\#CashMeOutside) | 2017-03-04 | 0.981        | 72.0 |
+| Glee Cast               | Ice Ice Baby                      | 2010-05-22 | 0.980        | 74.0 |
+| The Jacksons            | State of Shock                    | 1984-09-22 | 0.980        | 3.0  |
+| Vanilla Ice             | Ice Ice Baby                      | 1990-09-08 | 0.978        | 1.0  |
+| Evelyn King             | Betcha She Don't Love You         | 1983-01-22 | 0.974        | 49.0 |
+| Jermaine Jackson        | Let Me Tickle Your Fancy          | 1982-10-30 | 0.973        | 18.0 |
+| 2nd II None             | Be True To Yourself               | 1992-01-11 | 0.971        | 78.0 |
+| Cardi B Featuring Migos | Drip                              | 2018-06-02 | 0.968        | 21.0 |
+| Justin Timberlake       | SexyBack                          | 2007-03-03 | 0.967        | 1.0  |
 
-Judging from the Top 10 most danceable songs we can see the the 1980s and early 1990s well represented. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance hit is _Drip_ from Summer 2018 and just fell short of making it onto the Top 20.
+Judging from the Top 10 most danceable songs we can see the 1980s and early 1990s well represented. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance hit is _Drip_ from Summer 2018 and just fell short of making it onto the Top 20.
 
 #### Inference Analysis of Danceability
 
@@ -421,7 +428,7 @@ Looking at the test above it's clear that the observed mean difference is statis
 
 Given the results above, we can reject H0 and have gathered evidence to support H1. The data indicates that Hits tend to be more 'danceable'.
 
-Due to the large sample size most differences are likely statistically significant, for interesting cases I've conducted a test below otherwise most of these relationships are tested in _\_Step 3 - Inferential Statistical Tests_ and _\_Step 4 - Building a Model_ with similar results.
+Some inferential tests are performed in the EDA but a summary of all relevant inferential tests performed on these features can be found in [Chapter 5](#5.-the-inferential-statistical-analysis).
 
 ### 4.2.2 Energy and Acousticness
 
@@ -433,34 +440,34 @@ _"Energy [...] represents a perceptual measure of intensity and activity. Typica
 
 Energy as a feature looks like a less clear-cut situation. First of all, there is a lot more overlap of Hits and Non-Hits. Furthermore, the median Energy levels by year have started to close in between Hits and Non-Hits in recent years. Nevertheless, starting in the early 1980s we're starting to see a stronger focus (lower variability) on high-energy songs compared to the early 1960s.
 
-Again, just as with danceability we can see variability picking up in the mid- to late-2000s. Energy levels were at their all-time highs from the early 1980s until the 2010s (an exception were the mid- to late-1990s). Starting in the early 2010s, however, we're seeing less energetic songs getting the upper hand. In fact, the Hot 100s median Energy levels have dropped below Non-Hits in 2019 for the third time since its inception.
+Again, just as with danceability we can see variability picking up in the mid- to late-2000s. Energy levels were at their all-time highs from the early 1980s until the 2010s (an exception were the mid- to late-1990s). We're clearly seeing similar movements to danceability. Starting in the early 2010s, however, we're seeing less energetic songs getting the upper hand. In fact, the Hot 100s median Energy levels have dropped below Non-Hits in 2019 for the third time since its inception.
 
-For our model, we're witnessing again that higher energy levels seem to indicate a higher likelihood of Hit potential than low energy levels. Similarly this has been quite consistently the case starting in the mid-1970s to the mid-2010s. The general difference will be checked for significance in the _inference analysis_.
+For our model, we're witnessing again that higher energy levels seem to indicate a higher likelihood of Hit potential than low energy levels. Similarly this has been quite consistently the case starting in the mid-1970s to the mid-2010s.
 
 To get a feeling for what songs are considered high energy, we're listing the top 10 most energetic songs below.
+
+| artist                  | title                   | date       | energy | peak |
+|-------------------------|-------------------------|------------|--------|------|
+| Culture Beat            | Mr. Vain                | 1993-12-18 | 0.997  | 17.0 |
+| Five Finger Death Punch | Under And Over It       | 2011-08-20 | 0.996  | 77.0 |
+| Jane's Addiction        | Just Because            | 2003-08-09 | 0.996  | 72.0 |
+| Guns N' Roses           | Nightrain               | 1989-08-26 | 0.995  | 93.0 |
+| Suzi Quatro             | I've Never Been In Love | 1979-09-22 | 0.995  | 44.0 |
+| The Chemical Brothers   | Setting Sun             | 1997-02-15 | 0.995  | 80.0 |
+| Bananarama              | Love, Truth & Honesty   | 1988-12-03 | 0.994  | 89.0 |
+| Go-Go's                 | We Got The Beat         | 1982-05-15 | 0.994  | 2.0  |
+| Jimmy Ruffin            | Hold On To My Love      | 1980-04-12 | 0.994  | 10.0 |
+| Metallica               | Cyanide                 | 2008-09-20 | 0.993  | 50.0 |
 
 _"[Acousticness is] a confidence measure from 0.0 to 1.0 of whether the track is acoustic."_  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
 As a comparison I've plotted the development of acousticness confidence below the energy plot. We can see that acousticness confidence and variability decrease in the late 1970s and are on historic lows in the 1980s throughout the 1990s and until the mid 2000s (with a few exceptions). 
 
-Energy and Acousticness are not necessarily opposite sides of the same relationship but both of them share a drastic change. Energy on one end has enjoyed a meteoric rise in the 1980s, acousticness has dropped drastically in the 1980s, variability and median in acousticness have recently picked back up while energy has started to drop in recent years. Unfortunately, our analysis of the negative relationship between these two features is limited as Spotify does not release a detailed break-down of their features.
+Energy and Acousticness are not necessarily opposite sides of the same relationship but sharing a drastic change from their original influence on Hits they might be. Energy on one end has enjoyed a meteoric rise in the 1980s, acousticness has dropped drastically in the 1980s, variability and median in acousticness have recently picked back up while energy has started to drop in recent years. The 1970s and 1980s seems to be a turn away from quaint acoustic music toward music that is more forward. Unfortunately, our analysis of the negative relationship between these two features is limited as Spotify does not release a detailed break-down of their features.
 
-My assumption is that the visible drop in Acousticness in the mid 1970s is marking the introduction of Synthesizers and meteoric rise of more electronically infused music in subsequent decades.
+My assumption is that the visible drop in Acousticness in the mid 1970s is marking the introduction of synthesizers and meteoric rise of more electronically infused music in subsequent decades.
 
-In both cases we seem to be looking at one or several bigger trends as Hits and Non-Hits are moving in the same direction but with Hits having fewer variability it looks like these two features could carry a lot of explanatory information especially for the period between 1980s and 2000s. The overlap between Hits and Non-Hits is much larger before or after the period just mentioned.
-
-| artist                  | title                   | date       | energy | hit  | peak |
-|---|---|---|---|---|---|
-| Culture Beat            | Mr. Vain                | 1993-12-18 | 0.997  | True | 17.0 |
-| Five Finger Death Punch | Under And Over It       | 2011-08-20 | 0.996  | True | 77.0 |
-| Jane's Addiction        | Just Because            | 2003-08-09 | 0.996  | True | 72.0 |
-| Guns N' Roses           | Nightrain               | 1989-08-26 | 0.995  | True | 93.0 |
-| Suzi Quatro             | I've Never Been In Love | 1979-09-22 | 0.995  | True | 44.0 |
-| The Chemical Brothers   | Setting Sun             | 1997-02-15 | 0.995  | True | 80.0 |
-| Bananarama              | Love, Truth & Honesty   | 1988-12-03 | 0.994  | True | 89.0 |
-| Go-Go's                 | We Got The Beat         | 1982-05-15 | 0.994  | True | 2.0  |
-| Jimmy Ruffin            | Hold On To My Love      | 1980-04-12 | 0.994  | True | 10.0 |
-| Metallica               | Cyanide                 | 2008-09-20 | 0.993  | True | 50.0 |
+In both cases we seem to be looking at one or several bigger trends as Hits and Non-Hits are moving in the same direction but with Hits having fewer variability it looks like these two features could carry a lot of explanatory information especially for the period between 1980s and 2000s.
 
 ### 4.2.3 Loudness
 
@@ -485,7 +492,6 @@ In general, we see that Hits are having a higher median loudness but especially 
 |Barenaked Ladies|Too Little Too Late|2001-04-28|-0.884|True|86.0|
 |Eminem|25 To Life|2010-07-10|-0.945|True|92.0|
 
-
 I believe especially Lana Cantrell's Like A Sunday Morning is a good example of an older song that falls into the loud category, while Cold Wind Blow by Eminem might be a good example for a newer song. _see examples above_
 
 ### 4.2.4 Speechiness
@@ -498,18 +504,18 @@ For Speechiness we can see an upward trend starting in the 1990s, with an increa
 
 It's hard to pin-point what Speechiness is actually measuring as we're looking at the songs with the highest Speechiness. I would've assumed that the highest Speechiness would be found in Rap songs but judging from it there is a good mix of Country, Pop and Hip Hop music. This feature doesn't seem to be all that helpful for our analysis for now. There is no clear indicators and the feature itself is quite obtuse. With a lack of additional information of how this feature is put together, I've decided to abandon the feature for now.
 
-| artist                                                 | title                             | date       | loudness | hit  | peak |
-|---|---|---|---|---|---|
-| Lana Cantrell                                          | Like A Sunday Morning             | 1975-03-01 | 2.291    | True | 63.0 |
-| Diplo, French Montana & Lil Pump Featuring Zhavia Ward | Welcome To The Party              | 2018-06-02 | 0.175    | True | 78.0 |
-| Metallica                                              | Cyanide                           | 2008-09-20 | -0.463   | True | 50.0 |
-| Diana Ross & The Supremes                              | Some Things You Never Get Used To | 1968-06-08 | -0.507   | True | 30.0 |
-| Eminem                                                 | Cold Wind Blows                   | 2010-07-10 | -0.517   | True | 71.0 |
-| Luke Bryan                                             | Move                              | 2016-12-10 | -0.698   | True | 50.0 |
-| Diana Ross & The Supremes                              | Love Child                        | 1968-11-23 | -0.810   | True | 1.0  |
-| Eminem                                                 | Insane                            | 2009-06-06 | -0.883   | True | 85.0 |
-| Barenaked Ladies                                       | Too Little Too Late               | 2001-04-28 | -0.884   | True | 86.0 |
-| Eminem                                                 | 25 To Life                        | 2010-07-10 | -0.945   | True | 92.0 |
+| artist                      | title                             | date       | loudness |  peak |
+|-----------------------------|-----------------------------------|------------|----------|-------|
+| Lana Cantrell               | Like A Sunday Morning             | 1975-03-01 | 2.291    |  63.0 |
+| Diplo, French Montana & ... | Welcome To The Party              | 2018-06-02 | 0.175    |  78.0 |
+| Metallica                   | Cyanide                           | 2008-09-20 | -0.463   |  50.0 |
+| Diana Ross & The Supremes   | Some Things You Never Get Used To | 1968-06-08 | -0.507   |  30.0 |
+| Eminem                      | Cold Wind Blows                   | 2010-07-10 | -0.517   |  71.0 |
+| Luke Bryan                  | Move                              | 2016-12-10 | -0.698   |  50.0 |
+| Diana Ross & The Supremes   | Love Child                        | 1968-11-23 | -0.810   |  1.0  |
+| Eminem                      | Insane                            | 2009-06-06 | -0.883   |  85.0 |
+| Barenaked Ladies            | Too Little Too Late               | 2001-04-28 | -0.884   |  86.0 |
+| Eminem                      | 25 To Life                        | 2010-07-10 | -0.945   |  92.0 |
 
 ### 4.2.5 Valence
 
@@ -521,23 +527,23 @@ Valence is quite an interesting indicator as it attempts to measure positivity o
 
 Knowing that Valence has more and more decreased it might be interesting to see the songs with the highest and lowest valence.
 
-| artist                | title                        | date       | valence | hit  | peak |
-|---|---|---|---|---|---|
-| Eddie Hodges          | I'm Gonna Knock On Your Door | 1961-07-10 | 0.991   | True | 12.0 |
-| Four Tops             | It's The Same Old Song       | 1965-08-21 | 0.991   | True | 5.0  |
-| War                   | Low Rider                    | 1975-10-25 | 0.990   | True | 7.0  |
-| Katrina And The Waves | Que Te Quiero                | 1985-11-09 | 0.989   | True | 71.0 |
-| John Sebastian        | Hideaway                     | 1976-07-31 | 0.988   | True | 95.0 |
+| artist                | title                        | date       | valence | peak |
+|-----------------------|------------------------------|------------|---------|------|
+| Eddie Hodges          | I'm Gonna Knock On Your Door | 1961-07-10 | 0.991   | 12.0 |
+| Four Tops             | It's The Same Old Song       | 1965-08-21 | 0.991   | 5.0  |
+| War                   | Low Rider                    | 1975-10-25 | 0.990   | 7.0  |
+| Katrina And The Waves | Que Te Quiero                | 1985-11-09 | 0.989   | 71.0 |
+| John Sebastian        | Hideaway                     | 1976-07-31 | 0.988   | 95.0 |
 
 ---
 
-| artist                                                                      | title                                      | date       | valence | hit  | peak |
-|---|---|---|---|---|---|
-| Georgie Young                                                               | Nine More Miles (The "Faster-Faster" Song) | 1958-11-03 | 0.0000  | True | 58.0 |
-| Coldplay                                                                    | Midnight                                   | 2014-05-10 | 0.0349  | True | 29.0 |
-| A$AP Rocky                                                                  | L$D                                        | 2015-06-13 | 0.0352  | True | 62.0 |
-| The Pipes And Drums And The Military Band Of The Royal Scots Dragoon Guards | Amazing Grace                              | 1972-07-01 | 0.0359  | True | 11.0 |
-| Drake                                                                       | Jaded                                      | 2018-07-21 | 0.0371  | True | 32.0 |
+| artist                  | title               | date       | valence | peak |
+|-------------------------|---------------------|------------|---------|------|
+| Georgie Young           | Nine More Miles ... | 1958-11-03 | 0.0000  | 58.0 |
+| Coldplay                | Midnight            | 2014-05-10 | 0.0349  | 29.0 |
+| A$AP Rocky              | L$D                 | 2015-06-13 | 0.0352  | 62.0 |
+| The Pipes And Drums ... | Amazing Grace       | 1972-07-01 | 0.0359  | 11.0 |
+| Drake                   | Jaded               | 2018-07-21 | 0.0371  | 32.0 |
 
 The highest valence songs are between 1961 and 1985, the lowest valence songs are a little more spread out but it's striking that 3 of the top 5 lowest valence songs were released in the 2010s. That being said Georgie Young might also just be an outlier and mislabeled as it happened to be the only song with 0.0 Valence and it being quite a bit apart from the other lowest valence songs.
 
@@ -557,7 +563,7 @@ The graphs show that we're increasingly listening to less positive sounding musi
 
 _Instrumentalness predicts whether a track contains no vocals. [...] The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content._  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
-Instrumentalness basically detects the vocal to instruments ratio. Rap songs are closer to 0 while classical music can be found at values > 0.5. It is an interesting feature due to the fact that the Hot 100 are strongly partial toward non-instrumental songs. This makes sense, especially in recent time, with the rise of Rap music but interestingly we can observe in the chart above that there has been a strong bias toward less instrumental songs throughout the entire history of the Hot 100. 
+Instrumentalness basically detects the vocal to instruments ratio. Rap songs are closer to 0 while classical music can be found at values > 0.5. It is an interesting feature due to the fact that the Hot 100 are strongly partial toward non-instrumental songs. This makes sense, especially in recent times, with the rise of Rap music but interestingly we can observe in the chart above that there has been a strong bias toward less instrumentalness in songs throughout the entire history of the Hot 100. 
 
 ![](./notebooks/assets/instrumentalness_hist.png)
 
@@ -588,9 +594,9 @@ The p-value for the Point Estimate occuring if Hits and Non-Hits were equally di
 
 _The duration of the track in milliseconds._ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
-The duration of a track could be a good feature since the Hot 100 are looking at airplay on radios which have historically favored songs that have a specific length. To get a more intuitive sense the data has been downsampled to seconds. We can see that songs that made it onto the Hot 100 were generally not longer than 3 minutes but starting in the 1970s the average length of a track has gotten slightly longer (i.e. around the 4-minute mark), indicating a higher tolerance of radio to accept slightly longer tracks. 
+The duration of a track could be a good feature since the Hot 100 are looking at airplay on radios which have historically favored songs that have a specific length. To get a more intuitive sense the data has been downsampled to seconds. We can see that songs that made it onto the Hot 100 were generally not longer than 3 minutes but starting in the 1970s the average length of a track has gotten slightly longer (i.e. around the 4-minute mark), indicating a new standard for slightly longer tracks. 
 
-We can see that Non-Hits while also having scaled down slightly, closer to the 4-minute mark there is stil a lot of songs that are significantly longer or shorter than the Hit songs.
+We can see that Non-Hits while also having scaled down slightly, closer to the 4-minute mark, there is still a lot of songs that are significantly longer or shorter than the Hit songs.
 
 ### 4.2.8 Discrete Variables
 
@@ -607,11 +613,11 @@ Beyond that unfortunately it doesn't look like we can make out any major differe
 
 ### 4.2.9 Conclusion
 
-We've seen that multiple features (e.g. Danceability, Energy, Loudness, Instrumentalness and Valence) reflect historic music trends quite well and that the Hits of the time represent quite interesting subsets within the Non-Hits spectrums. Overlap is expected, after all, Hits are not likely to become Hits simply due to their intrinsic features. It also would make sense that Hit songs are representing a more or less distinct subset as they are popular music which indicates a mainstream appeal and a certain general likeability. Hence, they are more streamlined and more prone to follow trends. We can see this especially during the 1990s and 2000s. Most of the features are narrowing into subsections of the entire spectrum of available popular music.
+We've seen that multiple features (e.g. Danceability, Energy, Loudness, Instrumentalness and Valence) reflect historic music trends quite well and that the Hits of the time represent quite interesting subsets within the Non-Hits spectrums. Overlap is expected, after all, Hits are not likely to become Hits solely due to their intrinsic features. It also would make sense that Hit songs are representing a more or less distinct subset as they are popular music which indicates a mainstream appeal and a certain general likeability. Hence, they are more streamlined and more prone to follow trends. We can see this especially during the 1990s and 2000s. Most of the features are narrowing into subsections of the entire spectrum of available popular music.
 
 We were also able to make out distinct trends for certain time periods (e.g. before 1980s, between 1990s and 2000s or after the 2000s).
 
-There's certainly plenty of opportunity to further investigate these features. In a future iteration, I'm contemplating investigating few additional questions:
+There's certainly plenty of opportunity to further investigate these features. In a future iteration, I'm contemplating investigating a few additional questions:
 - Is there any dominance of genre during certain periods?
 - What is the influence of artists on features and time periods?
 
@@ -625,6 +631,7 @@ The section on inferential statistics is looking at statistical significance on 
 
 The focus for us lies on three categories:
 - Distribution between Hits and Non-Hits
+- Level Differences (Loudness, Energy)
 - Correlation with the Target Variable (i.e. Hit or Non-Hit)
 - Collinearity between Features
 
@@ -632,7 +639,16 @@ The focus for us lies on three categories:
 
 #### Normality
 
-One of the biggest challenges for this project was the lack of available normally distributed data. Normally distributed data is often a requirement for classical statistic tests. Luckily, the Central Limit Theorem is helping us to use the Z-Test to compare distribution differences anyways.
+One of the biggest challenges for this project was the lack of available normally distributed data (see Q-Q plots below). Normally distributed data is often a requirement for classical statistic tests. Luckily, the Central Limit Theorem is helping us to use the Z-Test to compare distribution differences anyways.
+
+![](./notebooks/assets/acousticness_norm.png)
+![](./notebooks/assets/loudness_norm.png)
+![](./notebooks/assets/instrumentalness_norm.png)
+![](./notebooks/assets/danceability_norm.png)
+![](./notebooks/assets/valence_norm.png)
+![](./notebooks/assets/energy_norm.png)
+![](./notebooks/assets/tempo_norm.png)
+![](./notebooks/assets/duration_ms_norm.png)
 
 #### Statistical and Practical Significance
 
@@ -664,7 +680,11 @@ To understand whether the differences between Hits and Non-Hits observed are sig
 - tempo
 - duration_ms
 
-The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that hit and Non-Hits were equally distributed. 
+![](./notebooks/assets/mean_diffs.png)
+
+The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that Hits and Non-Hits were equally distributed for its respective feature. 
+
+![](./notebooks/assets/tests.png) 
 
 #### Correlation
 
@@ -808,3 +828,20 @@ Being correct 60% of the time might not look like much but we shouldn't forget t
 
 # 7. Conclusion
 
+#### Further Experiments
+
+As we've seen the Hot 100 might not be the ideal candidate to gauge popularity. It's formula is prone to change and changes in the formula tend to drastically impact the ability for songs to get onto the Hot 100 and stay on the Hot 100. A tool to gauge popularity more uniformly might be simply using sales and streaming data. Especially when we're attempting to solve a business problem this might make the most sense. The challenge here is that this is often proprietary data and not easy to access.
+
+# 8. Resources
+
+Bischoff, K., Firan, C. S., Georgescu, M., Nejdl, W., & Paiu, R. (2009). Social Knowledge-Driven Music Hit Prediction, 43-54.
+
+Li, T. (2011). Music data mining. New York: CRC Press.
+
+Ni, Y., Santos-Rodríguez, R., Mcvicar, M., & De Bie, T. (n.d.). Hit Song Science Once Again a Science?.
+
+Nunes, J. C., Ordanini, A., & Valsesia, F. (2015). The power of repetition: repetitive lyrics in a song increase processing fluency and drive market success. Journal of Consumer Psychology, 25(2), 187-199.
+
+Serrà, J., Corral, Álvaro, Boguñá, M., Haro, M., & Arcos, J. L. (2012). Measuring the Evolution of Contemporary Western Popular Music. Sci Rep, 2(1). 
+
+Ward, M. K., Goodman, J. K., & Irwin, J. R. (2014). The same old song: The power of familiarity in music choice. Mark Lett, 25(1), 1-11.
