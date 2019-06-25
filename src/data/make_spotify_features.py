@@ -3,6 +3,11 @@ import time
 from pathlib import Path
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import dotenv
+
+project_dir = os.path.join(os.path.dirname(__file__), os.pardir)
+dotenv_path = os.path.join(project_dir, '.env')
+dotenv.load_dotenv(dotenv_path)
 
 iter_filepath = './data/iterators/spotify_ids_iterator.csv'
 try:
@@ -11,7 +16,7 @@ except:
     raise ValueError('It doesn\'t look like you have a /data/iterators/spotify_ids_iterator.csv file. Make sure to run Hot 100 Wrangling Notebook until that iterator file is created.')
 print(iterators.head())
 print(len(iterators))
-client_credentials_manager = SpotifyClientCredentials(client_id='e3cddf5da81f43c3a33814866a8de8ed', client_secret='f885f6255fb34c90b8679817d9c63c25')
+client_credentials_manager = SpotifyClientCredentials(client_id=os.getenv("SPOTIFY_CLIENT_ID"), client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"))
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 songs = []

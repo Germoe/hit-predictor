@@ -1,0 +1,13 @@
+# Make a copy of this file and rename it to ".env" then add the details below
+# DO NOT ADD THIS FILE TO VERSION CONTROL!
+
+SPOTIFY_CLIENT_ID = 'ADD-YOUR-SPOTIFY-CLIENT-ID'
+SPOTIFY_CLIENT_SECRET = 'ADD-YOUR-SPOTIFY-CLIENT-SECRET'
+
+# You'll need to create a Watson Machine Learning Instance and add the credential below from the "Service credentials" section
+# You can add this service for free as far as I know https://www.ibm.com/cloud/machine-learning
+IBM_URL = 'ADD-YOUR-IBM-URL e.g. https://us-south.ml.cloud.ibm.com',
+IBM_USERNAME = 'ADD-YOUR-INSTANCE-USERNAME',
+IBM_PASSWORD = 'ADD-YOUR-INSTANCE-PASSWORD',
+IBM_INSTANCE_ID = 'ADD-YOUR-INSTANCE-ID'
+
