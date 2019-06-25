@@ -38,6 +38,8 @@ target_path = './data/interim/spotify_songs.csv'
 
 try:
     sampling_df = pd.read_csv(target_path,sep='\t',parse_dates=['album.release_date'])
+    raise ValueError("""The Spotify Sampling File already exists at './data/interim/spotify_songs.csv'. 
+        Please remove this file first, if you want to proceed.""")
 except:
     print('Sampling Songs from Spotify - Beware that a client and secret is necessary for this method.')
     
