@@ -7,15 +7,15 @@
 
 # 1. The Problem
 
-In recent years, a new field has (re-)emerged that attempts to detect audio features to predict whether a song will achieve commercial success - Hit Song Science (HSS) (source).
+In recent years, a new field has (re-)emerged that attempts to use audio features to predict whether a song will achieve commercial success - Hit Song Science (HSS).
 
-At the core of this challenge lies the urge to create a better understanding of what intrinsic music features contribute to the popularity of certain music pieces (source). This would allow us a deeper understanding of the components of popularity in music.
+At the core of this challenge lies the urge to create a better understanding of what intrinsic music features contribute to the popularity of certain music pieces. This would allow us a deeper understanding of the components of popularity in music.
 
-Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a Hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building.  
+There are claims of a relationship between some intrinsic music features and a song's popularity. For example, songs that have many repetitions tend to enjoy elevated popularity. There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres). These are a few examples but it's enough for me to be intrigued by the idea that there is such a thing as a formula for a Hit song. At least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its features.
 
-However, there are claims of a relationship between some intrinsic music features and their popularity (source). For example, songs that have many repetitions tend to enjoy elevated popularity (source). There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres) (source). These are just a few examples but we can already see, it's not as far-fetched an idea that the music has intrinsic qualities that qualify it to become a Hit. At least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its characteristics.
+Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a Hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building. However, for this project I've decided to look solely at the intrinsic audio features of songs.
 
-It's tough to understand what drives popularity. On the other hand, measuring popularity might be just as daunting a task. Popularity could be seen as a continuous measure but that would require us to rank all songs in existence. That poses obvious problems. To name only one: Few songs that are created actually even get published and are exposed to a larger audience. Of those only few are put onto actual ranking lists giving some indicator of popularity. Of those we'll have to question the ranking list and the factors it used to rank for popularity. As you can see, we'll have to make a few assumptions, decisions and take some shortcuts to tackle this problem.
+The problem is not just a one-sided issue. While it's a challenge to model the description of a song with numbers and categories, it might be just as much of a challenge to decide what is a popular song. It's tough to understand what drives popularity. Popularity could be seen as a continuous measure, an ordinal measure or a binary. All of these pose obvious individual problems but one problem they all have in common is what factors go into the term of popularity and how to weigh them. Often we're left to using approximations of popularity. In our case we're going to focus on commercial success as an approximation to popularity as it makes the most sense if we're looking at this problem from a business perspective. Additionally, commercial success is a lot easier to quantify and has more resources readily available.
 
 This is a very exciting project for myself and I hope you'll enjoy the journey as well.
 
@@ -24,7 +24,7 @@ This is a very exciting project for myself and I hope you'll enjoy the journey a
 Solving the problem of Hit Song Prediction is not only an interesting scientific challenge that could help us understand the inner workings of popularity. It could also lead to very tangible business benefits.
 
 **Record Label Industry**:
-In many ways the risks and rewards structure of the traditional book publishing industry applies to the music industry as well (source). In general terms, a record label signs on a new artist based on the experience of the A&R department, some circumstential evidence and increasingly evidence from prior success through self-publishing and self-promotion (source). The upfront investments in these artists is often substantial and generally ranges from a few hundred thousand USD to multiple million USD. These investments often include a debut album or increasingly often mini-albums, which requires song selection. Choosing the right song for a publishing item can be crucial to the future success of an artist, especially in the early parts of their career (source). A tool for predicting the chance of commercial success based on its intrinsic characteristics has many potential benefits:
+In many ways the risks and rewards structure of the traditional book publishing industry applies to the music industry as well. In general terms, a record label signs on a new artist based on the experience of the A&R department, some circumstential evidence and increasingly evidence from prior success through self-publishing and self-promotion. The upfront investments in these artists is often substantial and generally ranges from a few hundred thousand USD to multiple million USD. These investments often include a debut album or increasingly often mini-albums, which requires song selection. Choosing the right song for a publishing item can be crucial to the future success of an artist, especially in the early parts of their career. A tool for predicting the chance of commercial success based on its intrinsic characteristics has many potential benefits:
 
 - Support in the Song selection process
 - Allows for more calculated risks and diversified portfolios
@@ -32,21 +32,21 @@ In many ways the risks and rewards structure of the traditional book publishing 
 - Feedback for Songwriters in their daily work
 
 **Radio Stations**
-Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share (source). Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station (source). For these linear mediums it is therefore important to consistently Hit your taste profile (source). Hit song prediction can help with this issue.
+Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share. Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station. For linear media, such as radio stations, it is therefore important to consistently Hit your taste profile. Hit song prediction can help with this issue.
 
-Programming of Radio stations or Playlists on Streaming services are often history-focused, whether that is by choosing only songs from the Top 40 or artists that have already gained popularity in the past and sticking to their portfolio (source). A Hit Song predictor would allow radio stations to reduce the quantity of songs that fall into the realm of possibilities without having to stick to established artists or other suboptimal guidelines. This would allow for more time in creating valuable programming.
+Programming of radio stations is often history-focused, whether that is by choosing only songs from the Top 40 or artists that have already gained popularity in the past and sticking to their portfolio. A Hit Song predictor would allow radio stations to reduce the quantity of songs that fall into the realm of possibilities without having to stick to established artists or other suboptimal guidelines. This would allow for more time in creating valuable programming.
 
-Several additional use cases in the streaming market, for brick-and-mortar stores etc. can be thought of that I won't go into further detail with.
+There are likely several additional use cases in the streaming market, for brick-and-mortar stores etc. that can be thought of.
 
 # 3. The Data
 
 The data used in this project was acquired from two sources: Billboard.com and the Spotify API
 
-The Billboard Hot 100 goes back to 1958 and was the main source to identify 'popular' tracks. It is commonly used in scientific studies and for the music industry to gauge the commercial success and popularity of a song. 
+The Billboard Hot 100 goes back to 1958 and was the main source to identify 'popular' tracks. It is commonly used in scientific studies and a common indicator of success for the music industry. 
 
 The data was acquired from the site running a script that requested and parsed the weekly lists. The first time the Hot 100 were released was on August 4th, 1958 and the last date included in this analysis is April 8th, 2019. The data includes Title, Artist, Position/Rank on the Hot 100 and Date of the Positioning on the Hot 100.
 
-The Spotify API was used for two purposes to enrich the Hot 100 data with more audio features using the [Audio Features endpoint](https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/) and to create a balanced data set of songs that were released at the time of the Hot 100 songs but DIDN'T make it onto the chart. 
+The Spotify API was used for two purposes to enrich the Hot 100 data with more audio features using the [Audio Features endpoint](https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/) and to create a balanced data set of songs that were released at the time of the Hot 100 songs but _didn't_ make it onto the chart. 
 
 The following files were used in the project:
 
@@ -58,9 +58,9 @@ The following files were used in the project:
 
 The data from the Billboard Hot 100 was a straight-forward task. I wrote a custom scraper requested the raw html (at 10 second intervals) and parsed it using Beautiful Soup.
 
-Using the distribution of unique songs by year, I generated a second data set of songs that would mirror the Hits listed in the Hot 100 with Non-Hits that were released around the same time. The data was generated using the Search endpoint and randomly sampling chunks of the first 10000 results (50 songs at a time) and ~20% of the data was sampled from the bottom 10% of search results (least popular songs).
+Using the distribution of unique songs by year, I generated a second data set of songs that would mirror the Hits listed in the Hot 100 with Non-Hits that were released around the same time. The data was generated using the Search endpoint and randomly sampling chunks of the first 10000 results (50 songs at a time) and ~20% of the data was sampled from the bottom 10% of search results (least popular songs). Spotify provides a specific tag for that specific purpose (i.e. `tag:hipster`).
 
-The more challenging task was matching artist names and titles to appropriate songs in the Spotify Database. Due to the limited amount of information provided by the Hot 100 charts the Spotify API would be able to match one Hot 100 song with multiple instances in their database. For the songs I was able to match I created a list of audio features using the relevant Spotify Endpoint.
+The more challenging task was matching artist names and titles to appropriate songs in the Spotify Database. Due to the limited amount of information provided by the Hot 100 charts the Spotify API would be able to match one Hot 100 song with multiple instances in their database. For the songs I was able to match, I created a list of audio features using the relevant Spotify Endpoint.
 
 ## 3.2 Data Wrangling
 
@@ -180,8 +180,8 @@ There is a clear distinction in pattern between the charts after 1991 and previo
 | Laura Branigan     | Gloria                | 35     | 2    | 84    | 98   |
 | Bee Gees           | How Deep Is Your Love | 32     | 1    | 83    | 59   |
 
-Go to Playlist: https://open.spotify.com/user/1162788143/playlist/
-0iP1Sz5qSCmVomZUNYbKPj?si=8SyDMByGRK60HNPHv9-HZA
+Go to Playlist: [https://open.spotify.com/user/1162788143/playlist/
+0iP1Sz5qSCmVomZUNYbKPj?si=8SyDMByGRK60HNPHv9-HZA](https://open.spotify.com/user/1162788143/playlist/0iP1Sz5qSCmVomZUNYbKPj?si=8SyDMByGRK60HNPHv9-HZA)
 
 ---
 
@@ -200,8 +200,8 @@ Go to Playlist: https://open.spotify.com/user/1162788143/playlist/
 | The Lumineers    | Ho Hey              | 61     | 3    | 90    | 50   |
 | Lady Antebellum  | Need You Now        | 59     | 2    | 85    | 48   |
 
-Go to Playlist: https://open.spotify.com/user/1162788143/playlist/
-4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w
+Go to Playlist: [https://open.spotify.com/user/1162788143/playlist/
+4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w](https://open.spotify.com/user/1162788143/playlist/4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w)
 
 _NOTE: Unfortunately, there is 52 of the 430 songs missing from the playlist that couldn't be found on Spotify or are missing due to country restrictions._
 
@@ -666,7 +666,6 @@ The section on inferential statistics is looking at statistical significance on 
 
 The focus for us lies on three categories:
 - Distribution between Hits and Non-Hits
-- Level Differences (Loudness, Energy)
 - Correlation with the Target Variable (i.e. Hit or Non-Hit)
 - Collinearity between Features
 
@@ -777,7 +776,7 @@ To make sure we're not overfitting and are able to detect the generalizability o
 
 ## 6.1 Dimensionality Reduction (PCA)
 
-As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions (source). This is certainly not a cure-all method but can help dealing with situations in which we believe a feature has relevance to some extent but shows some collinearity as in our case (source).
+As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions. This is certainly not a cure-all method but can help dealing with situations in which we believe a feature has relevance to some extent but shows some collinearity as in our case.
 
 For this project we're using one of the most popular methods called Principal Component Analysis (PCA). One pretty significant catch of this method is that due to the transformations performed we're losing the interpretability of the model. This is quite significant for a lot of use-cases as that allows us to learn directly from models. In a future iteration I might consider removing the Dimensionality Reduction to improve understandability.
 
