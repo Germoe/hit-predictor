@@ -1,4 +1,5 @@
-# Hit Predictor - Finding an Underlying Hit Formula within Songs 
+# Hit Predictor 
+# - Finding an Underlying Hit Formula within Songs 
 ### by Sebastian Engels
 
 "Look, if you had one shot or one opportunity to seize everything you ever wanted in one moment would you capture it or just let it slip?" 
@@ -179,7 +180,8 @@ There is a clear distinction in pattern between the charts after 1991 and previo
 | Laura Branigan     | Gloria                | 35     | 2    | 84    | 98   |
 | Bee Gees           | How Deep Is Your Love | 32     | 1    | 83    | 59   |
 
-Go to Playlist: https://open.spotify.com/user/1162788143/playlist/0iP1Sz5qSCmVomZUNYbKPj?si=8SyDMByGRK60HNPHv9-HZA
+Go to Playlist: https://open.spotify.com/user/1162788143/playlist/
+0iP1Sz5qSCmVomZUNYbKPj?si=8SyDMByGRK60HNPHv9-HZA
 
 ---
 
@@ -198,7 +200,8 @@ Go to Playlist: https://open.spotify.com/user/1162788143/playlist/0iP1Sz5qSCmVom
 | The Lumineers    | Ho Hey              | 61     | 3    | 90    | 50   |
 | Lady Antebellum  | Need You Now        | 59     | 2    | 85    | 48   |
 
-Go to Playlist: https://open.spotify.com/user/1162788143/playlist/4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w
+Go to Playlist: https://open.spotify.com/user/1162788143/playlist/
+4hzjzSssha8VLHqwbyJiWA?si=xWT5wbXAR7OOeuyCrQKO-w
 
 _NOTE: Unfortunately, there is 52 of the 430 songs missing from the playlist that couldn't be found on Spotify or are missing due to country restrictions._
 
@@ -291,14 +294,14 @@ As seen at the beginning of the EDA. Generally songs enter and exit the Hot 100 
 
 There are a total of 6 songs that were able to leap more than 90 positions from one week to another.
 
-| artist                         | title                          | streak | peak | max\_leap |
-|--------------------------------|--------------------------------|--------|------|-----------|
-| Dixie Chicks                   | Not Ready To Make Nice         | 16     | 4    | 96.0      |
-| Kelly Clarkson                 | My Life Would Suck Without You | 23     | 1    | 96.0      |
-| Britney Spears                 | Womanizer                      | 22     | 1    | 95.0      |
-| Lady Gaga                      | Million Reasons                | 8      | 4    | 93.0      |
-| LL Cool J Feat. Jennifer Lopez | Control Myself                 | 7      | 4    | 91.0      |
-| Beyonce & Shakira              | Beautiful Liar                 | 17     | 3    | 91.0      |
+| artist              | title                          | streak | peak | max\_leap |
+|---------------------|--------------------------------|--------|------|-----------|
+| Dixie Chicks        | Not Ready To Make Nice         | 16     | 4    | 96.0      |
+| Kelly Clarkson      | My Life Would Suck Without You | 23     | 1    | 96.0      |
+| Britney Spears      | Womanizer                      | 22     | 1    | 95.0      |
+| Lady Gaga           | Million Reasons                | 8      | 4    | 93.0      |
+| LL Cool J Feat. ... | Control Myself                 | 7      | 4    | 91.0      |
+| Beyonce & Shakira   | Beautiful Liar                 | 17     | 3    | 91.0      |
 
 To understand the journey of these songs we'll make an attempt at visualizing it.
 
@@ -312,7 +315,8 @@ We can see that the highest jumps occur most often in the second to fourth week 
 
 ![](./notebooks/assets/distance_peak_hist.png)
 
-    Number of titles that reached their peak position in the week of their maximum leap: 4375 (i.e. 15.58%)
+    Number of titles that reached their peak position in the 
+    week of their maximum leap: 4375 (i.e. 15.58%)
     
               dist_peak          peak
     count  25273.000000  25273.000000
@@ -333,14 +337,14 @@ We can see that there is quite a large standard deviation of +-17.73 ranks from 
 
 There's very few reentries. Most songs that leave the Hot 100 leave for good and only about 4% of the ones that do make a reappearance do so more than twice. In fact, only 6 songs have made a reappearance on the Hot 100 more than 5 times, and they are all seasonal Christmas Evergreens (with one exception 'Unchained Melody' by 'The Righteous Brothers' has made a comeback 14 times over a period of 26 years).
 
-| artist                 | title                             | entry | exit | reentry | peak |
-|------------------------|-----------------------------------|-------|------|---------|------|
-| The Righteous Brothers | Unchained Melody                  | 1965  | 1991 | 14      | 4    |
-| Brenda Lee             | Rockin' Around The Christmas Tree | 1960  | 2019 | 9       | 9    |
-| Bobby Helms            | Jingle Bell Rock                  | 1958  | 2019 | 8       | 8    |
-| Mariah Carey           | All I Want For Christmas Is You   | 2000  | 2019 | 8       | 3    |
-| Nat King Cole          | The Christmas Song ...            | 1960  | 2019 | 7       | 11   |
-| Bing Crosby            | White Christmas                   | 1958  | 2019 | 6       | 12   |
+| artist                 | title                  | entry | exit | reentry | peak |
+|------------------------|------------------------|-------|------|---------|------|
+| The Righteous Brothers | Unchained Melody       | 1965  | 1991 | 14      | 4    |
+| Brenda Lee             | Rockin' Around The ... | 1960  | 2019 | 9       | 9    |
+| Bobby Helms            | Jingle Bell Rock       | 1958  | 2019 | 8       | 8    |
+| Mariah Carey           | All I Want For Chr ... | 2000  | 2019 | 8       | 3    |
+| Nat King Cole          | The Christmas Song ... | 1960  | 2019 | 7       | 11   |
+| Bing Crosby            | White Christmas        | 1958  | 2019 | 6       | 12   |
 
 ### 4.1.5 Conclusion
 
@@ -446,18 +450,18 @@ For our model, we're witnessing again that higher energy levels seem to indicate
 
 To get a feeling for what songs are considered high energy, we're listing the top 10 most energetic songs below.
 
-| artist                  | title                   | date       | energy | peak |
-|-------------------------|-------------------------|------------|--------|------|
-| Culture Beat            | Mr. Vain                | 1993-12-18 | 0.997  | 17.0 |
-| Five Finger Death Punch | Under And Over It       | 2011-08-20 | 0.996  | 77.0 |
-| Jane's Addiction        | Just Because            | 2003-08-09 | 0.996  | 72.0 |
-| Guns N' Roses           | Nightrain               | 1989-08-26 | 0.995  | 93.0 |
-| Suzi Quatro             | I've Never Been In Love | 1979-09-22 | 0.995  | 44.0 |
-| The Chemical Brothers   | Setting Sun             | 1997-02-15 | 0.995  | 80.0 |
-| Bananarama              | Love, Truth & Honesty   | 1988-12-03 | 0.994  | 89.0 |
-| Go-Go's                 | We Got The Beat         | 1982-05-15 | 0.994  | 2.0  |
-| Jimmy Ruffin            | Hold On To My Love      | 1980-04-12 | 0.994  | 10.0 |
-| Metallica               | Cyanide                 | 2008-09-20 | 0.993  | 50.0 |
+| artist               | title                   | date       | energy | peak |
+|----------------------|-------------------------|------------|--------|------|
+| Culture Beat         | Mr. Vain                | 1993-12-18 | 0.997  | 17.0 |
+| Five Finger Deat ... | Under And Over It       | 2011-08-20 | 0.996  | 77.0 |
+| Jane's Addiction     | Just Because            | 2003-08-09 | 0.996  | 72.0 |
+| Guns N' Roses        | Nightrain               | 1989-08-26 | 0.995  | 93.0 |
+| Suzi Quatro          | I've Never Been In Love | 1979-09-22 | 0.995  | 44.0 |
+| The Chemical Bro ... | Setting Sun             | 1997-02-15 | 0.995  | 80.0 |
+| Bananarama           | Love, Truth & Honesty   | 1988-12-03 | 0.994  | 89.0 |
+| Go-Go's              | We Got The Beat         | 1982-05-15 | 0.994  | 2.0  |
+| Jimmy Ruffin         | Hold On To My Love      | 1980-04-12 | 0.994  | 10.0 |
+| Metallica            | Cyanide                 | 2008-09-20 | 0.993  | 50.0 |
 
 _"[Acousticness is] a confidence measure from 0.0 to 1.0 of whether the track is acoustic."_  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -469,6 +473,22 @@ My assumption is that the visible drop in Acousticness in the mid 1970s is marki
 
 In both cases we seem to be looking at one or several bigger trends as Hits and Non-Hits are moving in the same direction but with Hits having fewer variability it looks like these two features could carry a lot of explanatory information especially for the period between 1980s and 2000s.
 
+ | artist               | title                 | date       | acousticness | peak | 
+ |----------------------|-----------------------|------------|--------------|------| 
+ | Ferrante & Teicher   | Exodus                | 1961-02-20 | 0.991        | 2.0  | 
+ | Wa Wa Nee            | Stimulation           | 1988-02-06 | 0.990        | 86.0 | 
+ | Mr. Acker Bilk       | Stranger On The Shore | 1962-05-26 | 0.988        | 1.0  | 
+ | Domenico Modugno     | Nel Blu Dipinto ...   | 1958-11-03 | 0.987        | 1.0  | 
+ | Hank Ballard And ... | Nothing But Good      | 1961-09-04 | 0.987        | 49.0 | 
+ | Jeanne Black         | Oh, How I Miss Yo ... | 1960-12-26 | 0.987        | 63.0 | 
+ | Justin Bieber        | Nothing Like Us       | 2013-02-23 | 0.987        | 59.0 | 
+ | The Shirelles        | Thank You Baby        | 1964-07-25 | 0.987        | 63.0 | 
+ | 4 Non Blondes        | What's Up             | 1993-07-31 | 0.986        | 14.0 | 
+ | Tal Bachman          | She's So High         | 1999-07-03 | 0.985        | 14.0 | 
+
+The only song since the turn of the century that is among the highest acousticness that made it onto the Hot 100 is Justin Bieber's Nothing Like Us. 
+
+
 ### 4.2.3 Loudness
 
 ![](./notebooks/assets/loudness_dist.png)
@@ -479,18 +499,18 @@ As a feature, loudness is very consistently flat before the 1990s and then again
 
 In general, we see that Hits are having a higher median loudness but especially in the last few years we're seeing that Hits and Non-Hits loudness do not diverge much anymore. This would indicate that music has generally become louder.
 
-| artist                    | title                 | date       | loudness | peak |
-|---------------------------|-----------------------|------------|----------|------|
-| Lana Cantrell             | Like A Sunday Morning | 1975-03-01 | 2.291    | 63.0 |
-| Diplo, French Montana ... | Welcome To The Party  | 2018-06-02 | 0.175    | 78.0 |
-| Metallica                 | Cyanide               | 2008-09-20 | -0.463   | 50.0 |
-| Diana Ross & The Supremes | Some Things You Ne... | 1968-06-08 | -0.507   | 30.0 |
-| Eminem                    | Cold Wind Blows       | 2010-07-10 | -0.517   | 71.0 |
-| Luke Bryan                | Move                  | 2016-12-10 | -0.698   | 50.0 |
-| Diana Ross & The Supremes | Love Child            | 1968-11-23 | -0.810   | 1.0  | 
-| Eminem                    | Insane                | 2009-06-06 | -0.883   | 85.0 |
-| Barenaked Ladies          | Too Little Too Late   | 2001-04-28 | -0.884   | 86.0 |
-| Eminem                    | 25 To Life            | 2010-07-10 | -0.945   | 92.0 |
+| artist                 | title                 | date       | loudness | peak |
+|------------------------|-----------------------|------------|----------|------|
+| Lana Cantrell          | Like A Sunday Morning | 1975-03-01 | 2.291    | 63.0 |
+| Diplo, French Mont ... | Welcome To The Party  | 2018-06-02 | 0.175    | 78.0 |
+| Metallica              | Cyanide               | 2008-09-20 | -0.463   | 50.0 |
+| Diana Ross & The S ... | Some Things You Ne... | 1968-06-08 | -0.507   | 30.0 |
+| Eminem                 | Cold Wind Blows       | 2010-07-10 | -0.517   | 71.0 |
+| Luke Bryan             | Move                  | 2016-12-10 | -0.698   | 50.0 |
+| Diana Ross & The S ... | Love Child            | 1968-11-23 | -0.810   | 1.0  | 
+| Eminem                 | Insane                | 2009-06-06 | -0.883   | 85.0 |
+| Barenaked Ladies       | Too Little Too Late   | 2001-04-28 | -0.884   | 86.0 |
+| Eminem                 | 25 To Life            | 2010-07-10 | -0.945   | 92.0 |
 
 I believe especially Lana Cantrell's Like A Sunday Morning is a good example of an older song that falls into the loud category, while Cold Wind Blow by Eminem might be a good example for a newer song. _see examples above_
 
@@ -527,13 +547,13 @@ Valence is quite an interesting indicator as it attempts to measure positivity o
 
 Knowing that Valence has more and more decreased it might be interesting to see the songs with the highest and lowest valence.
 
-| artist                | title                  | date       | valence | peak |
-|-----------------------|------------------------|------------|---------|------|
-| Eddie Hodges          | I'm Gonna Knock On ... | 1961-07-10 | 0.991   | 12.0 |
-| Four Tops             | It's The Same Old Song | 1965-08-21 | 0.991   | 5.0  |
-| War                   | Low Rider              | 1975-10-25 | 0.990   | 7.0  |
-| Katrina And The Waves | Que Te Quiero          | 1985-11-09 | 0.989   | 71.0 |
-| John Sebastian        | Hideaway               | 1976-07-31 | 0.988   | 95.0 |
+| artist          | title                  | date       | valence | peak |
+|-----------------|------------------------|------------|---------|------|
+| Eddie Hodges    | I'm Gonna Knock On ... | 1961-07-10 | 0.991   | 12.0 |
+| Four Tops       | It's The Same Old Song | 1965-08-21 | 0.991   | 5.0  |
+| War             | Low Rider              | 1975-10-25 | 0.990   | 7.0  |
+| Katrina And ... | Que Te Quiero          | 1985-11-09 | 0.989   | 71.0 |
+| John Sebastian  | Hideaway               | 1976-07-31 | 0.988   | 95.0 |
 
 ---
 
@@ -564,6 +584,21 @@ The graphs show that we're increasingly listening to less positive sounding musi
 _Instrumentalness predicts whether a track contains no vocals. [...] The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content._  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
 Instrumentalness basically detects the vocal to instruments ratio. Rap songs are closer to 0 while classical music can be found at values > 0.5. It is an interesting feature due to the fact that the Hot 100 are strongly partial toward non-instrumental songs. This makes sense, especially in recent times, with the rise of Rap music but interestingly we can observe in the chart above that there has been a strong bias toward less instrumentalness in songs throughout the entire history of the Hot 100. 
+
+ | artist                | title             | date       | instrumentalness | peak | 
+ |-----------------------|-------------------|------------|------------------|------| 
+ | Darude                | Sandstorm         | 2001-09-22 | 0.982            | 83.0 | 
+ | Henry Mancini And ... | Charade           | 1964-02-15 | 0.982            | 36.0 | 
+ | Ray Ellis And ...     | La Dolce Vita ... | 1961-07-10 | 0.979            | 81.0 | 
+ | Frank Mills           | Love Me, Love ... | 1972-03-18 | 0.966            | 46.0 | 
+ | Larry Carlton         | Sleepwalk         | 1982-02-27 | 0.966            | 74.0 | 
+ | B. Bumble & The S ... | Nut Rocker        | 1962-04-07 | 0.965            | 23.0 | 
+ | Enya                  | Caribbean Blue    | 1992-03-14 | 0.965            | 79.0 | 
+ | Chantay's             | Pipeline          | 1963-05-04 | 0.964            | 4.0  | 
+ | Billy Vaughn And ...  | Wheels            | 1961-02-20 | 0.963            | 28.0 | 
+ | Herb Alpert & The ... | 3rd Man Theme     | 1965-10-02 | 0.962            | 47.0 | 
+
+ As expected we see most of the instrumental songs in the 1960s. Insterestingly, the song at the top came out at the beginning of the Century in 2001 `Sandstorm` by `Darude`. Since it is an EDM track, it's also a good example for a song that is not acoustic and yet categorized as instrumental.
 
 ![](./notebooks/assets/instrumentalness_hist.png)
 
@@ -641,14 +676,7 @@ The focus for us lies on three categories:
 
 One of the biggest challenges for this project was the lack of available normally distributed data (see Q-Q plots below). Normally distributed data is often a requirement for classical statistic tests. Luckily, the Central Limit Theorem is helping us to use the Z-Test to compare distribution differences anyways.
 
-![](./notebooks/assets/acousticness_norm.png)
-![](./notebooks/assets/loudness_norm.png)
-![](./notebooks/assets/instrumentalness_norm.png)
-![](./notebooks/assets/danceability_norm.png)
-![](./notebooks/assets/valence_norm.png)
-![](./notebooks/assets/energy_norm.png)
-![](./notebooks/assets/tempo_norm.png)
-![](./notebooks/assets/duration_ms_norm.png)
+![](./notebooks/assets/norm.png)
 
 #### Statistical and Practical Significance
 
