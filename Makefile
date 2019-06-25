@@ -52,11 +52,11 @@ data: requirements
 ## Make Dataset
 new_data: requirements
 	# Get a fresh set of proxies
-	# make proxies
+	make proxies
 	# Create an Iterator for the Billboard Hot 100 Charts starting in 1958 to 2019 ($target) ($reps - optional)
-	# make iterator target='week_saturday' reps=1 
+	make iterator target='week_saturday' reps=1 
 	# Scrape Hot 100 Charts from Billboard.com
-	# make scraper target='hot100' scrapetype='iterator' scrapespeed='fast' batch=False batch_size=50 iter_filepath='./data/iterators/week_saturday.csv'
+	make scraper target='hot100' scrapetype='iterator' scrapespeed='fast' batch=False batch_size=50 iter_filepath='./data/iterators/week_saturday.csv'
 	# Get Spotify Ids for Hot 100 ($reps - must be at least number of files from scrape above)
 	make iterator target='spotify_ids_hot100' reps=1
 	# spotify_ids_hot100.csv -> hot100_spotify_ids_iterator.csv
@@ -64,12 +64,14 @@ new_data: requirements
 	# Get Analysis / Features from Spotify ()
 	make scraper target='spotify_analysis_api' scrapetype='api' scrapespeed='fast' batch=True batch_size=50 iter_filepath='./data/iterators/spotify_ids_hot100_uniq.csv'
 
-	# MAKE SURE TO RUN THE WRANGLING NOTEBOOK "_Step 2 Wrangling (Hot 100 and Spotify Sample)" BEFORE YOU PROCEED TO THIS STEP 
+	# Run Spotify Sampling
+	$(PYTHON_INTERPRETER) src/data/make_sampling_spotify_non_hits.py
+	
 	make scraper target='comparison_data_analysis_api' scrapetype='api' scrapespeed='lightning' batch=True batch_size=50 iter_filepath='./data/iterators/spotify_songs_ids_iterator.csv'
 	
 	# Get Features for Hot 100 Songs
-	# $(PYTHON_INTERPRETER) src/data/make_spotify_features.py
-	# $(PYTHON_INTERPRETER) src/data/make_dataset.py
+	$(PYTHON_INTERPRETER) src/data/make_spotify_features.py
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py
 
 ## Delete all compiled Python files
 clean:
