@@ -10,7 +10,7 @@ In recent years, a new field has (re-)emerged that attempts to detect audio feat
 
 At the core of this challenge lies the urge to create a better understanding of what intrinsic music features contribute to the popularity of certain music pieces (source). This would allow us a deeper understanding of the components of popularity in music.
 
-Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building.  
+Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a Hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building.  
 
 However, there are claims of a relationship between some intrinsic music features and their popularity (source). For example, songs that have many repetitions tend to enjoy elevated popularity (source). There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres) (source). These are just a few examples but we can already see, it's not as far-fetched an idea that the music has intrinsic qualities that qualify it to become a Hit. At least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its characteristics.
 
@@ -31,7 +31,7 @@ In many ways the risks and rewards structure of the traditional book publishing 
 - Feedback for Songwriters in their daily work
 
 **Radio Stations**
-Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share (source). Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station (source). For these linear mediums it is therefore important to consistently hit your taste profile (source). Hit song prediction can help with this issue.
+Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share (source). Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station (source). For these linear mediums it is therefore important to consistently Hit your taste profile (source). Hit song prediction can help with this issue.
 
 Programming of Radio stations or Playlists on Streaming services are often history-focused, whether that is by choosing only songs from the Top 40 or artists that have already gained popularity in the past and sticking to their portfolio (source). A Hit Song predictor would allow radio stations to reduce the quantity of songs that fall into the realm of possibilities without having to stick to established artists or other suboptimal guidelines. This would allow for more time in creating valuable programming.
 
@@ -333,14 +333,14 @@ We can see that there is quite a large standard deviation of +-17.73 ranks from 
 
 There's very few reentries. Most songs that leave the Hot 100 leave for good and only about 4% of the ones that do make a reappearance do so more than twice. In fact, only 6 songs have made a reappearance on the Hot 100 more than 5 times, and they are all seasonal Christmas Evergreens (with one exception 'Unchained Melody' by 'The Righteous Brothers' has made a comeback 14 times over a period of 26 years).
 
-| artist                 | title                             | entry\_yr | exit\_yr | reentry | peak |
-|------------------------|-----------------------------------|-----------|----------|---------|------|
-| The Righteous Brothers | Unchained Melody                  | 1965      | 1991     | 14      | 4    |
-| Brenda Lee             | Rockin' Around The Christmas Tree | 1960      | 2019     | 9       | 9    |
-| Bobby Helms            | Jingle Bell Rock                  | 1958      | 2019     | 8       | 8    |
-| Mariah Carey           | All I Want For Christmas Is You   | 2000      | 2019     | 8       | 3    |
-| Nat King Cole          | The Christmas Song ...            | 1960      | 2019     | 7       | 11   |
-| Bing Crosby            | White Christmas                   | 1958      | 2019     | 6       | 12   |
+| artist                 | title                             | entry | exit | reentry | peak |
+|------------------------|-----------------------------------|-------|------|---------|------|
+| The Righteous Brothers | Unchained Melody                  | 1965  | 1991 | 14      | 4    |
+| Brenda Lee             | Rockin' Around The Christmas Tree | 1960  | 2019 | 9       | 9    |
+| Bobby Helms            | Jingle Bell Rock                  | 1958  | 2019 | 8       | 8    |
+| Mariah Carey           | All I Want For Christmas Is You   | 2000  | 2019 | 8       | 3    |
+| Nat King Cole          | The Christmas Song ...            | 1960  | 2019 | 7       | 11   |
+| Bing Crosby            | White Christmas                   | 1958  | 2019 | 6       | 12   |
 
 ### 4.1.5 Conclusion
 
@@ -358,7 +358,7 @@ Lastly, we've investigated movements of song through the Hot 100 and understandi
 
 After we've looked at the base on which our target variable is built, we're going to take a look at the elements used in this first iteration of the model.
 
-To dive deeper into the actual make up of a song and see if we can build a model that can reliably identify songs on its content, we'll have a look at the audio features of a hit. Let's start with a few descriptive metrics!
+To dive deeper into the actual make up of a song and see if we can build a model that can reliably identify songs on its content, we'll have a look at the audio features of a Hit. Let's start with a few descriptive metrics!
 
 ![](./notebooks/assets/medians_features.png)
 
@@ -395,7 +395,7 @@ Lastly, let's look at a few of the most danceable Hits throughout the history of
 | Cardi B Featuring Migos | Drip                              | 2018-06-02 | 0.968        | 21.0 |
 | Justin Timberlake       | SexyBack                          | 2007-03-03 | 0.967        | 1.0  |
 
-Judging from the Top 10 most danceable songs we can see the 1980s and early 1990s well represented. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance hit is _Drip_ from Summer 2018 and just fell short of making it onto the Top 20.
+Judging from the Top 10 most danceable songs we can see the 1980s and early 1990s well represented. In more recent years, the most danceable songs that made it onto the Hot 100 with one exception (i.e. Justin Timberlake's SexyBack) had lesser success in terms of reaching a top position. That being said we see that the most recent dance Hit is _Drip_ from Summer 2018 and just fell short of making it onto the Top 20.
 
 #### Inference Analysis of Danceability
 
@@ -479,18 +479,18 @@ As a feature, loudness is very consistently flat before the 1990s and then again
 
 In general, we see that Hits are having a higher median loudness but especially in the last few years we're seeing that Hits and Non-Hits loudness do not diverge much anymore. This would indicate that music has generally become louder.
 
-|artist|title|date|loudness|hit|peak|
-|--- |--- |--- |--- |--- |--- |
-|Lana Cantrell|Like A Sunday Morning|1975-03-01|2.291|True|63.0|
-|Diplo, French Montana & Lil Pump Featuring Zhavia Ward|Welcome To The Party|2018-06-02|0.175|True|78.0|
-|Metallica|Cyanide|2008-09-20|-0.463|True|50.0|
-|Diana Ross & The Supremes|Some Things You Never Get Used To|1968-06-08|-0.507|True|30.0|
-|Eminem|Cold Wind Blows|2010-07-10|-0.517|True|71.0|
-|Luke Bryan|Move|2016-12-10|-0.698|True|50.0|
-|Diana Ross & The Supremes|Love Child|1968-11-23|-0.810|True|1.0|
-|Eminem|Insane|2009-06-06|-0.883|True|85.0|
-|Barenaked Ladies|Too Little Too Late|2001-04-28|-0.884|True|86.0|
-|Eminem|25 To Life|2010-07-10|-0.945|True|92.0|
+| artist                    | title                 | date       | loudness | peak |
+|---------------------------|-----------------------|------------|----------|------|
+| Lana Cantrell             | Like A Sunday Morning | 1975-03-01 | 2.291    | 63.0 |
+| Diplo, French Montana ... | Welcome To The Party  | 2018-06-02 | 0.175    | 78.0 |
+| Metallica                 | Cyanide               | 2008-09-20 | -0.463   | 50.0 |
+| Diana Ross & The Supremes | Some Things You Ne... | 1968-06-08 | -0.507   | 30.0 |
+| Eminem                    | Cold Wind Blows       | 2010-07-10 | -0.517   | 71.0 |
+| Luke Bryan                | Move                  | 2016-12-10 | -0.698   | 50.0 |
+| Diana Ross & The Supremes | Love Child            | 1968-11-23 | -0.810   | 1.0  | 
+| Eminem                    | Insane                | 2009-06-06 | -0.883   | 85.0 |
+| Barenaked Ladies          | Too Little Too Late   | 2001-04-28 | -0.884   | 86.0 |
+| Eminem                    | 25 To Life            | 2010-07-10 | -0.945   | 92.0 |
 
 I believe especially Lana Cantrell's Like A Sunday Morning is a good example of an older song that falls into the loud category, while Cold Wind Blow by Eminem might be a good example for a newer song. _see examples above_
 
@@ -527,13 +527,13 @@ Valence is quite an interesting indicator as it attempts to measure positivity o
 
 Knowing that Valence has more and more decreased it might be interesting to see the songs with the highest and lowest valence.
 
-| artist                | title                        | date       | valence | peak |
-|-----------------------|------------------------------|------------|---------|------|
-| Eddie Hodges          | I'm Gonna Knock On Your Door | 1961-07-10 | 0.991   | 12.0 |
-| Four Tops             | It's The Same Old Song       | 1965-08-21 | 0.991   | 5.0  |
-| War                   | Low Rider                    | 1975-10-25 | 0.990   | 7.0  |
-| Katrina And The Waves | Que Te Quiero                | 1985-11-09 | 0.989   | 71.0 |
-| John Sebastian        | Hideaway                     | 1976-07-31 | 0.988   | 95.0 |
+| artist                | title                  | date       | valence | peak |
+|-----------------------|------------------------|------------|---------|------|
+| Eddie Hodges          | I'm Gonna Knock On ... | 1961-07-10 | 0.991   | 12.0 |
+| Four Tops             | It's The Same Old Song | 1965-08-21 | 0.991   | 5.0  |
+| War                   | Low Rider              | 1975-10-25 | 0.990   | 7.0  |
+| Katrina And The Waves | Que Te Quiero          | 1985-11-09 | 0.989   | 71.0 |
+| John Sebastian        | Hideaway               | 1976-07-31 | 0.988   | 95.0 |
 
 ---
 
@@ -666,7 +666,7 @@ From what I can tell we have two different categories of features:
 
 #### Continuous Features
 
-In many ways hit prediction is about finding the subtle differences and similarities between Hits and Non-Hits, continuous features tend to be much more valuable in uncovering those differences and trends across time which is why the first part of the inferential statistics tests were focused on those features. 
+In many ways Hit prediction is about finding the subtle differences and similarities between Hits and Non-Hits, continuous features tend to be much more valuable in uncovering those differences and trends across time which is why the first part of the inferential statistics tests were focused on those features. 
 
 #### Distributions
 
@@ -682,17 +682,23 @@ To understand whether the differences between Hits and Non-Hits observed are sig
 
 ![](./notebooks/assets/mean_diffs.png)
 
-The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that Hits and Non-Hits were equally distributed for its respective feature. 
+The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. 
 
 ![](./notebooks/assets/tests.png) 
 
+For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that Hits and Non-Hits were equally distributed for the respective feature. In the next step we're going to look at the correlation of these features with each other and with the target variable.
+
+_I want to recognize that we're conducting a multitude of Z-tests which increases the likelihood of a Type 1 Error. Unfortunately, I'm unable to use ANOVA or Chi-squared as we're using continuous data to predict a binary target. ANOVA would be helpful if we had a multitude of categorical data and a continuous target variable while Chi-squared allows to compare categorical data._
+
 #### Correlation
 
-Different from exploring correlation between continous variables the process of determining feature importance with categorical variables via continuous variables is much trickier. For this project we've used logistic regression (using Pearson's r would've yielded dubious results at best - try drawing a linear regression line through a binary outcome and you'll understand why pearson's r won't be a suitable tool)
+As pointed out above exploring relationship between continous variables with binary outcomes comes with a few challenges especially when we're attempting to use popular statistical tools (Pearson's R, ANOVA etc.). For this project we've used logistic regression instead 
+
+_Sidenote: Using Pearson's R would've yielded dubious results at best - try drawing a linear regression line through a binary outcome and you'll understand why Pearson's R won't be a suitable tool_
 
 ![](./notebooks/assets/feature_importance.png)
 
-Using Logistic Regression Beta based on standardized values allowed us to evaluate the relative importance of the features used. We can see at the top are three features to detect Hits:
+Using Logistic Regression's Beta based on standardized values allowed us to evaluate the relative importance of the features used. We can see at the top are three features to detect Hits:
 - Instrumentalness
 - Acousticness
 - Loudness
@@ -701,7 +707,7 @@ At the bottom we can see two features:
 - Tempo
 - Key
 
-Interestingly, a continuous feature such as tempo seems to have very little influence on whether the model can become a hit or not. It might be interesting to see, if Tempo would perform better if the model was taking time/year into account. The Key feature expectedly scores low in weight, no surprise there.
+Interestingly, Tempo seems to have very little influence on whether the song can become a Hit or not. It might be interesting to see, if Tempo would perform better if the model was taking time/year into account but as this is prone to overfitting the data this exploration will have to be done in a different project/iteration. The Key feature expectedly scores low in weight, no surprise there.
 
 We can also see that 
 - Mode 
@@ -709,19 +715,19 @@ We can also see that
 
 are performing better than expected. However, as we've evaluated in the EDA Mode and Time Signature features aren't convincing features, these could quickly change and might overfit our model rather than leading to actual higher accuracy.
 
-Hence, we'll drop Tempo, Mode, Key and Time Signature.
+Hence, we'll drop Tempo, Mode, Key and Time Signature from our feature list.
 
 #### Collinearity
 
-For collinearity measurements we've used the popular Pearson correlation coefficient (i.e. Pearson's r). Even though this couldn't be used for describing relationships between continuous predictor and discrete target variable, it's a good metric to detect collinearity between predictors. A characteristic of multiple features standing relation to each other is an issue because our assumption is that each feature is an _independent_ variable, correlation, however implies that with a change in one variable it affects another making the relationship with the target variable increasingly murky. This has drastic implications for the stability of our model which can be read about in further detail [_here_](https://statisticsbyjim.com/regression/multicollinearity-in-regression-analysis/). 
+For collinearity measurements we've used the popular Pearson correlation coefficient (i.e. Pearson's r). Even though this couldn't be used for describing relationships between continuous predictor and a discrete target variable, it's a good metric to detect collinearity between predictors. A characteristic of multiple features standing in relation to each other is an issue because our assumption is that each feature is an _independent_ variable. Correlation, however implies that with a change in one variable it affects another making the relationship with the target variable increasingly murky. This has drastic implications for the stability of our model which can be read about in further detail [_here_](https://statisticsbyjim.com/regression/multicollinearity-in-regression-analysis/). 
 
 ![](./notebooks/assets/feature_correlation.png)
 
-I've found strong correlation (~0.8) between `energy` and `acousticness` as well as `energy` and `loudness`. Somewhat present correlations (~0.6) were also visible between `acousticness` and `loudness` as well as `valence` and `danceability`. All four correlations were statistically significant for p<0.001 but as the correlations were only moderately strong for some features and removing them might've removed some actual information about a song's content, I decided to use dimension reduction through PCA instead.
+I've found strong correlation between `energy` and `acousticness` (0.7) as well as `energy` and `loudness` (0.76). Somewhat correlated are `acousticness` and `loudness` (0.55) as well as `valence` and `danceability` (0.51). All four correlations were statistically significant for p<0.001 but as the correlations were only moderately strong for some features and removing them might've removed some actual information about a song's content, I decided to use dimension reduction via Pricincipal Component Analysis (PCA) instead.
 
 #### Conclusion
 
-In conclusion, we'll be using a combination of the features below to describe a song's content. To take care of collinearity issues we're using dimensionality reduction (in our case using PCA).
+In conclusion, we'll be using a combination of the features below to describe a song's content and make inferences about its ability to make it onto the Hot 100. 
 
 - Acousticness
 - Loudness
@@ -730,6 +736,8 @@ In conclusion, we'll be using a combination of the features below to describe a 
 - Valence
 - Energy
 - Duration_ms
+
+To take care of collinearity issues we're using dimensionality reduction (in our case via PCA).
 
 In the Machine Learning section we'll be looking at multiple different ML algorithms, Cross Validation and Performance metrics to optimize the predictive qualities of our model.
 
@@ -741,17 +749,17 @@ To make sure we're not overfitting and are able to detect the generalizability o
 
 ## 6.1 Dimensionality Reduction (PCA)
 
-As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions (source). This is certainly not a cure-all method but can certainly help dealing with situations in which we believe a feature has relevance to some extent but shows some collinearity as in our case (source).
+As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions (source). This is certainly not a cure-all method but can help dealing with situations in which we believe a feature has relevance to some extent but shows some collinearity as in our case (source).
 
 For this project we're using one of the most popular methods called Principal Component Analysis (PCA). One pretty significant catch of this method is that due to the transformations performed we're losing the interpretability of the model. This is quite significant for a lot of use-cases as that allows us to learn directly from models. In a future iteration I might consider removing the Dimensionality Reduction to improve understandability.
 
 ![](./notebooks/assets/pca_dimensions.png)
 
-The above graphic shows the cumulative explained variance ratio and explained variance by Component. It's not an easy decision as it looks like the largest chunk of information rests in just one component. The two other cut-off points are 4 and 6. To do our best to avoid overfitting we're using just 4 components.
+The above graphic shows the cumulative explained variance ratio and explained variance by component. It's not an easy decision as it looks like the largest chunk of information rests in just one component. The two other cut-off points are 4 and 6. To do our best to avoid overfitting we're using just 4 components.
 
 ## 6.2 Optimization of Hyperparameters 
 
-In this step we're now splitting our tuning dataset again into train and test data. This allows us to find the best parameter for our training set and validate the Hyperparameter performance using the test set without touching the hold-out set and possibly contaminating our test setup.
+In this step we're now splitting our tuning dataset again into train and test data. This allows us to find the best parameter for our training set and validate the Hyperparameter performance using the test set without touching the hold-out set and possibly contaminating our setup.
 
 Using the training data and test data, algorithms and evaluation metrics we'll be applying Cross-Validation to find the optimal hyperparameters.
 
@@ -765,19 +773,23 @@ For Machine Learning Algorithms we're using two very common algorithms that gene
 
 #### Evaluation Metrics
 
-There is many different evaluation metrics that optimize for different things. To find the relevant metric it's important to understand the challenges the data poses and to set the goal of the model. In our case we're working in reality with highly imbalanced data (i.e. only a tiny portion of all songs become hits) and we would like to find as many Hits as possible.
+There is many different evaluation metrics that optimize for different things. To find the relevant metric it's important to understand the challenges the data poses and to set the goal of the model. In our case we're working with highly imbalanced data (i.e. only a tiny portion of all songs become hits) and we would like to find as many Hits as possible.
 
-The Receiver Operating Characteristic Area-Under-the-Curve (ROC AUC) metric optimizes for the True-Positives to False-Positive Ratio. This is a great metric to understand generally how confident a model can find True-Positives. The drawback is that ROC AUC performs the same regardless of the underlying probabilities (i.e. it works well for balanced datasets, not so much for imbalanced data). Since we've artifically created a balanced dataset for this project as most algorithms can work better with balanced data, we're going to use this metric.
+The Receiver Operating Characteristic Area-Under-the-Curve (ROC AUC) metric optimizes for the True-Positives to False-Positive Ratio. This is a great metric to understand generally how confidently a model identifies True-Positives. The drawback is that ROC AUC performs the same regardless of the underlying probabilities (i.e. it works well for balanced datasets, not so much for imbalanced data). Since we've artifically created a balanced dataset for this project, we'll be able to use this metric for complementary evaluation.
 
 In addition, Precision-Recall allows us to evaluate imbalanced data as it provides insights into how well the model can distinguish between classes (Precision) and how many of all positive classes are found (Recall). This metric will be our main decision making and optimization tool. Similar to ROC AUC we'll be technically optimizing for the Precision-Recall Area-Under-the-Curve (PR AUC).
 
 #### Results
 
+Using the metrics and algorithms above, we'll apply cross-validation to different hyperparameters and compare the results to find the optimal hyperparameters.
+
+##### Random Forest
+
 The first algorithm that was tested was Random Forest with up to 1500 estimators (only 500 visualized here). 
 
 ![](./notebooks/assets/pr_roc_rf.png)
 
-We found a quick drop as the threshold (i.e. probability threshold to assign a positive label) was lifted above 0 and the common slow descend to 0.5 as the threshold approaches 1. The best performing number of estimators was 300 with a Precision Score of 0.61 and a Recall Score of 0.68. This means that we've detected almost 70% of all Hits in the data set and of the Song assigned a Hit label we were correct 61% of the time.
+We found a quick drop as the threshold (i.e. probability threshold to assign a positive label) was lifted above 0 and the common slow descend to 0.5 as the threshold approaches 1. The best performing number of estimators was 300 with a Precision Score of 0.61 and a Recall Score of 0.68. This means that we've detected almost 70% of all Hits in the data set and of the songs assigned a Hit label we were correct 61% of the time.
 
 |           | Non-Hit     | Hit         |
 |-----------|-------------|-------------|
@@ -787,6 +799,8 @@ We found a quick drop as the threshold (i.e. probability threshold to assign a p
 | recall    | 0.589084    | 0.684854    |
 | f1 beta=1 | 0.624026    | 0.646678    |
 | support   | 3536.000000 | 3354.000000 |
+
+##### k-Nearest Neighbor
 
 The second algorithm was the K-Nearest Neighbor algorithm tested with up to 1500 neighbors (only 500 visualized here).
 
@@ -828,9 +842,21 @@ Being correct 60% of the time might not look like much but we shouldn't forget t
 
 # 7. Conclusion
 
-#### Further Experiments
+This project has dug into the History of the Hot 100. We've explored the most successful songs on the charts and songs that showed extremes in their audio features.
 
-As we've seen the Hot 100 might not be the ideal candidate to gauge popularity. It's formula is prone to change and changes in the formula tend to drastically impact the ability for songs to get onto the Hot 100 and stay on the Hot 100. A tool to gauge popularity more uniformly might be simply using sales and streaming data. Especially when we're attempting to solve a business problem this might make the most sense. The challenge here is that this is often proprietary data and not easy to access.
+It also has uncovered changes in the Formula and how it has impacted songs on the Hot 100. It has cast some serious doubt on whether the Hot 100 is as reliable an indicator for popularity as its common usage in scientific research would imply.
+
+With the exploration of audio features we've discovered that common trends such as the rise in Disco and EDM or format changes to longer songs are also reflected in the features. This confirmed our assumption that we might be able to successfully describe the content (at least partially) using these audio descriptors.
+
+Beyond that we were also able to show that these descriptors have significant correlations with a song's chance to make it onto the Hot 100 and reaching quite respectable results with ~60% Precision and ~80% Recall.
+
+Time will show whether our model can continue to perform at these levels. We'll try to live up to Nate Silver's mantra of being 'less and less and less wrong' by iterating repeatedly over our model to make incremental improvements.
+
+#### What comes next?
+
+- As we've seen the Hot 100 might not be the ideal candidate to gauge popularity. It's formula is prone to change and changes in the formula tend to drastically impact the ability for songs to get onto the Hot 100 and stay on the Hot 100. A tool to gauge popularity more uniformly might be simply using sales and streaming data. Especially when we're attempting to solve a business problem this might make the most sense. The challenge here is that this is often proprietary data and not easy to access. For some initial exploration of this approach data gathered by [kworb.net](https://kworb.net/cc/) might be a viable option.
+- The approach to only use content-based features has clear limits as it is ignoring the reality that Marketing, Fan-base and Brand-Presence does play a vital role in the entertainment and music industry. Adding meta data on the songs and possible artist data to the predictions would allow to paint a more accurate picture.
+- Another interesting approach to improve predictability is the use of a Network approach. Using social media posts, blog mentions, press clippings etc. might allow us to gauge the popularity of an artist before it makes it onto the Hot 100. One issue with this approach might be that this data won't actually be available until a song is already released. 
 
 # 8. Resources
 
