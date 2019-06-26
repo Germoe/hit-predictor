@@ -241,9 +241,9 @@ class Main extends Component {
     const items = this.state.items
     return (
       <>
+        <GlobalStyles />
         <Header siteTitle="Predictions" />
         <SearchContainerStyle>
-          <GlobalStyles />
           <SearchInputStyle value={this.state.q} onChange={this.handleChange} />
           <SearchButtonStyle onClick={this.fetchSpotifyCredentials}>Search</SearchButtonStyle>
           <ListStyle>{this.state.loading ? (
