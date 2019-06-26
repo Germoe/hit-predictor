@@ -1,11 +1,13 @@
 ---
-title: Hit Predictor
-subtitle: Finding an Underlying Hit Formula within Songs
+title: "Hit Predictor"
+subtitle: "Finding an Underlying Hit Formula within Songs"
 author: Sebastian Engels
 date: June 2019
 toc: true
 geometry: margin=2.5cm
+documentclass: scrartcl
 ---
+
 # 1. The Problem
 
 In recent years, a new field has (re-)emerged that attempts to use audio features to predict whether a song will achieve commercial success - Hit Song Science (HSS).
