@@ -5,6 +5,8 @@ import styled, { createGlobalStyle } from "styled-components"
 import AWS from "aws-sdk"
 import Header from "../components/header"
 
+import Layout from "../components/layout"
+
 const GlobalStyles = createGlobalStyle`
   body {
     @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -240,9 +242,8 @@ class Main extends Component {
   render() {
     const items = this.state.items
     return (
-      <>
+      <Layout>
         <GlobalStyles />
-        <Header siteTitle="Predictions" />
         <SearchContainerStyle>
           <SearchInputStyle value={this.state.q} onChange={this.handleChange} />
           <SearchButtonStyle onClick={this.fetchSpotifyCredentials}>Search</SearchButtonStyle>
@@ -253,7 +254,7 @@ class Main extends Component {
           ) : null}
           </ListStyle>
         </SearchContainerStyle>
-      </>
+      </Layout>
     )
   }
 
