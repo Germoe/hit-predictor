@@ -20,4 +20,11 @@ def lambda_handler(event, context):
                     'values': features}
 
     res = client.deployments.score(scoring_url, payload_scoring)
-    return res
+    return {
+       "Number1": number1,
+       "Number2": number2,
+       "Sum": sum,
+       "Product": product,
+       "Difference": difference,
+       "Quotient": quotient
+   }
