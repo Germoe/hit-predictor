@@ -27,13 +27,16 @@ const Header = ({ siteTitle }) => (
       <h1 style={{
         margin: 0,
         textAlign: `left`,
-        margin: `50px 0 30px 0`,
+        margin: `50px 0 15px 0`,
         color: `white`,
         textDecoration: `none`
       }}>
         Hit Predictor
       </h1>
-      <h4 style={{ textAlign: `left`, marginBottom: `100px` }}>
+      <h4 style={{
+        textAlign: `left`, marginBottom: `100px`,
+        color: `white`
+      }}>
         <em>by Sebastian Engels</em>
       </h4>
     </div>

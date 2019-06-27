@@ -27,20 +27,34 @@ const GlobalStyles = createGlobalStyle`
 // `
 
 const SearchContainerStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: center;
   width: 100%; 
+  min-height: 200px;
   text-align: center;
-  padding: 20px 10% 10% 10%;
+  padding: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 const SearchInputStyle = styled.input`
-  min-width: 300px;
+  min-width: 500px
   height: 60px;
-  padding: 0 100px;
-  margin: 10px 30px;
+  padding-left: 30px;
   border-radius: 50px;
 
   :focus {
     outline: none;
+  }
+
+  @media (max-width: 768px) {
+    min-width: none;
+    width: 100%;
   }
 `
 
@@ -48,14 +62,17 @@ const SearchButtonStyle = styled.button`
   border-color: #92319F;
   width: 200px;
   height: 60px;
-  padding: 0 10px;
-  margin: 10px 30px;
   border-radius: 50px;
 
   :hover, :focus {
     outline: none;
     background-color: #92319F;
     color: #FFFFFF;
+  }
+
+  @media (max-width: 768px) {
+    min-width: none;
+    width: 100%;
   }
 `
 
@@ -247,13 +264,13 @@ class Main extends Component {
         <SearchContainerStyle>
           <SearchInputStyle value={this.state.q} onChange={this.handleChange} />
           <SearchButtonStyle onClick={this.fetchSpotifyCredentials}>Search</SearchButtonStyle>
-          <ListStyle>{this.state.loading ? (
-            <p>Loading Songs</p>
-          ) : items ? (
-            items.map(data => <Song key={data.id} data={data} access_token={this.state.token.access_token} />)
-          ) : null}
-          </ListStyle>
         </SearchContainerStyle>
+        <ListStyle>{this.state.loading ? (
+          <p>Loading Songs</p>
+        ) : items ? (
+          items.map(data => <Song key={data.id} data={data} access_token={this.state.token.access_token} />)
+        ) : null}
+        </ListStyle>
       </Layout>
     )
   }
