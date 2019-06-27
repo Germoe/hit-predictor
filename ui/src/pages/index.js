@@ -43,7 +43,7 @@ const SearchContainerStyle = styled.div`
 `
 
 const SearchInputStyle = styled.input`
-  min-width: 500px
+  min-width: 500px;
   height: 60px;
   padding-left: 30px;
   border-radius: 50px;
