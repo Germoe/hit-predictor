@@ -220,7 +220,7 @@ const Song = ({ data, access_token }) => (
 class Main extends Component {
   state = {
     loading: false,
-    q: 'Michael Jackson',
+    q: 'Beat it Michael Jackson',
     error: false,
     token: false,
   }
