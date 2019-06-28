@@ -3,14 +3,12 @@ import { graphql } from "gatsby"
 import axios from "axios"
 import styled, { createGlobalStyle } from "styled-components"
 import AWS from "aws-sdk"
-import Header from "../components/header"
-
 import Layout from "../components/layout"
 
 const GlobalStyles = createGlobalStyle`
   body {
-    @import url('https://fonts.googleapis.com/css?family=Roboto');
-    font-family: 'Roboto', sans-serif;
+    @import url('https://fonts.googleapis.com/css?family=Raleway');
+    font-family: 'Raleway', sans-serif;
   }
 `
 
@@ -59,14 +57,14 @@ const SearchInputStyle = styled.input`
 `
 
 const SearchButtonStyle = styled.button`
-  border-color: #92319F;
+  border-color: #F46425;
   width: 200px;
   height: 60px;
   border-radius: 50px;
 
   :hover, :focus {
     outline: none;
-    background-color: #92319F;
+    background-color: #F46425;
     color: #FFFFFF;
   }
 
@@ -77,7 +75,7 @@ const SearchButtonStyle = styled.button`
 `
 
 const ButtonStyle = styled.button`
-  border-color: #92319F;
+  border-color: #F46425;
   width: 200px;
   height: 40px;
   padding: 0 10px;
@@ -86,7 +84,7 @@ const ButtonStyle = styled.button`
 
   :hover, :focus {
     outline: none;
-    background-color: #92319F;
+    background-color: #F46425;
     color: #FFFFFF;
   }
 `
