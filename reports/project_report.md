@@ -137,7 +137,7 @@ There are many ways to look at this data to gain further insights. Looking at th
 
     Outliers in Streaks across the entire data set (Tukey's Fence k=1.5): >31
 
-We can see a contrinuous fall as we're getting toward the higher streak lengths. One interesting peak can be observed at streak length 20. For some reason this bin is defying the downward trend.
+We can see a continuous fall as we're getting toward the higher streak lengths. One interesting peak can be observed at streak length 20. For some reason this bin is defying the downward trend.
 
 We'll have a closer look at this distribution by year in the next plot.
 
@@ -156,11 +156,11 @@ The following plot highlights this effect distinctively by looking at exit posit
 
     Number of songs whose streak was likely cut short: 1693
 
-Above we can see the exit positions of songs with >19 weeks streaks before and after the 20-20 rule. It can be assumed that this rule has cut the streak of songs after 1991 short as we can see that generally songs would exit at the bottom of the Hot 100 (see no 20-20 rule) rather than dropping off suddenly.
+Above we can see the exit positions of songs with >19 weeks streaks before and after the 20-20 rule. It can be assumed that this rule has cut the streak of songs after 1991 short as we can see that generally songs would exit at the bottom of the Hot 100 (see _no 20-20 rule_) rather than dropping off suddenly.
 
 #### Higher Fluctuation in Recent Years
 
-Going back to the `Streaks by Year` plot. Starting in 2006 we can see that the first quartile (i.e. lower quartile) is stretching into the <3 weeks region. A pattern we hadn't seen since the mid-1970s. This would indicate a higher fluctuation and is probably a result of Billboard slowly incorporating more and more online sales and streaming revenue into their formula since 2005 (https://en.m.wikipedia.org/wiki/Billboard_Hot_100 see _Digital downloads and online streaming_). 
+Going back to the `Streaks by Year` plot. Starting in 2006 we can see that the first quartile (i.e. lower quartile) is stretching into the < 3 weeks region. A pattern we hadn't seen since the mid-1970s. This would indicate a higher fluctuation and is probably a result of Billboard slowly incorporating more and more online sales and streaming revenue into their formula since 2005 (https://en.m.wikipedia.org/wiki/Billboard_Hot_100 see _Digital downloads and online streaming_). 
 
 #### Super Songs
 
@@ -216,7 +216,7 @@ Let's look at outliers for the streak variable (>31 weeks) by year to have a bet
 
 ![](../notebooks/assets/outliers-streaks.png)
 
-Starting in 1995 we can see a pattern of what I'm going to call 'Super Songs' emerge. Before 1995, there were only few songs that stayed long enough to be considered an outlier (Tukey's Fence rule). After 1993, however we can suddenly see these breakout songs occuring much more often. Standout years are 1996, 2001 and 2018 but other years are generating outliers more densely as well.
+Starting in 1995 we can see a pattern of what I'm going to call _Super Songs_ emerge. Before 1995, there were only few songs that stayed long enough to be considered an outlier (Tukey's Fence rule). After 1993, however we can suddenly see these breakout songs occuring much more often. Standout years are 1996, 2001 and 2018 but other years are generating outliers more densely as well.
 
     Standard Deviations:
     <1991: 5.703656742368894
@@ -239,7 +239,7 @@ If the only change affecting the data was the 20-20 rule and the Nielsen Soundsc
 To see whether the change in distribution is statistically significant we're going to compare the mean of the distributions with a one-sided test. The assumption being that if the distributions of the population are equal beyond the 20-20 rule the mean of the distributions after 1991 should be lower than before 1991 as the 20-20 rule would prevent relatively more songs from going beyond 20 weeks on the Hot 100.
 
 - **H0**: The mean streak length after 1991 is equal or lower than the mean streak length before 1991 (i.e. mean fluctuation stayed the same or increased). This would indicate that there is no indication the underlying distribution has changed.
-- **H1**: The mean streak length after 1991 is larger than the mean streak length before 1991 (i.e. mean fluctuation decreased). This would indicate that there is an indication the underlying distribution has changed. This would indicate that the only other known change in that period, the introduction of Nielsen Data, could've led to an increase in streak lengths.
+- **H1**: The mean streak length after 1991 is larger than the mean streak length before 1991 (i.e. mean fluctuation decreased). This would support the argument that the underlying distribution has fundamentally changed and strengthen the case that the introduction of Nielsen Data, introduced data into the Hot 100 that led to an increase in streak lengths.
 - **alpha**: 0.05
 
 ![](../notebooks/assets/test_20-20_dist.png)
@@ -385,7 +385,7 @@ While the 1980s and 1990s were the age when danceability had the highest chance 
 
 Starting in the early 2000s we're starting to see a minor slump in danceability, which lasted until the mid 2010s. Now in more recent years (likely pushed with the rise of Electronic Dance Music (EDM)), we're seeing the highest level of danceability in the Hot 100 Hits and quite low variability in 2018 and 2019. It's also notable that Non-Hits have been catching up in danceability and have closed in on the median danceability of the Hot 100 (disregarding the drop in 2019).
 
-It can be seen that the trends mentioned above are also present in the Hit data, especially during the mid-1970s and mid-2000s there is a visible difference between Hits and Non-Hits (_see inference analysis below).
+It can be seen that the trends mentioned above are also present in the Hit data, especially during the mid-1970s and mid-2000s there is a visible difference between Hits and Non-Hits (_see inference analysis below_).
 
 Lastly, let's look at a few of the most danceable Hits throughout the history of the Hot 100.
 
@@ -451,7 +451,7 @@ Again, just as with danceability we can see variability picking up in the mid- t
 
 For our model, we're witnessing again that higher energy levels seem to indicate a higher likelihood of Hit potential than low energy levels. Similarly this has been quite consistently the case starting in the mid-1970s to the mid-2010s.
 
-To get a feeling for what songs are considered high energy, we're listing the top 10 most energetic songs below.
+To get a feeling for what songs are considered high energy, you can find a list of the top 10 most energetic songs below.
 
 | artist               | title                   | date       | energy | peak |
 |----------------------|-------------------------|------------|--------|------|
@@ -527,18 +527,18 @@ For Speechiness we can see an upward trend starting in the 1990s, with an increa
 
 It's hard to pin-point what Speechiness is actually measuring as we're looking at the songs with the highest Speechiness. I would've assumed that the highest Speechiness would be found in Rap songs but judging from it there is a good mix of Country, Pop and Hip Hop music. This feature doesn't seem to be all that helpful for our analysis for now. There is no clear indicators and the feature itself is quite obtuse. With a lack of additional information of how this feature is put together, I've decided to abandon the feature for now.
 
-| artist                      | title                             | date       | loudness |  peak |
-|-----------------------------|-----------------------------------|------------|----------|-------|
-| Lana Cantrell               | Like A Sunday Morning             | 1975-03-01 | 2.291    |  63.0 |
-| Diplo, French Montana & ... | Welcome To The Party              | 2018-06-02 | 0.175    |  78.0 |
-| Metallica                   | Cyanide                           | 2008-09-20 | -0.463   |  50.0 |
-| Diana Ross & The Supremes   | Some Things You Never Get Used To | 1968-06-08 | -0.507   |  30.0 |
-| Eminem                      | Cold Wind Blows                   | 2010-07-10 | -0.517   |  71.0 |
-| Luke Bryan                  | Move                              | 2016-12-10 | -0.698   |  50.0 |
-| Diana Ross & The Supremes   | Love Child                        | 1968-11-23 | -0.810   |  1.0  |
-| Eminem                      | Insane                            | 2009-06-06 | -0.883   |  85.0 |
-| Barenaked Ladies            | Too Little Too Late               | 2001-04-28 | -0.884   |  86.0 |
-| Eminem                      | 25 To Life                        | 2010-07-10 | -0.945   |  92.0 |
+| artist               | title                      | date       | speechiness | peak |
+| -------------------- | -------------------------- | ---------- | ----------- | ---- |
+| Chris Young Duet ... | Think Of You               | 2016-05-14 | 0.951       | 40.0 |
+| Wu-Tang Clan         | C.R.E.A.M. (Cash Rules ... | 1994-04-09 | 0.950       | 60.0 |
+| Taylor Swift         | Should've Said No          | 2008-06-21 | 0.941       | 33.0 |
+| Hudson and Landry    | Ajax Airlines              | 1972-01-22 | 0.924       | 68.0 |
+| Reba McEntire        | I'll Be                    | 2000-07-01 | 0.924       | 51.0 |
+| Stan Freberg         | The Old Payola Roll Bl...  | 1960-02-29 | 0.919       | 99.0 |
+| Hudson and Landry    | Ajax Liquor Store          | 1971-07-03 | 0.913       | 43.0 |
+| Cheech & Chong       | Sister Mary Elephant ...   | 1974-01-12 | 0.882       | 24.0 |
+| Steve Martin         | Grandmother's Song         | 1977-12-10 | 0.858       | 72.0 |
+| Dickie Goodman       | The Touchables In Brooklyn | 1961-05-29 | 0.847       | 42.0 |
 
 ### 4.2.5 Valence
 
@@ -578,7 +578,7 @@ _NOTE: To avoid using an arbitrary cut-off point such as 0.5, I've introduced a 
 
 While there is also a higher percentage of low valence music among Non-Hits the distinction between High-Valence and Low-Valence songs in the Hot 100 is a stark contrast if looked at across time. The number of low-valence songs in the Hot 100 before 2010 is consistently low while the high valence songs are dropping at a more or less linear-looking rate starting in the 1970s all the way through the 2000s. In the 2010s, low-valence songs are catching up with high-valence songs for the first time and in the 2020s low-valence surge beyond high-valence songs. Today, both Non-Hits and Hits are at an all-time high for low-valence songs.
 
-The graphs show that we're increasingly listening to less positive sounding music in our Hot 100 charts as well as in our general popular music.
+The graphs show that we're increasingly listening to less positive sounding music in our Hot 100 charts as well as in our popular music in general.
 
 ### 4.2.6 Instrumentalness
 
@@ -665,7 +665,7 @@ But for now we're going to conclude our Exploratory Data Analysis and narrow in 
 
 # 5. The Inferential Statistical Analysis
 
-The section on inferential statistics is looking at statistical significance on observations made and thoughts had during the EDA. This is an essential step to understanding whether or not the differences between Hits and Non-Hits are factual or just happened by chance.
+The section on inferential statistics is looking at statistical significance on observations made and thoughts had during the EDA. This is an essential step to understanding whether or not the differences between Hits and Non-Hits are unlikely to have just happened by chance.
 
 The focus for us lies on three categories:
 - Distribution between Hits and Non-Hits
@@ -686,11 +686,11 @@ Due to the large sample sizes even the slightest differences can be considered s
 
 #### Preprocessed Features
 
-As we're relying on features that are preprocessed and aggregated by Spotify we're looking at features that are obtuse and abstract features. While this allows for intuitive interpretations, we're losing some of the interpretability as Spotify doesn't allow us to fully understand how these features come together.
+As we're relying on features that are preprocessed and aggregated by Spotify we're looking at features that are obtuse and abstract features. While this allows for intuitive assumptions as they were created in categories that seem familiar, we're actually losing some of the interpretability as Spotify doesn't allow us to fully understand how these features come together.
 
 ## 5.2 Features Tested
 
-From what I can tell we have two different categories of features:
+We have two different categories of features:
 - Continuous Features (e.g danceability, instrumentalness etc.)
 - Discrete Features (e.g. time signature, key etc.)
 
@@ -722,7 +722,7 @@ _I want to recognize that we're conducting a multitude of Z-tests which increase
 
 #### Correlation
 
-As pointed out above exploring relationship between continous variables with binary outcomes comes with a few challenges especially when we're attempting to use popular statistical tools (Pearson's R, ANOVA etc.). For this project we've used logistic regression instead 
+As pointed out above exploring relationships between continous variables with binary outcomes comes with a few challenges especially when we're attempting to use popular statistical tools (Pearson's R, ANOVA etc.). Due to this issue for this project we've used logistic regression instead. 
 
 _Sidenote: Using Pearson's R would've yielded dubious results at best - try drawing a linear regression line through a binary outcome and you'll understand why Pearson's R won't be a suitable tool_
 
@@ -779,7 +779,7 @@ To make sure we're not overfitting and are able to detect the generalizability o
 
 ## 6.1 Dimensionality Reduction (PCA)
 
-As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions. This is certainly not a cure-all method but can help dealing with situations in which we believe a feature has relevance to some extent but shows some collinearity as in our case.
+As shown in the inferential statistics section, there are a few features that show correlations with each other that weren't immediately removed as this could've led to loss of valuable information. Dimensionality Reduction allows us to distill these features to their intrinsic dimensions. This is certainly not a cure-all method but can help dealing with situations in which we believe a feature has relevance to some extent but shows collinearity as in our case.
 
 For this project we're using one of the most popular methods called Principal Component Analysis (PCA). One pretty significant catch of this method is that due to the transformations performed we're losing the interpretability of the model. This is quite significant for a lot of use-cases as that allows us to learn directly from models. In a future iteration I might consider removing the Dimensionality Reduction to improve understandability.
 
@@ -799,15 +799,15 @@ For Machine Learning Algorithms we're using two very common algorithms that gene
 
 **k-Nearest Neighbor** is highly resource intensive as it calculates the distance to each point and then takes the k closest neighbors to determine per majority vote which category (i.e. Hit or Non-Hit) an item belongs to. k here is the main hyperparameter that needs optimization.
 
-**Random Forest** is an ensemble method that combines and averages multiple (often thousands) decision trees of variable lengths to come to a decision. For Random Forest we're optimizing the number (k) of trees or estimators. 
+**Random Forest** is an ensemble method that combines and averages multiple (often thousands) decision trees of variable lengths to come to a decision. For Random Forest we're optimizing for the number (k) of trees or estimators. 
 
 #### Evaluation Metrics
 
-There is many different evaluation metrics that optimize for different things. To find the relevant metric it's important to understand the challenges the data poses and to set the goal of the model. In our case we're working with highly imbalanced data (i.e. only a tiny portion of all songs become hits) and we would like to find as many Hits as possible.
+There is many different evaluation metrics that optimize for different things. To find the relevant metric it's important to understand the challenges the data poses and to set the goal of the model. In our case we're working with highly imbalanced data (i.e. only a tiny portion of all songs become Hits) and we would like to find as many Hits as possible.
 
 The Receiver Operating Characteristic Area-Under-the-Curve (ROC AUC) metric optimizes for the True-Positives to False-Positive Ratio. This is a great metric to understand generally how confidently a model identifies True-Positives. The drawback is that ROC AUC performs the same regardless of the underlying probabilities (i.e. it works well for balanced datasets, not so much for imbalanced data). Since we've artifically created a balanced dataset for this project, we'll be able to use this metric for complementary evaluation.
 
-In addition, Precision-Recall allows us to evaluate imbalanced data as it provides insights into how well the model can distinguish between classes (Precision) and how many of all positive classes are found (Recall). This metric will be our main decision making and optimization tool. Similar to ROC AUC we'll be technically optimizing for the Precision-Recall Area-Under-the-Curve (PR AUC).
+Precision-Recall allows us to evaluate imbalanced data as it provides insights into how well the model can distinguish between classes (Precision) and how many of all positive classes are found (Recall). This metric will be our main decision making and optimization tool. Similar to ROC AUC we'll be technically optimizing for the Precision-Recall Area-Under-the-Curve (PR AUC).
 
 #### Results
 
@@ -868,13 +868,13 @@ k-Nearest Neighbor is performing slightly better across the board but isn't depa
 
  Despite its drawbacks, dubious scalability and processing time, kNN won over Random Forest due to its ability to retrieve significantly more Hits from the data set than Random Forest.
 
-Being correct 60% of the time might not look like much but we shouldn't forget that this model isn't including any external factor and is judging a song exclusively by its internal features. There's likely still room for improvement but this will be conducted in future iterations. We now have a great starting point for creating a stable Hit predictor, the app built on top of this model will show whether it can hold up under real conditions.
+Being correct 60% of the time might not look like much but we shouldn't forget that this model isn't including any external factors and is judging a song exclusively by its internal features. There's likely still room for improvement but this will be conducted in future iterations. We now have a great starting point for creating a stable Hit predictor, the app built on top of this model will show whether it can hold up under real conditions.
 
 # 7. Conclusion
 
 This project has dug into the History of the Hot 100. We've explored the most successful songs on the charts and songs that showed extremes in their audio features.
 
-It also has uncovered changes in the Formula and how it has impacted songs on the Hot 100. It has cast some serious doubt on whether the Hot 100 is as reliable an indicator for popularity as its common usage in scientific research would imply.
+It also has uncovered changes in the Formula and how it has impacted songs on the Hot 100. It has cast some serious doubt on whether the Hot 100 is as reliable an indicator for popularity as its common usage in scientific research would suggest.
 
 With the exploration of audio features we've discovered that common trends such as the rise in Disco and EDM or format changes to longer songs are also reflected in the features. This confirmed our assumption that we might be able to successfully describe the content (at least partially) using these audio descriptors.
 
