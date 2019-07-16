@@ -15,13 +15,13 @@ This project runs in an Anaconda Environment, I highly recommend running the fol
 Directory Structure
 ==============================
 
-- Data: This is where all of the Data lives (has to be downloaded from an S3 bucket or generated using the application in `src`)
-- Models: The Models and Pipelines are stored in this directory.
-- Notebooks: This directory includes the Notebooks and Code for the main part of the data wrangling, exploration and model generating (This is likely the most interesting directory to explore if you're interested in how everything comes together)
-- References: This directory is empty as most of the references that were used are proprietary and I'm unable to provide these references as a full version. If you're interested in the references feel free to reach out to me at [me@sebastian-engels.com](mailto:me@sebastian-engels.com)
-- Reports: This is where you should start. It includes the project report and slides to get an overview what this project tackles.
-- src: This is the main code base that was used to sample, scrape and generate the data
-- ui: This directory holds the frontend interface that is deployed at [hit-predictor.com](https://www.hit-predictor.com) 
+- **Data**: This is where all of the Data lives (has to be downloaded from an S3 bucket or generated using the application in `src`)
+- **Models**: The Models and Pipelines are stored in this directory.
+- **Notebooks**: This directory includes the Notebooks and Code for the main part of the data wrangling, exploration and model generating (This is likely the most interesting directory to explore if you're interested in how everything comes together)
+- **References**: This directory is empty as most of the references that were used are proprietary and I'm unable to provide these references as a full version. If you're interested in the references feel free to reach out to me at [me@sebastian-engels.com](mailto:me@sebastian-engels.com)
+- **Reports**: This is where you should start. It includes the project report and slides to get an overview what this project tackles.
+- **src**: This is the main code base that was used to sample, scrape and generate the data
+- **ui**: This directory holds the frontend interface that is deployed at [hit-predictor.com](https://www.hit-predictor.com) 
 
 Project Proposal
 ==============================
