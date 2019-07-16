@@ -58,10 +58,10 @@ Once the features are created and chosen, I'll setup a supervised learning model
 
 The code, notebooks and documentation for this project can be found in this repository. Additionally, slides and a project report can be found in the `reports` directory. Lastly, you can try out the model by using the web app at [hit-predictor.com](https://hit-predictor.com).
 
+---
+
 #### Found any issues?
 
 If you saw any typos or issues (methodology or code), I'd be very happy if you could open an issue on this repository. If you'd like to connect and exchange ideas feel free to send me an e-mail [me@sebastian-engels.com](mailto:me@sebastian-engels.com) or reach out on [LinkedIn](https://www.linkedin.com/in/sebastianengels/) and make sure to reference this project.
-
----
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
