@@ -36,11 +36,11 @@ Is it possible to tell from the song signature and additional meta data on the a
 
 Making it onto the Billboard Hot 100 is essential for most artists and record labels to make an income and to sustain their work. Understanding the potential for a song to make it onto the Billboard Hot 100 could be used as an additional input to inform the costly decision on whether or not a song should be put out as a single or get released at all.
 
-We can even see a start-up dedicated to trying to simply solve this problem ([here](https://hyperlive.fm/)).
+We can even see a start-up dedicated to trying to solve this problem ([here](https://hyperlive.fm/)).
  
 ## What data are you going to use?
 
-The data necessary to make this assessment are historic data which I'll acquire from the [Billboard Hot 100](https://www.billboard.com/charts/hot-100) and song- and artist-specific information, which I'll acquire from the Spotify API using the endpoints [/audio-analysis/](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/) and [/artists/](https://developer.spotify.com/documentation/web-api/reference/artists/get-artist/).
+The data necessary to make this assessment are historic data which I'll acquire from the [Billboard Hot 100](https://www.billboard.com/charts/hot-100) and song-specific information, which I'll acquire from the Spotify API using the endpoints [/get-audio-features/](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/).
 
 ## What is your approach?
 
@@ -56,7 +56,11 @@ Once the features are created and chosen, I'll setup a supervised learning model
 
 ## The Results
 
-The code and documentation for this project will be available in this repository. Additionally, there'll be a Jupyter Notebook and an article. Depending on the success of the project, I'll create a website for other people to use the predictions engine and highlight the project.
+The code, notebooks and documentation for this project can be found in this repository. Additionally, slides and a project report can be found in the `reports` directory. Lastly, you can try out the model by using the web app at [hit-predictor.com](https://hit-predictor.com).
+
+#### Found any issues?
+
+If you saw any typos or issues (methodology or code), I'd be very happy if you could open an issue on this repository. If you'd like to connect and exchange ideas feel free to send me an e-mail [me@sebastian-engels.com](mailto:me@sebastian-engels.com) or reach out on [LinkedIn](https://www.linkedin.com/in/sebastianengels/) and make sure to reference this project.
 
 ---
 
