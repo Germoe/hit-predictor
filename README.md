@@ -10,7 +10,8 @@ This project runs in an Anaconda Environment, I highly recommend running the fol
 1. `git clone https://github.com/Germoe/hit-predictor.git && cd hit-predictor` # Clone Repository and Navigate to Directory
 2. `make environment` # This creates an Anaconda environment (you probably already have it installed, but if not [install Anaconda](https://www.anaconda.com/distribution/))
 3. `conda activate hit-predictor` # Activate the Environment
-4. `make data` # This pulls the necessary data files from an AWS S3 Bucket
+4a. `make data` # This pulls the necessary data files from an AWS S3 Bucket
+4b. If you plan on generating data or deploying models yourself make sure to generate a `.env` file based on the `env` template file.
 
 Directory Structure
 ==============================
