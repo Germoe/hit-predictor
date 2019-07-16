@@ -14,11 +14,11 @@ In recent years, a new field has (re-)emerged that attempts to use audio feature
 
 At the core of this challenge lies the urge to create a better understanding of what intrinsic music features contribute to the popularity of certain music pieces. This would allow us a deeper understanding of the components of popularity in music.
 
-There are claims of a relationship between some intrinsic music features and a song's popularity. For example, songs that have many repetitions tend to enjoy elevated popularity. There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres). These are a few examples but it's enough for me to be intrigued by the idea that there is such a thing as a formula for a Hit song. At least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its features.
+There are claims of a relationship between some intrinsic music features and a song's popularity. For example, songs that have many repetitions tend to enjoy elevated popularity. There's also a case to be made that familiarity plays a factor in popularity (i.e. songs tend to form groups, which we commonly refer to as genres). These are a just few examples but it's enough for me to be intrigued by the idea that there is such a thing as a formula for a Hit song. At least to some extent we should be able to understand whether a song is a possible Hit or not by looking at its features.
 
 Now, there are certainly those cynic voices that will claim that popular music is only created through celebrity and marketing. To some extend that's likely true, extrinsic factors shouldn't be dismissed outright, they probably have an impact on the ability for a song to become a Hit. Otherwise, it would be unlikely to see continuous investments into marketing and brand building. However, for this project I've decided to look solely at the intrinsic audio features of songs.
 
-The problem is not just a one-sided issue. While it's a challenge to model the description of a song with numbers and categories, it might be just as much of a challenge to decide what is a popular song. It's tough to understand what drives popularity. Popularity could be seen as a continuous measure, an ordinal measure or a binary. All of these pose obvious individual problems but one problem they all have in common is what factors go into the term of popularity and how to weigh them. Often we're left to using approximations of popularity. In our case we're going to focus on commercial success as an approximation to popularity as it makes the most sense if we're looking at this problem from a business perspective. Additionally, commercial success is a lot easier to quantify and has more resources readily available.
+The problem is not just a one-sided issue. While it's a challenge to model the description of a song with numbers and categories, it might be just as much of a challenge to decide what is a popular song. It's tough to understand what drives popularity. Popularity could be seen as a continuous measure, an ordinal measure or a binary. All of these pose obvious individual problems but one problem they all have in common is what factors go into the term of popularity and how to weigh them. Often we're left using approximations of popularity. In our case we're going to focus on commercial success as an approximation to popularity as it makes the most sense if we're looking at this problem from a business perspective. Additionally, commercial success is a lot easier to quantify and has more resources readily available.
 
 This is a very exciting project for myself and I hope you'll enjoy the journey as well.
 
@@ -27,15 +27,15 @@ This is a very exciting project for myself and I hope you'll enjoy the journey a
 Solving the problem of Hit Song Prediction is not only an interesting scientific challenge that could help us understand the inner workings of popularity. It could also lead to very tangible business benefits.
 
 **Record Label Industry**:
-In many ways the risks and rewards structure of the traditional book publishing industry applies to the music industry as well. In general terms, a record label signs on a new artist based on the experience of the A&R department, some circumstential evidence and increasingly evidence from prior success through self-publishing and self-promotion. The upfront investments in these artists is often substantial and generally ranges from a few hundred thousand USD to multiple million USD. These investments often include a debut album or increasingly often mini-albums, which requires song selection. Choosing the right song for a publishing item can be crucial to the future success of an artist, especially in the early parts of their career. A tool for predicting the chance of commercial success based on its intrinsic characteristics has many potential benefits:
+In many ways the risks and rewards structure of the traditional book publishing industry applies to the music industry as well. In general terms, a record label signs on a new artist based on the experience of the A&R department, some circumstential evidence and increasingly evidence from prior success through self-publishing and self-promotion. The upfront investments in these artists is often substantial and generally ranges from a few hundred thousand USD to multiple million USD. These investments often include a debut album or increasingly mini-albums, both of which requires song selection. Choosing the right song for a publishing item can be crucial to the future success of an artist, especially in the early parts of their career. A tool for predicting the chance of commercial success based on its intrinsic characteristics has many potential benefits:
 
-- Support in the Song selection process
+- Support in the song selection process
 - Allows for more calculated risks and diversified portfolios
 - Generates feedback for the A&R department when signing on a new artist
-- Feedback for Songwriters in their daily work
+- Feedback for songwriters in their daily work
 
 **Radio Stations**
-Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share. Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station. For linear media, such as radio stations, it is therefore important to consistently Hit your taste profile. Hit song prediction can help with this issue.
+Programming of radio stations is increasingly important, especially with the rise of streaming services taking up more and more market share. Most of us have experienced a radio station not playing a song we like, followed by the immediate reaction to switch to a different station. For linear media, such as radio stations, it is therefore important to consistently Hit our taste profile. Hit song prediction can help with this issue.
 
 Programming of radio stations is often history-focused, whether that is by choosing only songs from the Top 40 or artists that have already gained popularity in the past and sticking to their portfolio. A Hit Song predictor would allow radio stations to reduce the quantity of songs that fall into the realm of possibilities without having to stick to established artists or other suboptimal guidelines. This would allow for more time in creating valuable programming.
 
@@ -61,7 +61,7 @@ The following files were used in the project:
 
 The data from the Billboard Hot 100 was a straight-forward task. I wrote a custom scraper requested the raw html (at 10 second intervals) and parsed it using Beautiful Soup.
 
-Using the distribution of unique songs by year, I generated a second data set of songs that would mirror the Hits listed in the Hot 100 with Non-Hits that were released around the same time. The data was generated using the Search endpoint and randomly sampling chunks of the first 10000 results (50 songs at a time) and ~20% of the data was sampled from the bottom 10% of search results (least popular songs). Spotify provides a specific tag for that specific purpose (i.e. `tag:hipster`).
+Using the distribution of unique songs by year, I generated a second data set of songs that would mirror the Hits listed in the Hot 100 with Non-Hits that were released around the same time (accurate to the year). The data was generated using the Search endpoint and randomly sampling chunks of the first 10000 results (50 songs at a time) and ~20% of the data was sampled from the bottom 10% of search results (least popular songs). Spotify provides a specific tag for that specific purpose (i.e. `tag:hipster`).
 
 The more challenging task was matching artist names and titles to appropriate songs in the Spotify Database. Due to the limited amount of information provided by the Hot 100 charts the Spotify API would be able to match one Hot 100 song with multiple instances in their database. For the songs I was able to match, I created a list of audio features using the relevant Spotify Endpoint.
 
@@ -71,10 +71,10 @@ The more challenging task was matching artist names and titles to appropriate so
 This section describes the various data cleaning and data wrangling methods applied to the Hot 100 and Non-Hits data. 
 
 **Summary Files**
-The results of Hot 100 scraper and Audio Feature endpoint resulted in separate files, as that allowed for partial processing, abrupt shutdowns and intermediate saving. For analysis purposes and faster processing these files were merged into comprehensive dataframes or actual summary files (e.g. 'data/interim/hot100_songs.csv'). 
+The results of the Hot 100 scraper and Audio Feature endpoint resulted in separate files, as that allowed for partial processing, abrupt shutdowns and intermediate saving. For analysis purposes and faster processing these files were merged into comprehensive dataframes or actual summary files (e.g. 'data/interim/hot100_songs.csv'). 
 
 **Performance Features for Exploratory Data Analysis**
-The Hot 100 data was very slender, to make the later EDA phase easier, I added a few additional performance metrics to the data:
+The Hot 100 data was very slender. In order to make the later EDA phase easier, I added a few additional performance metrics to the data:
 
 - reentry - Total number of reentries (NaN was used for titles that have no reentries)
 - streak - Consecutive weeks a song ranked
@@ -115,11 +115,11 @@ Started by Billboard Magazine the Billboard Hot 100 is the industry standard rec
 
 Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. If we define success of a song as commercial success, the charts are a way to understand the mainstream popularity/market value of a song.
 
-It should also be noted that the Billboard Hot 100 is not the most accurate tool for identifying all commercially successful songs as their rules and tracking tools are subject to flaws. A common example of this is their policy to not include songs that weren't released as singles (revoked in 1998). This led to some of the most commercially successful songs never making it onto the Hot 100. Another drawback is simply the arbitrary cut-off at 100 songs a week, artificially limiting the amount of possible Hits at any given point. Nevertheless, it's the best tool we have readily available.
+It should also be noted that the Billboard Hot 100 is not the most accurate tool for identifying all commercially successful songs as their rules and tracking tools are subject to flaws. A common example of this is their policy to not include songs that weren't released as singles (revoked in 1998). This led to some of the most commercially successful songs never making it onto the Hot 100 (e.g. No Doubt's Don't Speak). Another drawback is simply the arbitrary cut-off at 100 songs a week, artificially limiting/inflating the amount of possible Hits at any given point. Nevertheless, it's the best tool we have readily available.
 
 We'll start by looking into the frequency of songs in the Hot 100 through the years.
 
-![](./notebooks/assets/hot100_by_year.png)
+![](../notebooks/assets/hot100_by_year.png)
 
     Since 1958 there were *28083* songs on the Billboard Hot 100.
 
@@ -133,7 +133,7 @@ One of the lowest fluctuation points also coincides with the high point of sales
 
 There are many ways to look at this data to gain further insights. Looking at the duration a song stays on the Hot 100 allows us to gauge fluctuation and gain an understanding of the underlying structure of entering, exiting and general movement through the Hot 100 during its stay.
 
-![](./notebooks/assets/hist_streaks.png)
+![](../notebooks/assets/hist_streaks.png)
 
     Outliers in Streaks across the entire data set (Tukey's Fence k=1.5): >31
 
@@ -141,7 +141,7 @@ We can see a contrinuous fall as we're getting toward the higher streak lengths.
 
 We'll have a closer look at this distribution by year in the next plot.
 
-![](./notebooks/assets/hist_streaks_by_year.png)
+![](../notebooks/assets/hist_streaks_by_year.png)
 
 **19-week Pattern of lower 75% (third quartile)**
 
@@ -152,7 +152,7 @@ Looking into the underlying formula it looks like it has to do with a Hot 100 ru
 The following plot highlights this effect distinctively by looking at exit positions of songs before 1991 and after 1991.
 
 <a id="exit-positions"></a>
-![](./notebooks/assets/20-20-rule.png) 
+![](../notebooks/assets/20-20-rule.png) 
 
     Number of songs whose streak was likely cut short: 1693
 
@@ -214,7 +214,7 @@ Again we can see the effect of the 20-20 rule in the second song set's `exit` co
 
 Let's look at outliers for the streak variable (>31 weeks) by year to have a better look at their distribution.
 
-![](./notebooks/assets/outliers-streaks.png)
+![](../notebooks/assets/outliers-streaks.png)
 
 Starting in 1995 we can see a pattern of what I'm going to call 'Super Songs' emerge. Before 1995, there were only few songs that stayed long enough to be considered an outlier (Tukey's Fence rule). After 1993, however we can suddenly see these breakout songs occuring much more often. Standout years are 1996, 2001 and 2018 but other years are generating outliers more densely as well.
 
@@ -230,7 +230,7 @@ Throughout the above analysis, we've seen the year 1991 reappear over and over a
 
 Let's first have a look at the distributions before and after 1991.
 
-![](./notebooks/assets/distribution-20-20-rule.png)
+![](../notebooks/assets/distribution-20-20-rule.png)
 
 If the only change affecting the data was the 20-20 rule and the Nielsen Soundscan and other unknown factors had no effect on the streak length, we would expect roughly the same distribution for songs of 20 or less weeks on the Hot 100. However, we can see that the distribution of Hot 100 songs before and after 1991 are very different. The streaks length for songs after 1991 is far more left skewed than before. Most songs are in the lowest bin, only rivaled by the 19 streak weeks bin which, as seen in the [`Exit Positions`](#exit-positions) plot, was likely introduced by the 20-20 rule.
 
@@ -242,7 +242,7 @@ To see whether the change in distribution is statistically significant we're goi
 - **H1**: The mean streak length after 1991 is larger than the mean streak length before 1991 (i.e. mean fluctuation decreased). This would indicate that there is an indication the underlying distribution has changed. This would indicate that the only other known change in that period, the introduction of Nielsen Data, could've led to an increase in streak lengths.
 - **alpha**: 0.05
 
-![](./notebooks/assets/test_20-20_dist.png)
+![](../notebooks/assets/test_20-20_dist.png)
 
     p: 0.0
 
@@ -254,7 +254,7 @@ An argument could be made that without the introduction of the 20-20 rule along 
 
 Looking at streak length it could be interesting to see whether there's a relationship with the peak position a song reached.
 
-![](./notebooks/assets/peak_streak_rel.png)
+![](../notebooks/assets/peak_streak_rel.png)
 
     Spearman's R: -0.7857196745443265 p-value: 0.0
 
@@ -268,7 +268,7 @@ _Quick Note: At Streak position 19 we can see an unusually bold line, this clear
 
 Now we know that songs that have higher peak positions tend to stay on the Hot 100 longer but we've also seen that the pole position (i.e. rank 1) has the highest number of unique songs (see Histogram to the right side of the Joint plot above) indicating that this is a highly battled over position. Staying on the Hot 100 is one thing but I'm curious what songs were able to stay on the Hot 100's most coveted position the longest.
 
-![](./notebooks/assets/pole_pos_streaks.png)
+![](../notebooks/assets/pole_pos_streaks.png)
 
 | artist                                            | title         | weeks |
 |---------------------------------------------------|---------------|-------|
@@ -283,17 +283,17 @@ Now we know that songs that have higher peak positions tend to stay on the Hot 1
 
 Now that we've looked at peak positions and streaks, I'm interested to know how the jumps from one position (i.e. a leap) to another are distributed. Possibly we can uncover something interesting here as well.
 
-![](./notebooks/assets/leap_dist.png)
+![](../notebooks/assets/leap_dist.png)
 
 We see that the median maximum leap was just above 10 positions and that we can generally expect for most titles to leap at most between 7-19 places. We also can see that leaps beyond 38 positions are generally rare, so are negative maximum leaps beyond -9 (i.e. titles that consistently fell in position from their initial entry).
 
 Generally, a title moves up at some point during their time on the Hot 100. This is obvious due to the shift of the distribution to values above 0.
 
-![](./notebooks/assets/entry_exit_box.png)
+![](../notebooks/assets/entry_exit_box.png)
 
 As seen at the beginning of the EDA. Generally songs enter and exit the Hot 100 in the lower positions. As expected it is hard to stay higher up on the Hot 100 and less than 50% of songs make it into the coveted Top 40.
 
-![](./notebooks/assets/reentry_max_leap_box_plot.png)
+![](../notebooks/assets/reentry_max_leap_box_plot.png)
 
 There are a total of 6 songs that were able to leap more than 90 positions from one week to another.
 
@@ -308,15 +308,15 @@ There are a total of 6 songs that were able to leap more than 90 positions from 
 
 To understand the journey of these songs we'll make an attempt at visualizing it.
 
-![](./notebooks/assets/moves_peak.png)
+![](../notebooks/assets/moves_peak.png)
 
 8 out of the 10 songs rise to their peak position within the first 4 weeks of their first appearance on the Hot 100. After the initial high is reached there tends to be more or less a steady decline for most of them. It looks like the peak position is reached very quickly after their respective maximum leap. Let's explore this thought further and see if this is the case for other songs as well. We'll be looking at the time to maximum leap and average distance to peak position.
 
-![](./notebooks/assets/weeks_max_leap_hist.png)
+![](../notebooks/assets/weeks_max_leap_hist.png)
 
 We can see that the highest jumps occur most often in the second to fourth week of songs making their debut on the Hot 100. Let's now examine whether this maximum leap is close to the final peak position.
 
-![](./notebooks/assets/distance_peak_hist.png)
+![](../notebooks/assets/distance_peak_hist.png)
 
     Number of titles that reached their peak position in the 
     week of their maximum leap: 4375 (i.e. 15.58%)
@@ -367,7 +367,7 @@ After we've looked at the base on which our target variable is built, we're goin
 
 To dive deeper into the actual make up of a song and see if we can build a model that can reliably identify songs on its content, we'll have a look at the audio features of a Hit. Let's start with a few descriptive metrics!
 
-![](./notebooks/assets/medians_features.png)
+![](../notebooks/assets/medians_features.png)
 
     There are 34671 rows and 20 columns
 
@@ -375,7 +375,7 @@ There are a few features that show some distinct trends when compared to Non-Hit
 
 ### 4.2.1 Danceability
 
-![](./notebooks/assets/danceability_dist.png)
+![](../notebooks/assets/danceability_dist.png)
 
 _"Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity."_ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -408,7 +408,7 @@ Judging from the Top 10 most danceable songs we can see the 1980s and early 1990
 
 In the following we're going to look at the statistical significance of the differences in distribution of Hits vs. Non-Hits.
 
-![](./notebooks/assets/danceability_box_plots.png)
+![](../notebooks/assets/danceability_box_plots.png)
 
     Hits Mean: 0.5957135504885993
     Non-Hits Mean: 0.5295059136044526
@@ -429,7 +429,7 @@ To better understand whether the distributions are statistically significantly d
     CI: [-0.00384252  0.0037603 ]
     ME: 0.003786297754012112
 
-![](./notebooks/assets/danceability_test.png)
+![](../notebooks/assets/danceability_test.png)
 
 Looking at the test above it's clear that the observed mean difference is statistically significant. This is not surprising, due to the largeness of the sample but the exceptionally low p-value is positive evidence that we might be on the right track here and that there could be some predictive information in this feature. 
 
@@ -439,9 +439,9 @@ Some inferential tests are performed in the EDA but a summary of all relevant in
 
 ### 4.2.2 Energy and Acousticness
 
-![](./notebooks/assets/energy_dist.png)
+![](../notebooks/assets/energy_dist.png)
 
-![](./notebooks/assets/acousticness_dist.png)
+![](../notebooks/assets/acousticness_dist.png)
 
 _"Energy [...] represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy."_  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -494,7 +494,7 @@ The only song since the turn of the century that is among the highest acousticne
 
 ### 4.2.3 Loudness
 
-![](./notebooks/assets/loudness_dist.png)
+![](../notebooks/assets/loudness_dist.png)
 
 _"The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks."_  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -519,7 +519,7 @@ I believe especially Lana Cantrell's Like A Sunday Morning is a good example of 
 
 ### 4.2.4 Speechiness
 
-![](./notebooks/assets/speechiness_dist.png)
+![](../notebooks/assets/speechiness_dist.png)
 
 _"Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words."_  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -542,7 +542,7 @@ It's hard to pin-point what Speechiness is actually measuring as we're looking a
 
 ### 4.2.5 Valence
 
-![](./notebooks/assets/valence_dist.png)
+![](../notebooks/assets/valence_dist.png)
 
 _A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)._ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -570,9 +570,9 @@ Knowing that Valence has more and more decreased it might be interesting to see 
 
 The highest valence songs are between 1961 and 1985, the lowest valence songs are a little more spread out but it's striking that 3 of the top 5 lowest valence songs were released in the 2010s. That being said Georgie Young might also just be an outlier and mislabeled as it happened to be the only song with 0.0 Valence and it being quite a bit apart from the other lowest valence songs.
 
-![](./notebooks/assets/valence_box_plot.png)
+![](../notebooks/assets/valence_box_plot.png)
 
-![](./notebooks/assets/valence_hist_by_positivity.png)
+![](../notebooks/assets/valence_hist_by_positivity.png)
 
 _NOTE: To avoid using an arbitrary cut-off point such as 0.5, I've introduced a neutral category for valence levels between 0.4 - 0.6._
 
@@ -582,7 +582,7 @@ The graphs show that we're increasingly listening to less positive sounding musi
 
 ### 4.2.6 Instrumentalness
 
-![](./notebooks/assets/instrumentalness_dist.png)
+![](../notebooks/assets/instrumentalness_dist.png)
 
 _Instrumentalness predicts whether a track contains no vocals. [...] The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content._  [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -603,7 +603,7 @@ Instrumentalness basically detects the vocal to instruments ratio. Rap songs are
 
  As expected we see most of the instrumental songs in the 1960s. Insterestingly, the song at the top came out at the beginning of the Century in 2001 `Sandstorm` by `Darude`. Since it is an EDM track, it's also a good example for a song that is not acoustic and yet categorized as instrumental.
 
-![](./notebooks/assets/instrumentalness_hist.png)
+![](../notebooks/assets/instrumentalness_hist.png)
 
 Another reason that makes this potentially interesting for Hit detection is the fact that there are significant amounts of Non-Hits that fall into the instrumental category.
 
@@ -621,14 +621,14 @@ To better understand whether the distributions are statistically significantly d
     CI: [-0.00534099  0.00530983]
     ME: 0.0053006576330059795
 
-![](./notebooks/assets/instrumentalness-test.png)
+![](../notebooks/assets/instrumentalness-test.png)
 
 
 The p-value for the Point Estimate occuring if Hits and Non-Hits were equally distributed is <0.05 and we can therefore reject H0 and accept H1. The distributions are significantly different for p<0.001. Hence, we can consider using this feature in our model.
 
 ### 4.2.7 Duration (in ms)
 
-![](./notebooks/assets/duration_dist.png)
+![](../notebooks/assets/duration_dist.png)
 
 _The duration of the track in milliseconds._ [Spotify Track Features Description](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/)
 
@@ -640,7 +640,7 @@ We can see that Non-Hits while also having scaled down slightly, closer to the 4
 
 It's clear that `time_signature`, `key` and `mode` don't hold much value for us using the median as a summary statistic. Hence, we're going to look at them in a countplot.
 
-![](./notebooks/assets/discrete_dist.png)
+![](../notebooks/assets/discrete_dist.png)
 
 We can see general tendencies:
     - More than 2/3 of songs are written in Major
@@ -678,7 +678,7 @@ The focus for us lies on three categories:
 
 One of the biggest challenges for this project was the lack of available normally distributed data (see Q-Q plots below). Normally distributed data is often a requirement for classical statistic tests. Luckily, the Central Limit Theorem is helping us to use the Z-Test to compare distribution differences anyways.
 
-![](./notebooks/assets/norm.png)
+![](../notebooks/assets/norm.png)
 
 #### Statistical and Practical Significance
 
@@ -710,11 +710,11 @@ To understand whether the differences between Hits and Non-Hits observed are sig
 - tempo
 - duration_ms
 
-![](./notebooks/assets/mean_diffs.png)
+![](../notebooks/assets/mean_diffs.png)
 
 The method was to compare mean differences across 10000 permutations and then check whether the mean difference of the observed distributions would fall into the realm of significant possibilities. 
 
-![](./notebooks/assets/tests.png) 
+![](../notebooks/assets/tests.png) 
 
 For all features above, the probability (p-value) was \<0.001, allowing me to reject the null hypothesis (H0) that Hits and Non-Hits were equally distributed for the respective feature. In the next step we're going to look at the correlation of these features with each other and with the target variable.
 
@@ -726,7 +726,7 @@ As pointed out above exploring relationship between continous variables with bin
 
 _Sidenote: Using Pearson's R would've yielded dubious results at best - try drawing a linear regression line through a binary outcome and you'll understand why Pearson's R won't be a suitable tool_
 
-![](./notebooks/assets/feature_importance.png)
+![](../notebooks/assets/feature_importance.png)
 
 Using Logistic Regression's Beta based on standardized values allowed us to evaluate the relative importance of the features used. We can see at the top are three features to detect Hits:
 - Instrumentalness
@@ -751,7 +751,7 @@ Hence, we'll drop Tempo, Mode, Key and Time Signature from our feature list.
 
 For collinearity measurements we've used the popular Pearson correlation coefficient (i.e. Pearson's r). Even though this couldn't be used for describing relationships between continuous predictor and a discrete target variable, it's a good metric to detect collinearity between predictors. A characteristic of multiple features standing in relation to each other is an issue because our assumption is that each feature is an _independent_ variable. Correlation, however implies that with a change in one variable it affects another making the relationship with the target variable increasingly murky. This has drastic implications for the stability of our model which can be read about in further detail [_here_](https://statisticsbyjim.com/regression/multicollinearity-in-regression-analysis/). 
 
-![](./notebooks/assets/feature_correlation.png)
+![](../notebooks/assets/feature_correlation.png)
 
 I've found strong correlation between `energy` and `acousticness` (0.7) as well as `energy` and `loudness` (0.76). Somewhat correlated are `acousticness` and `loudness` (0.55) as well as `valence` and `danceability` (0.51). All four correlations were statistically significant for p<0.001 but as the correlations were only moderately strong for some features and removing them might've removed some actual information about a song's content, I decided to use dimension reduction via Pricincipal Component Analysis (PCA) instead.
 
@@ -783,7 +783,7 @@ As shown in the inferential statistics section, there are a few features that sh
 
 For this project we're using one of the most popular methods called Principal Component Analysis (PCA). One pretty significant catch of this method is that due to the transformations performed we're losing the interpretability of the model. This is quite significant for a lot of use-cases as that allows us to learn directly from models. In a future iteration I might consider removing the Dimensionality Reduction to improve understandability.
 
-![](./notebooks/assets/pca_dimensions.png)
+![](../notebooks/assets/pca_dimensions.png)
 
 The above graphic shows the cumulative explained variance ratio and explained variance by component. It's not an easy decision as it looks like the largest chunk of information rests in just one component. The two other cut-off points are 4 and 6. To do our best to avoid overfitting we're using just 4 components.
 
@@ -817,7 +817,7 @@ Using the metrics and algorithms above, we'll apply cross-validation to differen
 
 The first algorithm that was tested was Random Forest with up to 1500 estimators (only 500 visualized here). 
 
-![](./notebooks/assets/pr_roc_rf.png)
+![](../notebooks/assets/pr_roc_rf.png)
 
 We found a quick drop as the threshold (i.e. probability threshold to assign a positive label) was lifted above 0 and the common slow descend to 0.5 as the threshold approaches 1. The best performing number of estimators was 300 with a Precision Score of 0.61 and a Recall Score of 0.68. This means that we've detected almost 70% of all Hits in the data set and of the songs assigned a Hit label we were correct 61% of the time.
 
@@ -834,7 +834,7 @@ We found a quick drop as the threshold (i.e. probability threshold to assign a p
 
 The second algorithm was the K-Nearest Neighbor algorithm tested with up to 1500 neighbors (only 500 visualized here).
 
-![](./notebooks/assets/pr_roc_knn.png)
+![](../notebooks/assets/pr_roc_knn.png)
 
 With k-Nearest Neighbor (kNN) we're seeing a more gradual descend with raising the threshold. The best performing k for neighbors is 200. While kNN is performing slightly worse in terms of Precision (0.6) it makes more than up for it in Recall (0.83). kNN was able to retrieve more than 80% of all Hits in the data set, it wins over Random Forest by a huge margin of 15 points.
 
