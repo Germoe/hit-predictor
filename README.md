@@ -3,6 +3,8 @@ Hit Predictor
 
 This project uses Billboard Hot 100 and Spotify API data to make predictions on a song's potential to make it onto the Billboard Hot 100 (become a mainstream hit).
 
+Go to Report: [Markdown](https://github.com/Germoe/hit-predictor/blob/master/reports/project_report.md) [PDF](https://github.com/Germoe/hit-predictor/blob/master/reports/project_report.pdf)
+
 Quick Start
 ==============================
 
