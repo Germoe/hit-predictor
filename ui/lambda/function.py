@@ -10,7 +10,11 @@ def lambda_handler(event, context):
         'url': os.getenv("IBM_URL"),
         'username': os.getenv("IBM_USERNAME"),
         'password': os.getenv("IBM_PASSWORD"),
-        'instance_id': os.getenv("IBM_INSTANCE_ID")
+        'instance_id': os.getenv("IBM_INSTANCE_ID"),
+        'apikey': os.getenv("IBM_API_KEY"),
+        'iam_apikey_name': os.getenv("IBM_API_KEY_NAME"),
+        'iam_role_crn': os.getenv("IBM_ROLE_CRN"),
+        'iam_serviceid_crn': os.getenv("IBM_SERVICE_ID_CRN")
     }
 
     client = WatsonMachineLearningAPIClient(wml_credentials)
@@ -20,11 +24,4 @@ def lambda_handler(event, context):
                     'values': features}
 
     res = client.deployments.score(scoring_url, payload_scoring)
-    return {
-       "Number1": number1,
-       "Number2": number2,
-       "Sum": sum,
-       "Product": product,
-       "Difference": difference,
-       "Quotient": quotient
-   }
+    return res
