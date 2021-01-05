@@ -6,7 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "aws-sdk": "^2.482.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.10.4",
     "gatsby": "^2.10.4",
     "gatsby-image": "^2.2.3",
