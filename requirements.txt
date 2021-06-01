@@ -91,7 +91,7 @@ tinycss2==1.0.2
 tornado==6.0.2
 tqdm==4.32.2
 traitlets==4.3.2
-urllib3==1.24.3
+urllib3==1.26.5
 watson-machine-learning-client==1.0.365
 wcwidth==0.1.7
 WeasyPrint==47
