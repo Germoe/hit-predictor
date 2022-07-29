@@ -43,7 +43,7 @@ lomond==0.3.3
 markdown2==2.3.8
 MarkupSafe==1.1.1
 matplotlib==3.1.0
-mistune==0.8.4
+mistune==2.0.3
 nbconvert==5.5.0
 nbformat==4.4.0
 notebook==5.7.8
